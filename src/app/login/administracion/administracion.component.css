@@ -7,6 +7,17 @@ p{font-family: 'Poppins', sans-serif;
 	line-height: 1.7em;
 	color: rgb(189, 189, 189);
 }
+.fondo{
+    height: 100vh;
+    
+    background-image: url("../../../assets/fondo.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+
+
+}
 a,
 a:hover,
 a:focus{
@@ -16,7 +27,7 @@ a:focus{
 }
 .navbar{
 	padding: 10px 10px;
-	background: #fff;
+	background: rgb(0, 0, 0,0.5);
 	border: none;
 	border-radius: 0;
 	margin-bottom: 40px;
@@ -40,11 +51,12 @@ a:focus{
     width: 100%;
     align-items: stretch;
 }
-
+/* sidebar donde sale el menu home y eso */
 #sidebar {
+    
     min-width: 250px;
     max-width: 250px;
-    background: #7386D5;
+    background: rgb(0, 0, 0,0.5);
     color: #fff;
     transition: all 0.3s;
     min-height: 100vh;
@@ -95,11 +107,11 @@ a:focus{
 
 #sidebar .sidebar-header{
 	padding: 20px;
-	background: #6d7fcc;
+	background: rgb(0, 0, 0,0.5);
 }
 #sidebar ul.components{
 	padding: 20px 0px;
-	border-bottom: 1px solid #47748b;
+	border-bottom: 1px solid #578b47;
 }
 
 #sidebar ul p{
@@ -114,14 +126,14 @@ a:focus{
 	display: block;
 }
 #sidebar ul li a:hover {
-    color: #7386D5;
-    background: #fff;
+    color: rgb(213, 115, 115);
+    background: rgb(49, 155, 28);
 }
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
+    color: rgb(65, 212, 65);
+    background: #6dccac;
 }
 a[data-toggle="collapse"] {
     position: relative;
@@ -182,6 +194,12 @@ ul.CTAs a {
   border-radius: 900px;
 }
 
+#footer{
+     background: rgb(0, 0, 0,0.5);
+}
+#arriba{
+    background: rgb(0, 0, 0,0.5);
+}
 .avatar_mask img{
   height:60px;
 }
