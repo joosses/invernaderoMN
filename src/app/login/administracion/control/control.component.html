@@ -1,1 +1,111 @@
-<span> {{mediciones.chipid}}</span>
+<div class="row">
+  <div class="col-sm-8"><span> <b>Control</b></span> </div>
+  <div class="col-sm-4"><span> <b>Cultivo: Tomate</b></span></div>
+</div>
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-6">  Medicion Actual</div>
+    <div class="col-sm-3"></div>
+  </div>
+
+  
+  <div class="row">
+    <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/temperatura.jpeg" height="100" width="100"></div>
+    <div class="col-md-2"><span>Temperatura: <input type="color" placeholder="30" value="#00ff00"> </span>  <br>
+        <span>Predefinido 10° - 45° </span>
+        <br>
+        <span>Alerta 15° - 40° </span>
+    
+    </div>
+    <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
+    <div class="col-md-3"><span>Encender luz <input type="number" style="width : 50px;"> min </span></div>
+    <div class="col-md-2"><!-- Material checked -->
+        <div class="onoffswitch">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                <label class="onoffswitch-label" for="myonoffswitch">
+                    <span class="onoffswitch-inner"></span>
+                    <span class="onoffswitch-switch"></span>
+                </label>
+            </div>
+</div>
+</div>
+<br>
+<!-- segundo control-->
+<div class="row">
+        <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/humedad.jpeg" height="100" width="100"></div>
+        <div class="col-md-2"><span>H. Suelo: <input type="color" placeholder="30" value="#ff0000"> </span>  <br>
+            <span >Predefinido 40% - 70° </span>
+            <br>
+            <span>Alerta 48% - 62% </span>
+        
+        </div>
+        <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
+        <div class="col-md-3"><span>Regar <input type="number" style="width : 50px;"> min </span></div>
+        <div class="col-md-2"><!-- Material checked -->
+            <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                    <label class="onoffswitch-label" for="myonoffswitch">
+                        <span class="onoffswitch-inner"></span>
+                        <span class="onoffswitch-switch"></span>
+                    </label>
+                </div>
+    </div>
+    </div>
+    <br>
+    <!--Tercer Control-->
+    <div class="row">
+            <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/humedadAire.jpeg" height="100" width="100"></div>
+            <div class="col-md-2"><span>H. Aire: <input type="color" placeholder="30" value="#ff8000"> </span>  <br>
+                <span>Predefinido 50% - 80% </span>
+                <br>
+                <span>Alerta 55% - 75%° </span>
+            
+            </div>
+            <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
+            <div class="col-md-3"><span>Ventilador 1 <input type="number" style="width : 50px;"> min </span></div>
+            <div class="col-md-2"><!-- Material checked -->
+                <div class="onoffswitch">
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                        <label class="onoffswitch-label" for="myonoffswitch">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+        </div>
+        </div>
+        <br>
+        <!--ultimo control-->
+        <div class="row">
+                <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/co2.jpeg" height="100" width="100"></div>
+                <div class="col-md-2"><span>Nivel CO<sub>2 </sub> <input type="color" placeholder="30" value="#00ff00"> </span>  <br>
+                    <span>Predefinido 40% - 75% </span>
+                    <br>
+                    <span>Alerta 45% - 70% </span>
+                
+                </div>
+                <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
+                <div class="col-md-3"><span>Ventilador 2 <input type="number" style="width : 50px;"> min </span></div>
+                <div class="col-md-2"><!-- Material checked -->
+                    <div class="onoffswitch">
+                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                            <label class="onoffswitch-label" for="myonoffswitch">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+            </div>
+            </div>
+            <br>
+            <div class="container">
+                    <div class="row">
+                      <div class="col-sm">
+                        <span> <b>Mediciones: </b>  <input type="color" placeholder="30" value="#00ff00"> <b>  Nivel correcto</b></span> 
+                      </div>
+                      <div class="col-sm">
+                            <input type="color" placeholder="30" value="#ff8000"><b>  Nivel al limite</b>
+                      </div>
+                      <div class="col-sm">
+                            <input type="color" placeholder="30" value="#ff0000"> <b>  Nivel critico fuera de rango</b>
+                      </div>
+                    </div>
+                  </div>
