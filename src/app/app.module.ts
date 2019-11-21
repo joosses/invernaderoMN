@@ -12,6 +12,7 @@ import { AdministracionComponent } from './login/administracion/administracion.c
 import { ActuadorComponent } from './login/administracion/actuador/actuador.component';
 import { ControlComponent } from './login/administracion/control/control.component';
 import { SensorComponent } from './login/administracion/sensor/sensor.component';
+import { HistoricoComponent } from './login/administracion/historico/historico.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,10 @@ const routes: Routes = [
         path:'control',
         component:ControlComponent
       }, 
+      {
+        path:'historico',
+        component:HistoricoComponent
+      }, 
     ]
   },
   
@@ -43,7 +48,8 @@ const routes: Routes = [
     AdministracionComponent,
     ActuadorComponent,
     ControlComponent,
-    SensorComponent
+    SensorComponent,
+    HistoricoComponent
   ],
   imports: [
     BrowserModule,
