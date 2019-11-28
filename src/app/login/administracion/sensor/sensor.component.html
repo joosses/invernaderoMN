@@ -5,32 +5,25 @@
 <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-2"></div>
-        <div class="col-sm-2"><b>Predefinido</b></div>
-        <div class="col-sm-2"><b>Rango-Alerta</b></div>
-        <div class="col-sm-3"><b>Tiempo de cada medición</b></div>
+        <div class="col-sm-4"><b>Predefinido</b></div>
+       
+        <div class="col-sm-3"><b>Tiempo para cada medición</b></div>
 </div>
 <div class="row">
     <div class="col-sm-3"><img src="../../../../assets/temperatura.jpeg" width="200" height="120"></div>
-    <div class="col-sm-2"><b><i><h4><kbd>Temperatura</kbd></h4></i></b></div>
-    <div class="col-sm-2">
+    <div class="col-sm-2"><b><i><h4><kbd>Temperatura </kbd></h4></i></b></div>
+    <div class="col-sm-4">
         <div class="row">
-            <div class="col-sm-10">
-                <input type="text" name="minTemp" id="minTemp" class="form-control" placeholder="Mín: 10°" tabindex="1" readonly>
+            <div class="col-sm-8">
+                <input type="text" name="minTemp" id="minTemp" class="form-control" placeholder="Mínimo: {{tempMin}}° " tabindex="1" readonly>
             </div>
-            <div class="col-sm-10">
-                <input type="text" name="maxTemp" id="maxTemp" class="form-control" placeholder="Máx: 45°" tabindex="1" readonly>
+            <div class="col-sm-8">
+                <input type="text" name="maxTemp" id="maxTemp" class="form-control" placeholder="Máximo: {{tempMax}}°" tabindex="1" readonly>
             </div>  
         </div>
     </div>    
 
-    <div class="col-sm-2">
-            <div class="col-sm-10">
-                <input type="text" name="minTempSelect" id="minTempSelect" class="form-control" placeholder="valor" tabindex="1">
-            </div>
-            <div class="col-sm-10">
-                <input type="text" name="maxTempSelect" id="maxTempSelect" class="form-control" placeholder="valor2" tabindex="1">
-            </div>
-    </div>
+    
     <div class="col-sm-3">
         <div class="form-group">
             <label for="sel1"></label>
@@ -50,25 +43,18 @@
 <div class="row">
     <div class="col-sm-3"><img src="../../../../assets/humedadaire.jpg" width="200" height="120"></div>
     <div class="col-sm-2"><b><i><h4><kbd>Humedad Aire</kbd></h4></i></b></div>
-    <div class="col-sm-2">
+    <div class="col-sm-4">
         <div class="row">
-            <div class="col-sm-10">
-                <input type="text" name="minHumAire" id="minHumAire" class="form-control" placeholder="Mín: 50%" tabindex="1" readonly>
+            <div class="col-sm-8">
+                <input type="text" name="minHumAire" id="minHumAire" class="form-control" placeholder="Mín: {{humMin}}%" tabindex="1" readonly>
             </div>
-            <div class="col-sm-10">
-                <input type="text" name="maxHumAire" id="maxHumAire" class="form-control" placeholder="Máx: 80%" tabindex="1" readonly>
+            <div class="col-sm-8">
+                <input type="text" name="maxHumAire" id="maxHumAire" class="form-control" placeholder="Máx: {{humMax}}%" tabindex="1" readonly>
             </div>  
         </div>
     </div>    
 
-    <div class="col-sm-2">
-            <div class="col-sm-10">
-                <input type="text" name="minHumAireSelect" id="minHumAireSelect" class="form-control" placeholder="valor" tabindex="1">
-            </div>
-            <div class="col-sm-10">
-                <input type="text" name="maxHumAireSelect" id="maxHumAireSelect" class="form-control" placeholder="valor2" tabindex="1">
-            </div>
-    </div>
+    
     <div class="col-sm-3">
         <div>Esta medición utiliza el tiempo definido para Temperatura</div>
     </div>
@@ -77,25 +63,17 @@
 <div class="row">
     <div class="col-sm-3"><img src="../../../../assets/humedad.jpeg" width="200" height="120"></div>
     <div class="col-sm-2"><b><i><h4><kbd>Humedad Suelo</kbd></h4></i></b></div>
-    <div class="col-sm-2">
+    <div class="col-sm-4">
         <div class="row">
-            <div class="col-sm-10">
-                <input type="text" name="minHumSuelo" id="minHumSuelo" class="form-control" placeholder="Mín: 40%" tabindex="1" readonly>
+            <div class="col-sm-8">
+                <input type="text" name="minHumSuelo" id="minHumSuelo" class="form-control" placeholder="Mín: {{humSuelMin}}%" tabindex="1" readonly>
             </div>
-            <div class="col-sm-10">
-                <input type="text" name="maxHumSuelo" id="maxHumSuelo" class="form-control" placeholder="Máx: 70%" tabindex="1" readonly>
+            <div class="col-sm-8">
+                <input type="text" name="maxHumSuelo" id="maxHumSuelo" class="form-control" placeholder="Máx: {{humSuelMax}}%" tabindex="1" readonly>
             </div>  
         </div>
     </div>    
 
-    <div class="col-sm-2">
-        <div class="col-sm-10">
-            <input type="text" name="minHumSelect" id="minHumSelect" class="form-control" placeholder="valor" tabindex="1">
-        </div>
-        <div class="col-sm-10">
-            <input type="text" name="maxHumSelect" id="maxHumSelect" class="form-control" placeholder="valor2" tabindex="1">
-        </div>
-    </div>
     <div class="col-sm-3">
         <div class="form-group">
             <label for="sel1"></label>
@@ -115,25 +93,18 @@
 <div class="row">
     <div class="col-sm-3"><img src="../../../../assets/co2.jpeg" width="200" height="120"></div>
     <div class="col-sm-2"><b><i><h4><kbd>Nivel Co2</kbd></h4></i></b></div>
-    <div class="col-sm-2">
+    <div class="col-sm-4">
         <div class="row">
-            <div class="col-sm-10">
-                <input type="text" name="minCo2" id="minCo2" class="form-control" placeholder="Mín: 40%" tabindex="1" readonly>
+            <div class="col-sm-8">
+                <input type="text" name="minCo2" id="minCo2" class="form-control" placeholder="Mín: {{co2Min}}%" tabindex="1" readonly>
             </div>
-            <div class="col-sm-10">
-                <input type="text" name="maxCo2" id="maxCo2" class="form-control" placeholder="Máx: 75%" tabindex="1" readonly>
+            <div class="col-sm-8">
+                <input type="text" name="maxCo2" id="maxCo2" class="form-control" placeholder="Máx: {{co2Max}}%" tabindex="1" readonly>
             </div>  
         </div>
     </div>    
 
-    <div class="col-sm-2">
-            <div class="col-sm-10">
-                <input type="text" name="minCo2Select" id="minCo2Select" class="form-control" placeholder="valor" tabindex="1">
-            </div>
-            <div class="col-sm-10">
-                <input type="text" name="maxCo2Select" id="maxCo2Select" class="form-control" placeholder="valor2" tabindex="1">
-            </div>
-    </div>
+    
     
     <div class="col-sm-3">
         <div class="form-group">
