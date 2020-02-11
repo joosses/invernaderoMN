@@ -19,6 +19,8 @@ public sensorServ;
   public humMin;
   public humSuelMin;
   public co2Min;
+
+  public contadores;
   constructor(public sensorServices:SensorServiceService) { 
     
   }
@@ -26,6 +28,7 @@ public sensorServ;
   ngOnInit() {
     this.getTemp();
     this.getHumSuel();
+   
 
     this.getMedicionTemperaturaMin();
     this.getMedicionhumedadSueloMin();
@@ -40,6 +43,7 @@ public sensorServ;
   mostrarTemperatura():boolean {
     if(this.tempMin==0) {
       return true;
+      this.contadores=1;
     }else {
       return false;
     }
@@ -48,6 +52,7 @@ public sensorServ;
     console.log("mostrando la humedad del suelo" + this.humSuelMin);
     if(this.humSuelMin==0 && this.tempMin>0) {
       return true;
+
     }else {
       return false;
     }
