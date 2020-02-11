@@ -1,128 +1,147 @@
 <div class="row">
-        <div class="col-sm-8"><span> <b>Control</b></span> </div>
-        <div class="col-sm-4"><span> <b>Cultivo: Tomate</b></span></div>
-      </div>
-      <div class="row">
-          <div class="col-sm-4"></div>
-          <div class="col-sm-6">  Medicion Actual</div>
-          <div class="col-sm-3"></div>
+    <div class="col-sm-8"><span> <b>Control</b></span> </div>
+    <div class="col-sm-4"><span> <b>Cultivo: Tomate</b></span></div>
+</div>
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-6"> Medicion Actual</div>
+    <div class="col-sm-3"></div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/temperatura.jpeg" height="120" width="200"></div>
+
+    <div class="col-md-2"><span><kbd>Temperatura: </kbd> <span *ngIf="colorVerdeTemperatura()"><input readonly
+                    type="text" style="background-color: #00ff00;width : 30px;" value="{{valorTemperatura}}"></span>
+            <span *ngIf="colorRojoTemperatura()"><input readonly type="text"
+                    style="background-color: #ff0000;width : 30px;" value="{{valorTemperatura}}"></span>
+            <span *ngIf="colorNaranjoTemperatura()"><input readonly type="text"
+                    style="background-color: #ff8000;width : 30px;" value="{{valorTemperatura}}"></span>
+
+        </span> <br>
+        <span><kbd> Predefinido {{tempMin}}° - {{tempMax}}° </kbd></span>
+        <br>
+        <span><kbd> Alerta </kbd></span>
+
+    </div>
+    <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
+    <div class="col-md-3"><span>Encender luz <input type="number" style="width : 50px;"> min </span></div>
+    <div class="col-md-2">
+        <!-- Material checked -->
+        <div class="onoffswitch1">
+            <input type="checkbox" name="onoffswitch1" class="onoffswitch1-checkbox" id="myonoffswitch1" unchecked>
+            <label class="onoffswitch1-label" for="myonoffswitch1">
+                <span class="onoffswitch1-inner"></span>
+                <span class="onoffswitch1-switch"></span>
+            </label>
         </div>
-      
-        
-        <div class="row">
-          <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/temperatura.jpeg" height="120" width="200"></div>
-          
-          <div class="col-md-2"><span><kbd>Temperatura:  </kbd>  <span *ngIf="colorVerdeTemperatura()"><input readonly type="text" style="background-color: #00ff00;width : 30px;" value="{{valorTemperatura}}"></span>
-              <span *ngIf="colorRojoTemperatura()"><input readonly type="text" style="background-color: #ff0000;width : 30px;" value="{{valorTemperatura}}"></span>
-              <span *ngIf="colorNaranjoTemperatura()"><input readonly type="text" style="background-color: #ff8000;width : 30px;" value="{{valorTemperatura}}"></span>
-      
-          </span>  <br>
-              <span><kbd> Predefinido {{tempMin}}° - {{tempMax}}° </kbd></span>
-              <br>
-              <span><kbd> Alerta </kbd></span>
-          
-          </div>
-          <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
-          <div class="col-md-3"><span>Encender luz <input type="number" style="width : 50px;"> min </span></div>
-          <div class="col-md-2"><!-- Material checked -->
-              <div class="onoffswitch1">
-                      <input type="checkbox" name="onoffswitch1" class="onoffswitch1-checkbox" id="myonoffswitch1" unchecked>
-                      <label class="onoffswitch1-label" for="myonoffswitch1">
-                          <span class="onoffswitch1-inner"></span>
-                          <span class="onoffswitch1-switch"></span>
-                      </label>
-                  </div>
-      </div>
-      </div>
-      <br>
-      <!-- segundo control-->
-      <div class="row">
-              <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/humedad.jpeg" height="120" width="200"></div>
-              <div class="col-md-2"><span><kbd> H. Suelo:</kbd>  <span *ngIf="colorVerdeHumedadSuelo()"><input readonly type="text" style="background-color: #00ff00;width : 30px;" value="{{valorHumedadSuelo}}"></span>
-                <span *ngIf="colorRojoHumedadSuelo()"><input readonly type="text" style="background-color: #ff0000;width : 30px;" value="{{valorHumedadSuelo}}"></span>
-                <span *ngIf="colorNaranjoHumedadSuelo()"><input readonly type="text" style="background-color: #ff8000;width : 30px;" value="{{valorHumedadSuelo}}"></span>
-        
-            </span>  <br>
-                <span ><kbd> Predefinido {{humSuelMin}}% - {{humSuelMax}}° </kbd></span>
-                  <br>
-                  <span><kbd> Alerta  </kbd></span>
-              
-              </div>
-              <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
-              <div class="col-md-3"><span>Regar <input type="number" style="width : 50px;"> min </span></div>
-              <div class="col-md-2"><!-- Material checked -->
-                  <div class="onoffswitch2">
-                          <input type="checkbox" name="onoffswitch2" class="onoffswitch2-checkbox" id="myonoffswitch2" unchecked>
-                          <label class="onoffswitch2-label" for="myonoffswitch2">
-                              <span class="onoffswitch2-inner"></span>
-                              <span class="onoffswitch2-switch"></span>
-                          </label>
-                      </div>
-          </div>
-          </div>
-          <br>
-          <!--Tercer Control-->
-          <div class="row">
-                  <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/humedadAire.jpeg" height="120" width="200"></div>
-                  <div class="col-md-2"><span><kbd> H. Aire: </kbd>  <span *ngIf="colorVerdeHumedad()"><input readonly type="text" style="background-color: #00ff00;width : 30px;" value="{{valorHumedad}}"></span>
-                    <span *ngIf="colorRojoHumedad()"><input readonly type="text" style="background-color: #ff0000;width : 30px;" value="{{valorHumedad}}"></span>
-                    <span *ngIf="colorNaranjoHumedad()"><input readonly type="text" style="background-color: #ff8000;width : 30px;" value="{{valorHumedad}}"></span>
-            
-                </span>  <br>
-                    <span><kbd> Predefinido {{humMin}}% - {{humMax}}% </kbd></span>
-                      <br>
-                      <span><kbd> Alerta </kbd></span>
-                  
-                  </div>
-                  <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
-                  <div class="col-md-3"><span>Ventilador 1 <input type="number" style="width : 50px;"> min </span></div>
-                  <div class="col-md-2"><!-- Material checked -->
-                      <div class="onoffswitch3">
-                              <input type="checkbox" name="onoffswitch3" class="onoffswitch3-checkbox" id="myonoffswitch3" unchecked>
-                              <label class="onoffswitch3-label" for="myonoffswitch3">
-                                  <span class="onoffswitch3-inner"></span>
-                                  <span class="onoffswitch3-switch"></span>
-                              </label>
-                          </div>
-              </div>
-              </div>
-              <br>
-              <!--ultimo control-->
-              <div class="row">
-                      <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/co2.jpeg" height="120" width="200"></div>
-                      <div class="col-md-2"><span><kbd> Nivel CO<sub>2 </sub>: </kbd>  <span *ngIf="colorVerdeCo2()"><input readonly type="text" style="background-color: #00ff00;width : 30px;" value="{{valorCo2}}"></span>
-                        <span *ngIf="colorRojoCo2()"><input readonly type="text" style="background-color: #ff0000;width : 30px;" value="{{valorCo2}}"></span>
-                        <span *ngIf="colorNaranjoCo2()"><input readonly type="text" style="background-color: #ff8000;width : 30px;" value="{{valorCo2}}"></span>
-                
-                    </span>  <br>  
-                        <span><kbd> Predefinido {{co2Min}}% - {{co2Max}}% </kbd> </span>
-                          <br>
-                          <span><kbd>Alerta</kbd> </span>
-                      
-                      </div>
-                      <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
-                      <div class="col-md-3"><span>Ventilador 2 <input type="number" style="width : 50px;"> min </span></div>
-                      <div class="col-md-2"><!-- Material checked -->
-                          <div class="onoffswitch4">
-                                  <input type="checkbox" name="onoffswitch4" class="onoffswitch4-checkbox" id="myonoffswitch4" unchecked>
-                                  <label class="onoffswitch4-label" for="myonoffswitch4">
-                                      <span class="onoffswitch4-inner"></span>
-                                      <span class="onoffswitch4-switch"></span>
-                                  </label>
-                              </div>
-                  </div>
-                  </div>
-                  <br>
-                  <div class="container">
-                          <div class="row">
-                            <div class="col-sm" style="color:rgb(44, 83, 255);">
-                              <span > <b> Mediciones:  </b>  <input type="text" style="background-color: #00ff00; width: 30px;" readonly> <b>  Nivel correcto</b></span> 
-                            </div>
-                            <div class="col-sm" style="color:rgb(44, 83, 255);">
-                                  <input type="text" style="background-color: yellow; width: 30px;" readonly><b>  Nivel al limite</b>
-                            </div>
-                            <div class="col-sm" style="color:rgb(44, 83, 255);">
-                                  <input type="text" style="background-color: #ff0000; width: 30px;" readonly> <b>  Nivel critico fuera de rango</b>
-                            </div>
-                          </div>
-                        </div>
+    </div>
+</div>
+<br>
+<!-- segundo control-->
+<div class="row">
+    <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/humedad.jpeg" height="120" width="200"></div>
+    <div class="col-md-2"><span><kbd> H. Suelo:</kbd> <span *ngIf="colorVerdeHumedadSuelo()"><input readonly type="text"
+                    style="background-color: #00ff00;width : 30px;" value="{{valorHumedadSuelo}}"></span>
+            <span *ngIf="colorRojoHumedadSuelo()"><input readonly type="text"
+                    style="background-color: #ff0000;width : 30px;" value="{{valorHumedadSuelo}}"></span>
+            <span *ngIf="colorNaranjoHumedadSuelo()"><input readonly type="text"
+                    style="background-color: #ff8000;width : 30px;" value="{{valorHumedadSuelo}}"></span>
+
+        </span> <br>
+        <span><kbd> Predefinido {{humSuelMin}}% - {{humSuelMax}}° </kbd></span>
+        <br>
+        <span><kbd> Alerta </kbd></span>
+
+    </div>
+    <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
+    <div class="col-md-3"><span>Regar <input type="number" style="width : 50px;"> min </span></div>
+    <div class="col-md-2">
+        <!-- Material checked -->
+        <div class="onoffswitch2">
+            <input type="checkbox" name="onoffswitch2" class="onoffswitch2-checkbox" id="myonoffswitch2" unchecked>
+            <label class="onoffswitch2-label" for="myonoffswitch2">
+                <span class="onoffswitch2-inner"></span>
+                <span class="onoffswitch2-switch"></span>
+            </label>
+        </div>
+    </div>
+</div>
+<br>
+<!--Tercer Control-->
+<div class="row">
+    <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/humedadAire.jpeg" height="120" width="200"></div>
+    <div class="col-md-2"><span><kbd> H. Aire: </kbd> <span *ngIf="colorVerdeHumedad()"><input readonly type="text"
+                    style="background-color: #00ff00;width : 30px;" value="{{valorHumedad}}"></span>
+            <span *ngIf="colorRojoHumedad()"><input readonly type="text" style="background-color: #ff0000;width : 30px;"
+                    value="{{valorHumedad}}"></span>
+            <span *ngIf="colorNaranjoHumedad()"><input readonly type="text"
+                    style="background-color: #ff8000;width : 30px;" value="{{valorHumedad}}"></span>
+
+        </span>
+        <br>
+        <span><kbd> Predefinido {{humMin}}% - {{humMax}}% </kbd></span>
+        <br>
+        <span><kbd> Alerta </kbd></span>
+
+    </div>
+    <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
+    <div class="col-md-3"><span>Ventilador 1 <input type="number" style="width : 50px;"> min </span></div>
+    <div class="col-md-2">
+        <!-- Material checked -->
+        <div class="onoffswitch3">
+            <input type="checkbox" name="onoffswitch3" class="onoffswitch3-checkbox" id="myonoffswitch3" unchecked>
+            <label class="onoffswitch3-label" for="myonoffswitch3">
+                <span class="onoffswitch3-inner"></span>
+                <span class="onoffswitch3-switch"></span>
+            </label>
+        </div>
+    </div>
+</div>
+<br>
+<!--ultimo control-->
+<div class="row">
+    <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/co2.jpeg" height="120" width="200"></div>
+    <div class="col-md-2"><span><kbd> Nivel CO<sub>2 </sub>: </kbd> <span *ngIf="colorVerdeCo2()"><input readonly
+                    type="text" style="background-color: #00ff00;width : 30px;" value="{{valorCo2}}"></span>
+            <span *ngIf="colorRojoCo2()"><input readonly type="text" style="background-color: #ff0000;width : 30px;"
+                    value="{{valorCo2}}"></span>
+            <span *ngIf="colorNaranjoCo2()"><input readonly type="text" style="background-color: #ff8000;width : 30px;"
+                    value="{{valorCo2}}"></span>
+
+        </span> <br>
+        <span><kbd> Predefinido {{co2Min}}% - {{co2Max}}% </kbd> </span>
+        <br>
+        <span><kbd>Alerta</kbd> </span>
+
+    </div>
+    <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
+    <div class="col-md-3"><span>Ventilador 2 <input type="number" style="width : 50px;"> min </span></div>
+    <div class="col-md-2">
+        <!-- Material checked -->
+        <div class="onoffswitch4">
+            <input type="checkbox" name="onoffswitch4" class="onoffswitch4-checkbox" id="myonoffswitch4" unchecked>
+            <label class="onoffswitch4-label" for="myonoffswitch4">
+                <span class="onoffswitch4-inner"></span>
+                <span class="onoffswitch4-switch"></span>
+            </label>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-sm" style="color:rgb(44, 83, 255);">
+            <span> <b> Mediciones: </b> <input type="text" style="background-color: #00ff00; width: 30px;" readonly> <b>
+                    Nivel correcto</b></span>
+        </div>
+        <div class="col-sm" style="color:rgb(44, 83, 255);">
+            <input type="text" style="background-color: yellow; width: 30px;" readonly><b> Nivel al limite</b>
+        </div>
+        <div class="col-sm" style="color:rgb(44, 83, 255);">
+            <input type="text" style="background-color: #ff0000; width: 30px;" readonly> <b> Nivel critico fuera de
+                rango</b>
+        </div>
+    </div>
+</div>
