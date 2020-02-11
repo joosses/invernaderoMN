@@ -5,4 +5,6 @@ export class Sensor{
     caracteristica:String;
     invernadero_id_invernadero:number;
     tiempo:number;
+    minimo:number;
+    maximo:number;
 }
