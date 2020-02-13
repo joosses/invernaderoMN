@@ -19,6 +19,7 @@ export class SensorServiceService {
   getTemperaturaMin():Observable<any>{
     return this.http.get(this.url+'temperaturamin',{headers:this.headers});
   }
+  
   getHumedadMin():Observable<any>{
     return this.http.get(this.url+'humedadmin',{headers:this.headers});
   }

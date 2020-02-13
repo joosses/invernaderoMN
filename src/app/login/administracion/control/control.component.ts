@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MedicionServiceService} from 'src/app/servicio/medicion-service.service';
 import {SensorServiceService} from 'src/app/servicio/sensor-service.service';
+import {ActuadorServiceService} from 'src/app/servicio/actuador-service.service';
+import {Sensor} from 'src/app/modelos/Sensor';
+import { Actuador } from 'src/app/modelos/Actuador';
 
 
 @Component({
@@ -10,6 +13,14 @@ import {SensorServiceService} from 'src/app/servicio/sensor-service.service';
 })
 export class ControlComponent implements OnInit {
 
+  public tiempoTemp:Actuador={id:null,estado:null,nombre:"",caracteristica:"",invernadero_id_invernadero:null};
+  public tiempoHum:Actuador={id:null,estado:null,nombre:"",caracteristica:"",invernadero_id_invernadero:null};
+  public tiempoHumSuel:Actuador={id:null,estado:null,nombre:"",caracteristica:"",invernadero_id_invernadero:null};
+  public tiempoCo2:Actuador={id:null,estado:null,nombre:"",caracteristica:"",invernadero_id_invernadero:null};
+  nombres: String[] = ['1', '2', '3', '4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70'];
+
+
+  public status;
   public valorTemperatura;
   public valorHumedad;
   public valorHumedadSuelo;
@@ -27,6 +38,8 @@ export class ControlComponent implements OnInit {
   public humSuelMax;
   public co2Min;
   public co2Max;
+
+  public tTemp;
 
   colorVerdeTemperatura():boolean {
     if((this.valorTemperatura>=(this.tempMin+5) &&  this.valorTemperatura<=(this.tempMax-5)) ) {
@@ -116,7 +129,7 @@ export class ControlComponent implements OnInit {
     }
   }
 
-  constructor(public medicionServices: MedicionServiceService, public sensorServices: SensorServiceService){
+  constructor(public medicionServices: MedicionServiceService, public sensorServices: SensorServiceService, public actuadorServices:ActuadorServiceService){
 
   }
 
@@ -133,6 +146,8 @@ export class ControlComponent implements OnInit {
     this.getMedicionHumedadMax();
     this.getMedicionhumedadSueloMax();
     this.getMedicionCo2Max();
+
+    this.getTiempoTemp();
 
     
   }
@@ -278,6 +293,49 @@ export class ControlComponent implements OnInit {
       err=>console.log(err)
     )
   }
+
+
+  getTiempoTemp(){
+    this.actuadorServices.getLuzActual().subscribe(response =>{
+      if(response.status =='success'){
+        
+        this.tiempoTemp=response.tiempo;
+
+        console.log("tiempo actudor luz: "+this.tiempoTemp.estado);
+      }
+    },
+      err=>console.log(err)
+    )
+   }
+   prenderluz(form){
+    /* 
+    
+      */
+      //actualiza la ficha
+      this.actuadorServices.update(this.tiempoTemp).subscribe(
+        response=>{
+          if(response.status=="success"){
+            this.tiempoTemp=response.actuador;
+            this.status="success";
+            this.tiempoTemp.id=null;
+        
+            this.tiempoTemp.estado=null;
+            this.tiempoTemp.nombre="";
+            this.tiempoTemp.caracteristica="";
+            this.tiempoTemp.invernadero_id_invernadero=null;
+            
+            this.getTiempoTemp(); 
+            //location.reload();
+            
+          
+          }
+        },
+        error=>{
+          console.log(error);
+          this.status="error";
+        }
+      )
+    }
  
    
 }

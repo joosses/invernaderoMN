@@ -26,17 +26,14 @@
 
     </div>
     <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
-    <div class="col-md-3"><span>Encender luz <input type="number" style="width : 50px;"> min </span></div>
-    <div class="col-md-2">
-        <!-- Material checked -->
-        <div class="onoffswitch1">
-            <input type="checkbox" name="onoffswitch1" class="onoffswitch1-checkbox" id="myonoffswitch1" unchecked>
-            <label class="onoffswitch1-label" for="myonoffswitch1">
-                <span class="onoffswitch1-inner"></span>
-                <span class="onoffswitch1-switch"></span>
-            </label>
-        </div>
-    </div>
+    <form  #modelNew="ngForm" (ngSubmit)="prenderluz(modelNew)">
+        <div class="col-md-3"><span>Encender  min </span></div>
+        <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoTemp.estado">
+            <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+        </select>
+        <input type="submit" value="activar" class="btn btn-success" [disabled]="modelNew.invalid">
+    </form>
+   
 </div>
 <br>
 <!-- segundo control-->
