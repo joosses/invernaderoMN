@@ -9,6 +9,7 @@ import {global} from '../modelos/global';
 })
 export class UsuarioServiceService {
   public url: string;
+  
   constructor(public _http:HttpClient) {
     this.url = global.url;
    }
@@ -21,6 +22,6 @@ export class UsuarioServiceService {
     let params = 'json='+json;
 
     let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-    return this._http.post(this.url+'usuario/crear',{headers: headers});
+    return this._http.post(this.url+'usuario/crear', params,{headers: headers});
   }
 }

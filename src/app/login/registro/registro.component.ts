@@ -12,11 +12,12 @@ import { UsuarioServiceService } from 'src/app/servicio/usuario-service.service'
 export class RegistroComponent implements OnInit {
 
   public page_titulo: string;
-  public usuario: Usuario;
+  public usuario:Usuario;
+  public status: string;
 
   constructor( private _usuarioService: UsuarioServiceService) {
     this.page_titulo= 'Registrate';
-    this.usuario= new Usuario();
+    this.usuario = new Usuario(null,'','','','');
    }
    /*
    id:number;
@@ -32,9 +33,18 @@ export class RegistroComponent implements OnInit {
   
 
   onSubmit(form){
+    console.log(this.usuario);
     this._usuarioService.register(this.usuario).subscribe(
-      Response=>{
-        console.log(Response);
+      response=>{
+        if(response.status =="success"){
+          this.status=response.status;
+          form.reset();
+        }
+        else{
+          this.status='error';
+          
+        }
+        
         form.reset();
       },
       error =>{

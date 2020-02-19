@@ -1,6 +1,14 @@
 <div class="col-md-12">
     <h1>Titulo</h1>
-    <p>Registro de usuarios</p>
+    <p *ngIf="status !='success'">Registro de usuarios</p>
+<div class="alert alert-success" *ngIf="status == 'success'">
+    El registro se ha completado correctamente, <a [routerLink]="['/login']">logueate aquí</a>
+</div>
+<div class="alert alert-danger" *ngIf="status == 'error'">
+    El registro no se ha completado, vuelve a intentarlo más tarde
+
+</div>
+
     <form class="col-md-5 " #registerForm="ngForm" (ngSubmit)=onSubmit(registerForm)>
     <div class="form-group">
      <label for="nombre"> Nombre</label>
@@ -11,10 +19,10 @@
      </small>
     </div>
     <div class="form-group">
-        <label for="apellido"> Telefono</label>
-        <input type="text" name="apellido" class="form-control" #apellido="ngModel" [(ngModel)]=
-        "usuario.apellido" required pattern="[0-9]+"> 
-        <small *ngIf="!apellido.valid && apellido.touched" class="invalid-feedback d-block">
+        <label for="telefono"> Telefono</label>
+        <input type="text" name="telefono" class="form-control" #telefono="ngModel" [(ngModel)]=
+        "usuario.telefono" required pattern="[0-9]+"> 
+        <small *ngIf="!telefono.valid && telefono.touched" class="invalid-feedback d-block">
             Los Apellidos no son válidoss
         </small>
     </div>
