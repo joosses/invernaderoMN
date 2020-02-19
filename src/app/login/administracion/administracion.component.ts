@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UsuarioServiceService } from 'src/app/servicio/usuario-service.service';
+
 @Component({
   selector: 'app-administracion',
   templateUrl: './administracion.component.html',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdministracionComponent implements OnInit {
   mostrarSidebar:boolean=true;
-  constructor() { }
+  public identity;
+  public token;
+  constructor(public _usuarioService: UsuarioServiceService) { 
+    this.identity = this._usuarioService.getIdentity()
+  }
 
   ngOnInit() {
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {ActuadorServiceService} from 'src/app/servicio/actuador-service.service';
+import { UsuarioServiceService } from 'src/app/servicio/usuario-service.service';
 
 
 @Component({
@@ -10,11 +11,14 @@ import {ActuadorServiceService} from 'src/app/servicio/actuador-service.service'
 })
 export class AppComponent {
   title = 'invernaderoUno';
+  public identity;
+  public token;
 
   actuadores;
-  constructor(public actuadorServices: ActuadorServiceService){
-
+  constructor(public actuadorServices: ActuadorServiceService, public _usuarioService: UsuarioServiceService){
+    this.identity = this._usuarioService.getIdentity();
   }
+
   ngOnInit(){
     this.getActuador();
   }
