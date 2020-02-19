@@ -17,8 +17,9 @@ export class ControlComponent implements OnInit {
   public tiempoHum:Actuador={id:null,estado:null,nombre:"",caracteristica:"",invernadero_id_invernadero:null};
   public tiempoHumSuel:Actuador={id:null,estado:null,nombre:"",caracteristica:"",invernadero_id_invernadero:null};
   public tiempoCo2:Actuador={id:null,estado:null,nombre:"",caracteristica:"",invernadero_id_invernadero:null};
-  nombres: String[] = ['1', '2', '3', '4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70'];
-
+  
+  nombres: String[] = ['0','1', '2', '3', '4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70'];
+  cero: String[] = ['0'];
 
   public status;
   public valorTemperatura;
@@ -40,6 +41,8 @@ export class ControlComponent implements OnInit {
   public co2Max;
 
   public tTemp;
+
+  public var;
 
   colorVerdeTemperatura():boolean {
     if((this.valorTemperatura>=(this.tempMin+5) &&  this.valorTemperatura<=(this.tempMax-5)) ) {
@@ -148,6 +151,8 @@ export class ControlComponent implements OnInit {
     this.getMedicionCo2Max();
 
     this.getTiempoTemp();
+    this.getTiempoAgua();
+    this.getTiempoVentilador();
 
     
   }
@@ -336,6 +341,185 @@ export class ControlComponent implements OnInit {
         }
       )
     }
+    apagarluz(form){
+      /* 
+      
+        */
+        //actualiza la ficha
+        
+        this.actuadorServices.updatedos(this.tiempoTemp).subscribe(
+          response=>{
+            
+            if(response.status=="success"){
+              this.tiempoTemp=response.actuador;
+              this.status="success";
+              this.tiempoTemp.id=null;
+          
+              this.tiempoTemp.estado=null;
+              this.tiempoTemp.nombre="";
+              this.tiempoTemp.caracteristica="";
+              this.tiempoTemp.invernadero_id_invernadero=null;
+              
+              this.getTiempoTemp(); 
+              //location.reload();
+              
+            
+            }
+          },
+          error=>{
+            console.log(error);
+            this.status="error";
+          }
+        )
+      }
+
+    getTiempoAgua(){
+    this.actuadorServices.getAguaActual().subscribe(response =>{
+      if(response.status =='success'){
+        
+        this.tiempoHumSuel=response.tiempo;
+
+        console.log("tiempo actudor agua: "+this.tiempoHumSuel.estado);
+      }
+    },
+      err=>console.log(err)
+    )
+   }
+   prenderagua(form){
+    /* 
+    
+      */
+      //actualiza la ficha
+      this.actuadorServices.update(this.tiempoHumSuel).subscribe(
+        response=>{
+          if(response.status=="success"){
+            this.tiempoHumSuel=response.actuador;
+            this.status="success";
+            this.tiempoHumSuel.id=null;
+        
+            this.tiempoHumSuel.estado=null;
+            this.tiempoHumSuel.nombre="";
+            this.tiempoHumSuel.caracteristica="";
+            this.tiempoHumSuel.invernadero_id_invernadero=null;
+            
+            this.getTiempoAgua(); 
+            //location.reload();
+            
+          
+          }
+        },
+        error=>{
+          console.log(error);
+          this.status="error";
+        }
+      )
+    }
+    
+     apagaragua(form){
+      /* 
+      
+        */
+        //actualiza la ficha
+        
+        this.actuadorServices.updatedos(this.tiempoHumSuel).subscribe(
+          response=>{
+            
+            if(response.status=="success"){
+              this.tiempoHumSuel=response.actuador;
+              this.status="success";
+              this.tiempoHumSuel.id=null;
+          
+              this.tiempoHumSuel.estado=null;
+              this.tiempoHumSuel.nombre="";
+              this.tiempoHumSuel.caracteristica="";
+              this.tiempoHumSuel.invernadero_id_invernadero=null;
+              
+              this.getTiempoAgua(); 
+              //location.reload();
+              
+            
+            }
+          },
+          error=>{
+            console.log(error);
+            this.status="error";
+          }
+        )
+      }
+
+    
+    getTiempoVentilador(){
+      this.actuadorServices.getExtractorActual().subscribe(response =>{
+        if(response.status =='success'){
+          
+          this.tiempoHum=response.tiempo;
+  
+          console.log("tiempo actudor ventilador: "+this.tiempoHum.estado);
+        }
+      },
+        err=>console.log(err)
+      )
+     }
+     prenderventilador(form){
+      /* 
+      
+        */
+        //actualiza la ficha
+        this.actuadorServices.update(this.tiempoHum).subscribe(
+          response=>{
+            if(response.status=="success"){
+              this.tiempoHum=response.actuador;
+              this.status="success";
+              this.tiempoHum.id=null;
+          
+              this.tiempoHum.estado=null;
+              this.tiempoHum.nombre="";
+              this.tiempoHum.caracteristica="";
+              this.tiempoHum.invernadero_id_invernadero=null;
+              
+              this.getTiempoVentilador(); 
+              //location.reload();
+              
+            
+            }
+          },
+          error=>{
+            console.log(error);
+            this.status="error";
+          }
+        )
+      }
+      apagarventilador(form){
+        /* 
+        
+          */
+          //actualiza la ficha
+          
+          this.actuadorServices.updatedos(this.tiempoHum).subscribe(
+            response=>{
+              
+              if(response.status=="success"){
+                this.tiempoHum=response.actuador;
+                this.status="success";
+                this.tiempoHum.id=null;
+            
+                this.tiempoHum.estado=null;
+                this.tiempoHum.nombre="";
+                this.tiempoHum.caracteristica="";
+                this.tiempoHum.invernadero_id_invernadero=null;
+                
+                this.getTiempoVentilador(); 
+                //location.reload();
+                
+              
+              }
+            },
+            error=>{
+              console.log(error);
+              this.status="error";
+            }
+          )
+        }
  
    
 }

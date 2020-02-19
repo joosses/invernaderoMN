@@ -1,35 +1,31 @@
-<div class="row">
-    <div class="col-sm-8"><span> <b>Control</b></span> </div>
-    <div class="col-sm-4"><span> <b>Cultivo: Tomate</b></span></div>
-  </div>
-  <div class="row">
-      <div class="col-sm-4"></div>
-      <div class="col-sm-6">  Medicion Actualzfdfghnfcgrfaevc</div>
-      <div class="col-sm-3"></div>
+<div class=" col-md-5 container flex">
+    <div class="flex-item">
+      <div style="display: block;">
+      <canvas baseChart width="400" height="400"
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  [plugins]="lineChartPlugins"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+      </div>
     </div>
-  
-    <script>
-    var myPieChart = new Chart(ctx, {
-        type: 'pie',
-        data: data,
-        options: options
-    });
-
-    var myDoughnutChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: data,
-    options: options
-});
-data = {
-    datasets: [{
-        data: [10, 20, 30]
-    }],
-
-    // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: [
-        'Red',
-        'Yellow',
-        'Blue'
-    ]
-};
-</script>
+    <div class="flex-item">
+      <table class="table table-responsive table-condensed">
+        <tr>
+          <th *ngFor="let label of lineChartLabels">{{label}}</th>
+        </tr>
+        <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
+          <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+        </tr>
+      </table>
+      <button mat-button mat-raised-button color="primary" (click)="randomize()">Randomize</button>
+      <button mat-button mat-raised-button color="primary" (click)="pushOne()">Push</button>
+      <button mat-button mat-raised-button color="primary" (click)="changeColor()">Recolor</button>
+      <button mat-button mat-raised-button color="primary" (click)="hideOne()">Toggle Series B</button>
+      <button mat-button mat-raised-button color="primary" (click)="changeLabel()">Change Label</button>
+    </div>
+  </div>

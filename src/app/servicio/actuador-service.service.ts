@@ -24,12 +24,14 @@ export class ActuadorServiceService {
   getLuzActual():Observable<any>{
     return this.http.get(this.url+'actuadorluz',{headers:this.headers});
   }
-  getAguaActual():Observable<any>{
-    return this.http.get(this.url+'actuadoragua',{headers:this.headers});
-  }
+  
   getExtractorActual():Observable<any>{
     return this.http.get(this.url+'actuadorextractor',{headers:this.headers});
   }
+  getAguaActual():Observable<any>{
+    return this.http.get(this.url+'actuadoragua',{headers:this.headers});
+  }
+  
 
   /**
    * create crea un nuevo modelo enviandolo al backend
@@ -43,5 +45,15 @@ export class ActuadorServiceService {
     return this.http.put(this.url+'actuadoru/'+actuador.id,params,{headers:headers});
   }
   
+  /**
+  *@param actuador
+  */
+  updatedos(actuador):Observable<any>{
+    let json=JSON.stringify(actuador);
+    let params="json="+json;
+    let headers=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+
+    return this.http.put(this.url+'actuadorreset/'+actuador.id,params,{headers:headers});
+  }
 
 }

@@ -26,15 +26,29 @@
 
     </div>
     <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
-    <form  #modelNew="ngForm" (ngSubmit)="prenderluz(modelNew)">
-        <div class="col-md-3"><span>Encender  min </span></div>
-        <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoTemp.estado">
-            <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
-        </select>
-        <input type="submit" value="activar" class="btn btn-success" [disabled]="modelNew.invalid">
-    </form>
-   
-</div>
+    <div class="col-md-3">Encender luz para control de Temperatura, tiempo en minutos.</div>
+    <div class="col-md-1">
+        <form #modelNew="ngForm" (ngSubmit)="prenderluz(modelNew)" id="formulariotemp">
+
+            <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoTemp.estado">
+                <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+            </select>
+
+        </form>
+    </div>
+    <div class="col-md-2">  
+        <input type="submit" value="Aceptar" class="btn btn-success" [disabled]="modelNew.invalid" form="formulariotemp">
+        
+        <form #modelNew="ngForm" (ngSubmit)="apagarluz(modelNew)">
+            <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoTemp.estado" hidden> 
+               
+            </select>
+             
+            <input type="submit" value="Cancelar" class="btn btn-danger" [disabled]="modelNew.invalid">
+
+
+        </form>
+    </div>
 <br>
 <!-- segundo control-->
 <div class="row">
@@ -53,17 +67,30 @@
 
     </div>
     <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
-    <div class="col-md-3"><span>Regar <input type="number" style="width : 50px;"> min </span></div>
-    <div class="col-md-2">
-        <!-- Material checked -->
-        <div class="onoffswitch2">
-            <input type="checkbox" name="onoffswitch2" class="onoffswitch2-checkbox" id="myonoffswitch2" unchecked>
-            <label class="onoffswitch2-label" for="myonoffswitch2">
-                <span class="onoffswitch2-inner"></span>
-                <span class="onoffswitch2-switch"></span>
-            </label>
-        </div>
+    <div class="col-md-3">Activar sistema de regadío, para aumentar la humedad del suelo. </div>
+    <div class="col-md-1">
+        <form #modelNew="ngForm" (ngSubmit)="prenderagua(modelNew)" id="formularioagua">
+
+            <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHumSuel.estado">
+                <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+            </select>
+
+        </form>
     </div>
+    <div class="col-md-2">  
+        <input type="submit" value="Aceptar" class="btn btn-success" [disabled]="modelNew.invalid" form="formularioagua">
+        
+        <form #modelNew="ngForm" (ngSubmit)="apagaragua(modelNew)">
+            <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHumSuel.estado" hidden> 
+               
+            </select>
+             
+            <input type="submit" value="Cancelar" class="btn btn-danger" [disabled]="modelNew.invalid">
+
+
+        </form>
+    </div>
+
 </div>
 <br>
 <!--Tercer Control-->
@@ -80,20 +107,31 @@
         <br>
         <span><kbd> Predefinido {{humMin}}% - {{humMax}}% </kbd></span>
         <br>
-        <span><kbd> Alerta </kbd></span>
+        <span><kbd> Alerta </kbd>
+        </span>
 
     </div>
     <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
-    <div class="col-md-3"><span>Ventilador 1 <input type="number" style="width : 50px;"> min </span></div>
+    <div class="col-md-3">Activar ventilador, para reducir la Humedad presente en el ambiente. </div>
+    <div class="col-md-1">
+        <form #modelNew="ngForm" (ngSubmit)="prenderventilador(modelNew)" id="formularioventilador">
+
+            <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHum.estado">
+                <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+            </select>
+        </form>
+    </div>
     <div class="col-md-2">
-        <!-- Material checked -->
-        <div class="onoffswitch3">
-            <input type="checkbox" name="onoffswitch3" class="onoffswitch3-checkbox" id="myonoffswitch3" unchecked>
-            <label class="onoffswitch3-label" for="myonoffswitch3">
-                <span class="onoffswitch3-inner"></span>
-                <span class="onoffswitch3-switch"></span>
-            </label>
-        </div>
+        <input type="submit" value="activar" class="btn btn-success" [disabled]="modelNew.invalid" form="formularioventilador">
+        <form #modelNew="ngForm" (ngSubmit)="apagarventilador(modelNew)" >
+            <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHum.estado" hidden> 
+               
+            </select>
+             
+            <input type="submit" value="Cancelar" class="btn btn-danger" [disabled]="modelNew.invalid">
+
+
+        </form>
     </div>
 </div>
 <br>
@@ -117,13 +155,7 @@
     <div class="col-md-3"><span>Ventilador 2 <input type="number" style="width : 50px;"> min </span></div>
     <div class="col-md-2">
         <!-- Material checked -->
-        <div class="onoffswitch4">
-            <input type="checkbox" name="onoffswitch4" class="onoffswitch4-checkbox" id="myonoffswitch4" unchecked>
-            <label class="onoffswitch4-label" for="myonoffswitch4">
-                <span class="onoffswitch4-inner"></span>
-                <span class="onoffswitch4-switch"></span>
-            </label>
-        </div>
+        
     </div>
 </div>
 <br>
