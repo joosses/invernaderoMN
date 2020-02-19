@@ -14,12 +14,13 @@ import { ActuadorComponent } from './login/administracion/actuador/actuador.comp
 import { ControlComponent } from './login/administracion/control/control.component';
 import { SensorComponent } from './login/administracion/sensor/sensor.component';
 import { HistoricoComponent } from './login/administracion/historico/historico.component';
+import { RegistroComponent } from './login/registro/registro.component';
 
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
   {path:'logout/:sure',component:LoginComponent},
-  
+  {path:'registro',component:RegistroComponent},
   {path:'admin',component:AdministracionComponent,
     children:[
       {
@@ -50,7 +51,8 @@ const routes: Routes = [
     ActuadorComponent,
     ControlComponent,
     SensorComponent,
-    HistoricoComponent
+    HistoricoComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,9 @@ export class MedicionServiceService {
   getMedicionTemperatura():Observable<any>{
     return this.http.get(this.url+'medicionTemperatura',{headers:this.headers});
   }
+  getgrafica():Observable<any>{
+    return this.http.get(this.url+'grafica',{headers:this.headers});
+  }
   getMedicionHumedad():Observable<any>{
     return this.http.get(this.url+'medicionHumedad',{headers:this.headers});
   }
