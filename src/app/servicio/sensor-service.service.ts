@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, timer} from 'rxjs';
 import {global} from '../modelos/global';
+import { AdministracionComponent } from '../login/administracion/administracion.component';
 
 @Injectable({
   providedIn: 'root'
@@ -10,24 +11,28 @@ export class SensorServiceService {
 
   url;
   headers;
+  id;
 
-  constructor(public http:HttpClient) {
+  constructor(public http:HttpClient, public administracionService: AdministracionComponent) {
     this.url=global.url;
     this.headers=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    this.id=this.administracionService.union();
+
    }
 
+
   getTemperaturaMin():Observable<any>{
-    return this.http.get(this.url+'temperaturamin',{headers:this.headers});
+    return this.http.get(this.url+'temperaturamin/'+this.id,{headers:this.headers});
   }
   
   getHumedadMin():Observable<any>{
-    return this.http.get(this.url+'humedadmin',{headers:this.headers});
+    return this.http.get(this.url+'humedadmin/'+this.id,{headers:this.headers});
   }
   getHumedadSueloMin():Observable<any>{
-    return this.http.get(this.url+'humedadsuelomin',{headers:this.headers});
+    return this.http.get(this.url+'humedadsuelomin/'+this.id,{headers:this.headers});
   }
   getCo2Min():Observable<any>{
-    return this.http.get(this.url+'co2min',{headers:this.headers});
+    return this.http.get(this.url+'co2min/'+this.id,{headers:this.headers});
   }
   /**
    * create crea un nuevo modelo enviandolo al backend

@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private _usuarioServicio: UsuarioServiceService, private _router:Router, private _route: ActivatedRoute) {
-    this.page_titulo = 'Registrate';
-    this.usuario = new Usuario(null, '', '', '', '');
+    this.page_titulo = 'Iniciar Sesion';
+    this.usuario = new Usuario(null, '','','','', '', '', '');
   }
 
   ngOnInit() {
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('token',this.token);
               localStorage.setItem('identity', JSON.stringify(this.identity));
               //redireccion a la pag principal
-              this._router.navigate(['']);
+              this._router.navigate(['admin']);
             }
           )
         }

@@ -138,14 +138,16 @@
 <!--ultimo control-->
 <div class="row">
     <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/co2.jpeg" height="120" width="200"></div>
-    <div class="col-md-2"><span><kbd> Nivel CO<sub>2 </sub>: </kbd> <span *ngIf="colorVerdeCo2()"><input readonly
+    <div class="col-md-2">
+        <span><kbd> Nivel CO<sub>2 </sub>: </kbd> <span *ngIf="colorVerdeCo2()"><input readonly
                     type="text" style="background-color: #00ff00;width : 30px;" value="{{valorCo2}}"></span>
             <span *ngIf="colorRojoCo2()"><input readonly type="text" style="background-color: #ff0000;width : 30px;"
                     value="{{valorCo2}}"></span>
             <span *ngIf="colorNaranjoCo2()"><input readonly type="text" style="background-color: #ff8000;width : 30px;"
                     value="{{valorCo2}}"></span>
 
-        </span> <br>
+        </span> 
+        <br>
         <span><kbd> Predefinido {{co2Min}}% - {{co2Max}}% </kbd> </span>
         <br>
         <span><kbd>Alerta</kbd> </span>
@@ -153,7 +155,7 @@
     </div>
     <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
     <div class="col-md-3"><span>Ventilador 2 <input type="number" style="width : 50px;"> min </span></div>
-    <div class="col-md-2">
+    <div class="col-md-1">
         <!-- Material checked -->
         
     </div>

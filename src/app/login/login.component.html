@@ -1,26 +1,29 @@
-<div class="col-md-12 mt-3">
-    <h1>{{page_title}}</h1>
-<p>
-    Identificate en nuestra platadorma para comenzar!!
-</p>
-<form class="col-md-5 ml-0 pl-0" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-    <div class="form-group">
-        <label for="correo"> Correo</label>
-        <input type="email" name="correo" class="form-control"#correo ="ngModel" [(ngModel)]="usuario.correo" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"> 
-        <small *ngIf="!correo.valid && correo.touched" class="invalid-feedback d-block" >
-            el Correo no es válido
-        </small>
-       </div>
-       
-       <div class="form-group">
-        <label for="contrasena"> Contraseña</label>
-        <input type="password" name="contrasena" class="form-control" #contrasena="ngModel" [(ngModel)]="usuario.contrasena" required>  
-        <small *ngIf="!contrasena.valid && contrasena.touched" class="invalid-feedback d-block">
-            la Contraseña no es válida
-        </small>
-       </div>
-       <input type="submit" value="Identificate" class="btn btn-success" [disabled]="loginForm.invalid" >
-     
-</form>
+<div class="col-md-12 mt-3 fondo" align="center ">
+    <h1>{{page_titulo}}</h1>
+    <p>
+        Identificate en nuestra platadorma para comenzar!!
+    </p>
+    <div class="col-md-12 mt-3" align="center">
+        <form class="col-md-5 ml-0 pl-0" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <div class="form-group">
+                <label for="correo"> Correo</label>
+                <input type="email" name="correo" class="form-control" #correo="ngModel" [(ngModel)]="usuario.correo"
+                    required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                <small *ngIf="!correo.valid && correo.touched" class="invalid-feedback d-block">
+                    el Correo no es válido
+                </small>
+            </div>
 
+            <div class="form-group">
+                <label for="contrasena"> Contraseña</label>
+                <input type="password" name="contrasena" class="form-control" #contrasena="ngModel"
+                    [(ngModel)]="usuario.contrasena" required>
+                <small *ngIf="!contrasena.valid && contrasena.touched" class="invalid-feedback d-block">
+                    la Contraseña no es válida
+                </small>
+            </div>
+            <input type="submit" value="Aceptar" class="btn btn-success" [disabled]="loginForm.invalid">
+
+        </form>
+    </div>
 </div>

@@ -30,14 +30,15 @@ export class SensorComponent implements OnInit {
     this.getMedicionHumedadMax();
     this.getMedicionhumedadSueloMax();
     this.getMedicionCo2Max();
+
   }
   
   getMedicionTemperaturaMin() {
     this.sensorServices.getTemperaturaMin().subscribe(response =>{
       if(response.status =='success'){
         
-        this.tempMin=response.tiempo.minimo;
-
+        this.tempMin=response.tiempo[0].minimo;
+        
         console.log("Temperatura Min "+this.tempMin);
       }
     },
@@ -47,7 +48,7 @@ export class SensorComponent implements OnInit {
   getMedicionHumedadMin() {
     this.sensorServices.getHumedadMin().subscribe(response =>{
       if(response.status =='success'){
-        this.humMin=response.tiempo.minimo;
+        this.humMin=response.tiempo[0].minimo;
         
         console.log("Humedad Min "+this.humMin);
       }
@@ -59,7 +60,7 @@ export class SensorComponent implements OnInit {
     this.sensorServices.getHumedadSueloMin().subscribe(response =>{
       if(response.status =='success'){
         
-        this.humSuelMin=response.tiempo.minimo;
+        this.humSuelMin=response.tiempo[0].minimo;
 
         console.log("HumedadSuelo Min "+this.humSuelMin);
       }
@@ -71,7 +72,7 @@ export class SensorComponent implements OnInit {
     this.sensorServices.getCo2Min().subscribe(response =>{
       if(response.status =='success'){
         
-        this.co2Min=response.tiempo.minimo;
+        this.co2Min=response.tiempo[0].minimo;
 
         console.log("Co2 Min "+this.co2Min);
       }
@@ -83,7 +84,7 @@ export class SensorComponent implements OnInit {
     this.sensorServices.getTemperaturaMin().subscribe(response =>{
       if(response.status =='success'){
         
-        this.tempMax=response.tiempo.maximo;
+        this.tempMax=response.tiempo[0].maximo;
 
         console.log("Temperatura Max "+this.tempMax);
       }
@@ -94,7 +95,7 @@ export class SensorComponent implements OnInit {
   getMedicionHumedadMax() {
     this.sensorServices.getHumedadMin().subscribe(response =>{
       if(response.status =='success'){
-        this.humMax=response.tiempo.maximo;
+        this.humMax=response.tiempo[0].maximo;
         
         console.log("Humedad Max"+this.humMax);
       }
@@ -106,7 +107,7 @@ export class SensorComponent implements OnInit {
     this.sensorServices.getHumedadSueloMin().subscribe(response =>{
       if(response.status =='success'){
         
-        this.humSuelMax=response.tiempo.maximo;
+        this.humSuelMax=response.tiempo[0].maximo;
 
         console.log("HumedadSuelo Max"+this.humSuelMax);
       }
@@ -118,7 +119,7 @@ export class SensorComponent implements OnInit {
     this.sensorServices.getCo2Min().subscribe(response =>{
       if(response.status =='success'){
         
-        this.co2Max=response.tiempo.maximo;
+        this.co2Max=response.tiempo[0].maximo;
 
         console.log("Co2 Max"+this.co2Max);
       }

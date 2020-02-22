@@ -17,15 +17,9 @@ export class RegistroComponent implements OnInit {
 
   constructor( private _usuarioService: UsuarioServiceService) {
     this.page_titulo= 'Registrate';
-    this.usuario = new Usuario(null,'','','','');
+    this.usuario = new Usuario(null,'','','','','','','');
    }
-   /*
-   id:number;
-   nombre:String;
-   telefono:String;
-   correo:String;
-   contrasena:String;
-*/
+   
   ngOnInit() {
     console.log('componente de registro lanzado!!! ngOninit');
     console.log(this._usuarioService.test());
