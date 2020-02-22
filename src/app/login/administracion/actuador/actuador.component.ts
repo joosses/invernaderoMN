@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Sensor} from 'src/app/modelos/Sensor';
 import {SensorServiceService} from 'src/app/servicio/sensor-service.service';
+import { Injectable } from '@angular/core';
+@Injectable({
+  providedIn: 'root'
+})
 
 
 

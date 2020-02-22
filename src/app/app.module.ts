@@ -15,6 +15,7 @@ import { ControlComponent } from './login/administracion/control/control.compone
 import { SensorComponent } from './login/administracion/sensor/sensor.component';
 import { HistoricoComponent } from './login/administracion/historico/historico.component';
 import { RegistroComponent } from './login/registro/registro.component';
+import { InvernaderoComponent } from './login/administracion/invernadero/invernadero.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
   {path:'registro',component:RegistroComponent},
   {path:'admin',component:AdministracionComponent,
     children:[
+      {
+        path:'invernadero',
+        component:InvernaderoComponent
+      },
       {
         path:'actuador',
         component:ActuadorComponent
@@ -52,7 +57,8 @@ const routes: Routes = [
     ControlComponent,
     SensorComponent,
     HistoricoComponent,
-    RegistroComponent
+    RegistroComponent,
+    InvernaderoComponent
   ],
   imports: [
     BrowserModule,

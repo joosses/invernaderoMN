@@ -4,6 +4,10 @@ import {SensorServiceService} from 'src/app/servicio/sensor-service.service';
 import {ActuadorServiceService} from 'src/app/servicio/actuador-service.service';
 import {Sensor} from 'src/app/modelos/Sensor';
 import { Actuador } from 'src/app/modelos/Actuador';
+import { Injectable } from '@angular/core';
+@Injectable({
+  providedIn: 'root'
+})
 
 
 @Component({

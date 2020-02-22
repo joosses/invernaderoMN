@@ -1,8 +1,10 @@
 export class Invernadero{
-    id:number;
-    cultivo:String;
-    caracteristicas:String;
-    placa: String;
-    usuario_id_usuario:number;
-    chipid:number;
+    constructor(
+    public id:number,
+    public cultivo:String,
+    public caracteristicas:String,
+    public placa: String,
+    public usuario_id_usuario:number,
+    public chipid:number,
+    ){}
 }

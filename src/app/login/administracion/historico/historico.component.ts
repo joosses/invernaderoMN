@@ -4,6 +4,10 @@ import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import { Medicion } from 'src/app/modelos/Medicion';
 import { MedicionServiceService } from 'src/app/servicio/medicion-service.service';
+import { Injectable } from '@angular/core';
+@Injectable({
+  providedIn: 'root'
+})
 
 
 @Component({

@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { UsuarioServiceService } from 'src/app/servicio/usuario-service.service';
 import { InvernaderoServiceService } from 'src/app/servicio/invernadero-service.service';
+import { InvernaderoComponent} from 'src/app/login/administracion/invernadero/invernadero.component';
+
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-administracion',
@@ -14,13 +20,16 @@ export class AdministracionComponent implements OnInit {
   public token;
   public idInv;
   public var;
+  public valor:String[];
   constructor(public _usuarioService: UsuarioServiceService, public invernaderoService: InvernaderoServiceService) { 
-    this.identity = this._usuarioService.getIdentity()
+    this.identity = this._usuarioService.getIdentity();
+    
+    
   }
 
   ngOnInit() {
-    this.union();
-    this.prueba();
+    //this.union();
+    //this.prueba();
   }
   ocultarSidebar(){
     if(this.mostrarSidebar==true){
@@ -29,19 +38,22 @@ export class AdministracionComponent implements OnInit {
   this.mostrarSidebar=true;      
     }
   }
-  
-  union(){
+  /*
+  union():String[]{
+    
     this.invernaderoService.getDatosInvernadero().subscribe(response =>{
       if(response.status =='success'){
         
          console.log("id del invernadero: "+response.invernadero[0].id);
-          return response.invernadero[0].id;
+         this.valor=response.invernadero[0].id;
+         
       }
       
     },
       err=>console.log(err)
       
     )
+    return this.valor;
     
   }
 
@@ -53,5 +65,5 @@ export class AdministracionComponent implements OnInit {
   prueba(){
     this.var=this.union();
     console.log('este es el resultado de union: '+this.var );
-  }
+  }*/
 }

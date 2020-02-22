@@ -1,0 +1,64 @@
+<div class="col-md-12">
+    <h1>Titulo</h1>
+    <p *ngIf="status !='success'">Registrar un nuevo invernadero</p>
+    <div class="alert alert-success" *ngIf="status == 'success'">
+        El registro se ha completado correctamente, <a [routerLink]="['/admin']">logueate aquí</a>
+    </div>
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+        El registro no se ha completado, vuelve a intentarlo más tarde
+
+    </div>
+
+    <form class="col-md-5 " #registerForm="ngForm" (ngSubmit)=onSubmit(registerForm)>
+        <div class="form-group">
+            <label for="cultivo"> Cultivo</label>
+            <input type="text" name="cultivo" class="form-control" #cultivo="ngModel" [(ngModel)]="invernadero.cultivo"
+                required pattern="[a-zA-Z]+">
+            <small *ngIf="!cultivo.valid && cultivo.touched" class="invalid-feedback d-block">
+                El campo está vacío
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="caracteristicas"> Caracteristicas del invernadero</label>
+            <input type="text" name="caracteristicas" class="form-control" #caracteristicas="ngModel" [(ngModel)]="invernadero.caracteristicas"
+                required pattern="[a-zA-Z]+">
+            <small *ngIf="!caracteristicas.valid && caracteristicas.touched" class="invalid-feedback d-block">
+                caracteriticas vacía o incorrectas
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="placa"> Placa</label>
+            <input type="text" name="placa" class="form-control" #placa="ngModel" [(ngModel)]="invernadero.placa"
+                required pattern="[a-zA-Z]+">
+            <small *ngIf="!placa.valid && placa.touched" class="invalid-feedback d-block">
+                no existen datos o son incorrectos
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="usuario_id_usuario"> Usuario</label>
+            <input type="text" name="usuario_id_usuario" class="form-control" #usuario_id_usuario="ngModel" [(ngModel)]="invernadero.usuario_id_usuario"
+                required pattern="[0-9]+">
+            <small *ngIf="!usuario_id_usuario.valid && usuario_id_usuario.touched" class="invalid-feedback d-block">
+                Ingrese un usuario valido
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="chipid"> Chipid</label>
+            <input type="text" name="chipid" class="form-control" #chipid="ngModel" [(ngModel)]="invernadero.chipid"
+                required pattern="[0-9]+">
+            <small *ngIf="!chipid.valid && chipid.touched" class="invalid-feedback d-block">
+                Ingrese solo números
+            </small>
+        </div>
+
+        
+        <input type="submit" value="registro" class="btn btn-success" [disabled]="registerForm.invalid">
+
+
+
+
+    </form>
+
+
+
+</div>
