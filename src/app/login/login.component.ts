@@ -76,6 +76,7 @@ export class LoginComponent implements OnInit {
           this.token =null;
 
           //redireccion a la pag principal
+        
           this._router.navigate(['']);
       }
     });

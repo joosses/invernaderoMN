@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Sensor} from 'src/app/modelos/Sensor';
 import {SensorServiceService} from 'src/app/servicio/sensor-service.service';
+
 import { Injectable } from '@angular/core';
+import { InvernaderoServiceService } from 'src/app/servicio/invernadero-service.service';
+import { Invernadero } from 'src/app/modelos/Invernadero';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +23,7 @@ export class ActuadorComponent implements OnInit {
   public hum:Sensor={id:null,nombre:"",estado:"",caracteristica:"",invernadero_id_invernadero:null,tiempo:null,minimo:null,maximo:null};
   public humsuel:Sensor={id:null,nombre:"",estado:"",caracteristica:"",invernadero_id_invernadero:null,tiempo:null,minimo:null,maximo:null};
   public co2:Sensor={id:null,nombre:"",estado:"",caracteristica:"",invernadero_id_invernadero:null,tiempo:null,minimo:null,maximo:null};
+  public inve:Invernadero={id:null, cultivo:"", caracteristicas:"", placa:"", usuario_id_usuario:null, chipid:null};
   public status;
   public pruebasa=5;
 public sensorServ;
@@ -29,11 +33,16 @@ public sensorServ;
   public co2Min;
 
   public contadores;
+  public nombre;
+  public nombreCultivo;
+  public var;
 
   nombres: String[] = ['1', '2', '3', '4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70'];
 
 
-  constructor(public sensorServices:SensorServiceService) { 
+  constructor(public sensorServices:SensorServiceService, public invernaderoServices:InvernaderoServiceService) { 
+    this.nombreCultivo = this.obtenerNombre();
+    
     
   }
 
@@ -43,7 +52,9 @@ public sensorServ;
     this.getHum();
     this.getCo2();
    
-
+    this.obtenerNombre();
+    this.resultado();
+    
     this.getMedicionTemperaturaMin();
     this.getMedicionhumedadSueloMin();
     this.getMedicionHumedadMin();
@@ -53,6 +64,28 @@ public sensorServ;
     this.mostrarHumedadSuelo();
     this.mostrarHumedad();
     this.mostrarCo2();
+  }
+
+  //la variable no devuelve indefinido ;) este metodo usar para traer cosas :D
+  obtenerNombre(){
+    //this.nombre=this.invernaderoServices.getNombre();
+    //console.log("EL NOMBRE ES: "+this.nombre);
+   // return this.nombre;
+    this.invernaderoServices.getNombre().subscribe(response =>{
+      if(response.status =='success'){
+        
+        this.inve=response.invernadero[0];
+        console.log("NAMEEEEE"+this.inve.cultivo);
+
+      }
+    },
+      err=>console.log(err)
+    )
+    return this.inve;
+  }
+  resultado(){
+    this.var=this.obtenerNombre();
+    console.log(this.var);
   }
   mostrarTemperatura():boolean {
     if(this.tempMin==0) {

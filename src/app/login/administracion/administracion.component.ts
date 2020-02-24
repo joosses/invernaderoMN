@@ -20,6 +20,8 @@ export class AdministracionComponent implements OnInit {
   public token;
   public idInv;
   public var;
+  public allDataObj:any;
+  public AllDataArr =[];
   public valor:String[];
   constructor(public _usuarioService: UsuarioServiceService, public invernaderoService: InvernaderoServiceService) { 
     this.identity = this._usuarioService.getIdentity();
@@ -28,8 +30,8 @@ export class AdministracionComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.union();
-    //this.prueba();
+    this.union();
+    this.prueba();
   }
   ocultarSidebar(){
     if(this.mostrarSidebar==true){
@@ -38,14 +40,14 @@ export class AdministracionComponent implements OnInit {
   this.mostrarSidebar=true;      
     }
   }
-  /*
+  
   union():String[]{
     
     this.invernaderoService.getDatosInvernadero().subscribe(response =>{
       if(response.status =='success'){
         
          console.log("id del invernadero: "+response.invernadero[0].id);
-         this.valor=response.invernadero[0].id;
+         this.valor=JSON.parse(response.invernadero[0].id);
          
       }
       
@@ -58,12 +60,9 @@ export class AdministracionComponent implements OnInit {
   }
 
 
-
-
-
   
   prueba(){
-    this.var=this.union();
-    console.log('este es el resultado de union: '+this.var );
-  }*/
+    
+    console.log('este es el resultado de union: '+this.union() );
+  }
 }

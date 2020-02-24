@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { InvernaderoServiceService } from 'src/app/servicio/invernadero-service.service';
 import { Invernadero } from 'src/app/modelos/Invernadero';
+import { UsuarioServiceService } from 'src/app/servicio/usuario-service.service';
+
 
 @Component({
   selector: 'app-invernadero',
@@ -12,12 +14,16 @@ export class InvernaderoComponent implements OnInit {
 
   public invernadero: Invernadero;
   public status: String;
+  public identity;
+  public token;
+
 
   public datos;
  
 
-  constructor(public invernaderoService: InvernaderoServiceService) {
+  constructor(public invernaderoService: InvernaderoServiceService, public _usuarioService: UsuarioServiceService) {
     this.invernadero = new Invernadero(null, '', '', '', null, null);
+    this.identity = this._usuarioService.getIdentity();
   }
   /*
   id:number;
@@ -29,7 +35,7 @@ export class InvernaderoComponent implements OnInit {
   */
 
   ngOnInit() {
-    this.getTodosInvernaderos();
+    //this.getTodosInvernaderos();
     console.log(this.datos);
   }
 
@@ -54,7 +60,7 @@ export class InvernaderoComponent implements OnInit {
     )
 
   }
-  
+  /*
   getTodosInvernaderos():String{
     
 		
@@ -73,7 +79,7 @@ export class InvernaderoComponent implements OnInit {
     return this.datos;
 
   }
-  
+  */
  /*
  private retrieveJson() {
 	this.invernaderoService.myServiceMethod().subscribe(

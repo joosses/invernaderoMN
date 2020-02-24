@@ -166,7 +166,7 @@ export class ControlComponent implements OnInit {
       if(response.status =='success'){
         this.medicionesCo2=response.medicion;
         this.valorCo2 = this.medicionesCo2.valor;
-        console.log("C02" + this.valorCo2);
+        console.log("Co2" + this.valorCo2);
       }
     },
       err=>console.log(err)
