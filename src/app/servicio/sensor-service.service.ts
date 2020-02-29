@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, timer} from 'rxjs';
 import {global} from '../modelos/global';
 import { AdministracionComponent } from '../login/administracion/administracion.component';
+import { InvernaderoServiceService } from './invernadero-service.service';
+import { UsuarioServiceService } from './usuario-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +15,13 @@ export class SensorServiceService {
   headers;
   id;
 
-  constructor(public http:HttpClient, public administracionService: AdministracionComponent) {
+  constructor(public http:HttpClient, public administracionService: AdministracionComponent, public usuario:UsuarioServiceService) {
     this.url=global.url;
     this.headers=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-    this.id=this.administracionService.union();
+    this.id=this.usuario.getSub();
 
    }
+   
 
 
   getTemperaturaMin():Observable<any>{
