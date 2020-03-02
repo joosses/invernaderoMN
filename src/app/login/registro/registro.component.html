@@ -1,8 +1,8 @@
-<div class="col-md-12">
+<div class="col-md-12" class="fondo" align="center">
     <h1>Titulo</h1>
     <p *ngIf="status !='success'">Registro de usuarios</p>
     <div class="alert alert-success" *ngIf="status == 'success'">
-        El registro se ha completado correctamente, <a [routerLink]="['/login']">logueate aquí</a>
+        El registro se ha completado correctamente, <a [routerLink]="['']">logueate aquí</a>
     </div>
     <div class="alert alert-danger" *ngIf="status == 'error'">
         El registro no se ha completado, vuelve a intentarlo más tarde

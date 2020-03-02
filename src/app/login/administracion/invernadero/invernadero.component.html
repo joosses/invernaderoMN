@@ -2,7 +2,7 @@
     <h1>Registro Invernadero</h1>
     <p *ngIf="status !='success'">Registrar un nuevo invernadero</p>
     <div class="alert alert-success" *ngIf="status == 'success'">
-        El registro se ha completado correctamente, <a [routerLink]="['/admin']">logueate aquí</a>
+        El registro se ha completado correctamente
     </div>
     <div class="alert alert-danger" *ngIf="status == 'error'">
         El registro no se ha completado, vuelve a intentarlo más tarde

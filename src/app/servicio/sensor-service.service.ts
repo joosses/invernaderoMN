@@ -5,6 +5,8 @@ import {global} from '../modelos/global';
 import { AdministracionComponent } from '../login/administracion/administracion.component';
 import { InvernaderoServiceService } from './invernadero-service.service';
 import { UsuarioServiceService } from './usuario-service.service';
+import {Sensor } from '../modelos/Sensor';
+
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +49,13 @@ export class SensorServiceService {
     let headers=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
 
     return this.http.put(this.url+'sensoru/'+sensor.id,params,{headers:headers});
+  }
+  register(sensor):Observable<any>{
+    let json =JSON.stringify(sensor);
+    let params = 'json='+json;
+
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    return this.http.post(this.url+'sensor/registrar', params,{headers: headers});
   }
   
 

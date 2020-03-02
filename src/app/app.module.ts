@@ -16,6 +16,9 @@ import { SensorComponent } from './login/administracion/sensor/sensor.component'
 import { HistoricoComponent } from './login/administracion/historico/historico.component';
 import { RegistroComponent } from './login/registro/registro.component';
 import { InvernaderoComponent } from './login/administracion/invernadero/invernadero.component';
+import { AgregarsensorComponent } from './login/administracion/agregarsensor/agregarsensor.component';
+import { AgregaractuadorComponent } from './login/administracion/agregaractuador/agregaractuador.component';
+import { HomeComponent } from './login/administracion/home/home.component';
 
 
 const routes: Routes = [
@@ -24,6 +27,18 @@ const routes: Routes = [
   {path:'registro',component:RegistroComponent},
   {path:'admin',component:AdministracionComponent,
     children:[
+      {
+        path:'home',
+        component:HomeComponent
+      },
+      {
+        path:'agregarsensor',
+        component:AgregarsensorComponent
+      },
+      {
+        path:'agregaractuador',
+        component:AgregaractuadorComponent
+      },
       {
         path:'invernadero',
         component:InvernaderoComponent
@@ -58,7 +73,10 @@ const routes: Routes = [
     SensorComponent,
     HistoricoComponent,
     RegistroComponent,
-    InvernaderoComponent
+    InvernaderoComponent,
+    AgregarsensorComponent,
+    AgregaractuadorComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

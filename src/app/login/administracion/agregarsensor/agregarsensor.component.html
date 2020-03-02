@@ -1,0 +1,75 @@
+<div class="col-md-12" align="center">
+    <h1>Agregar Sensor</h1>
+    <p *ngIf="status !='success'">Registrar un nuevo sensor</p>
+    <div class="alert alert-success" *ngIf="status == 'success'">
+        El registro se ha completado correctamente
+    </div>
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+        El registro no se ha completado, vuelve a intentarlo más tarde
+
+    </div>
+<div align="center">
+    <form class="col-md-5 " #registerForm="ngForm" (ngSubmit)=onSubmit(registerForm) >
+        <div class="form-group">
+            <label for="nombre"> Nombre</label>
+            <input type="text" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="sensor.nombre"
+                required pattern="[a-zA-Z]+">
+            <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
+                El campo está vacío
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="estad"> Estado</label>
+            <input type="text" name="estado" class="form-control" #estado="ngModel" [(ngModel)]="sensor.cultivo"
+                required pattern="[a-zA-Z]+">
+           
+        </div>
+        <div class="form-group">
+            <label for="caracteristica"> Caracteristicas del sensor</label>
+            <input type="text" name="caracteristica" class="form-control" #caracteristica="ngModel" [(ngModel)]="sensor.caracteristica"
+                required pattern="[a-zA-Z]+">
+            
+        </div>
+        <div class="form-group">
+            <label for="invernadero_id_invernadero"> Invernadero</label>
+            <input type="text" name="invernadero_id_invernadero" class="form-control" #invernadero_id_invernadero="ngModel" [(ngModel)]="sensor.invernadero_id_invernadero"
+                required pattern="[0-9]+">
+            <small *ngIf="!invernadero_id_invernadero.valid && invernadero_id_invernadero.touched" class="invalid-feedback d-block">
+                Ingrese un invernadero valido
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="tiempo"> Tiempo</label>
+            <input type="text" name="tiempo" class="form-control" #tiempo="ngModel" [(ngModel)]="sensor.tiempo"
+                required pattern="[0-9]+">
+            <small *ngIf="!tiempo.valid && tiempo.touched" class="invalid-feedback d-block">
+                Ingrese un Tiempo valido
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="minimo"> Mínimo</label>
+            <input type="text" name="minimo" class="form-control" #minimo="ngModel" [(ngModel)]="sensor.minimo"
+                required pattern="[0-9]+">
+            <small *ngIf="!minimo.valid && minimo.touched" class="invalid-feedback d-block">
+                Ingrese un Mínimo valido
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="maximo"> Máximo</label>
+            <input type="text" name="maximo" class="form-control" #maximo="ngModel" [(ngModel)]="sensor.maximo"
+                required pattern="[0-9]+">
+            <small *ngIf="!maximo.valid && maximo.touched" class="invalid-feedback d-block">
+                Ingrese un Máximo valido
+            </small>
+        </div>
+        
+        <input type="submit" value="registro" class="btn btn-success" [disabled]="registerForm.invalid">
+
+
+
+
+    </form>
+
+</div>
+
+</div>

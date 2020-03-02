@@ -8,7 +8,6 @@
     <div class="col-sm-3"></div>
 </div>
 
-
 <div class="row">
     <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/temperatura.jpeg" height="120" width="200"></div>
 
@@ -36,128 +35,158 @@
 
         </form>
     </div>
-    <div class="col-md-2">  
-        <input type="submit" value="Aceptar" class="btn btn-success" [disabled]="modelNew.invalid" form="formulariotemp">
-        
+    <div class="col-md-2">
+        <input type="submit" value="Aceptar" class="btn btn-success" [disabled]="modelNew.invalid"
+            form="formulariotemp">
+
         <form #modelNew="ngForm" (ngSubmit)="apagarluz(modelNew)">
-            <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoTemp.estado" hidden> 
-               
+            <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoTemp.estado" hidden>
+
             </select>
-             
+
             <input type="submit" value="Cancelar" class="btn btn-danger" [disabled]="modelNew.invalid">
 
 
         </form>
     </div>
-<br>
-<!-- segundo control-->
-<div class="row">
-    <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/humedad.jpeg" height="120" width="200"></div>
-    <div class="col-md-2"><span><kbd> H. Suelo:</kbd> <span *ngIf="colorVerdeHumedadSuelo()"><input readonly type="text"
-                    style="background-color: #00ff00;width : 30px;" value="{{valorHumedadSuelo}}"></span>
-            <span *ngIf="colorRojoHumedadSuelo()"><input readonly type="text"
-                    style="background-color: #ff0000;width : 30px;" value="{{valorHumedadSuelo}}"></span>
-            <span *ngIf="colorNaranjoHumedadSuelo()"><input readonly type="text"
-                    style="background-color: #ff8000;width : 30px;" value="{{valorHumedadSuelo}}"></span>
+    <br>
+    <!-- segundo control-->
+    <div class="row">
+        <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/humedad.jpeg" height="120" width="200"></div>
+        <div class="col-md-2"><span><kbd> H. Suelo:</kbd> <span *ngIf="colorVerdeHumedadSuelo()"><input readonly
+                        type="text" style="background-color: #00ff00;width : 30px;"
+                        value="{{valorHumedadSuelo}}"></span>
+                <span *ngIf="colorRojoHumedadSuelo()"><input readonly type="text"
+                        style="background-color: #ff0000;width : 30px;" value="{{valorHumedadSuelo}}"></span>
+                <span *ngIf="colorNaranjoHumedadSuelo()"><input readonly type="text"
+                        style="background-color: #ff8000;width : 30px;" value="{{valorHumedadSuelo}}"></span>
 
-        </span> <br>
-        <span><kbd> Predefinido {{humSuelMin}}% - {{humSuelMax}}° </kbd></span>
-        <br>
-        <span><kbd> Alerta </kbd></span>
+            </span>
+            <br>
+            <span><kbd> Predefinido {{humSuelMin}}% - {{humSuelMax}}° </kbd></span>
+            <br>
+            <span><kbd> Alerta </kbd></span>
 
-    </div>
-    <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
-    <div class="col-md-3">Activar sistema de regadío, para aumentar la humedad del suelo. </div>
-    <div class="col-md-1">
-        <form #modelNew="ngForm" (ngSubmit)="prenderagua(modelNew)" id="formularioagua">
+        </div>
+        <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
+        <div class="col-md-3">Activar sistema de regadío, para aumentar la humedad del suelo. </div>
+        <div class="col-md-1">
+            <form #modelNew="ngForm" (ngSubmit)="prenderagua(modelNew)" id="formularioagua">
 
-            <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHumSuel.estado">
-                <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
-            </select>
+                <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHumSuel.estado">
+                    <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+                </select>
 
-        </form>
-    </div>
-    <div class="col-md-2">  
-        <input type="submit" value="Aceptar" class="btn btn-success" [disabled]="modelNew.invalid" form="formularioagua">
-        
-        <form #modelNew="ngForm" (ngSubmit)="apagaragua(modelNew)">
-            <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHumSuel.estado" hidden> 
-               
-            </select>
-             
-            <input type="submit" value="Cancelar" class="btn btn-danger" [disabled]="modelNew.invalid">
+            </form>
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Aceptar" class="btn btn-success" [disabled]="modelNew.invalid"
+                form="formularioagua">
+
+            <form #modelNew="ngForm" (ngSubmit)="apagaragua(modelNew)">
+                <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHumSuel.estado" hidden>
+
+                </select>
+
+                <input type="submit" value="Cancelar" class="btn btn-danger" [disabled]="modelNew.invalid">
 
 
-        </form>
-    </div>
-
-</div>
-<br>
-<!--Tercer Control-->
-<div class="row">
-    <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/humedadAire.jpeg" height="120" width="200"></div>
-    <div class="col-md-2"><span><kbd> H. Aire: </kbd> <span *ngIf="colorVerdeHumedad()"><input readonly type="text"
-                    style="background-color: #00ff00;width : 30px;" value="{{valorHumedad}}"></span>
-            <span *ngIf="colorRojoHumedad()"><input readonly type="text" style="background-color: #ff0000;width : 30px;"
-                    value="{{valorHumedad}}"></span>
-            <span *ngIf="colorNaranjoHumedad()"><input readonly type="text"
-                    style="background-color: #ff8000;width : 30px;" value="{{valorHumedad}}"></span>
-
-        </span>
-        <br>
-        <span><kbd> Predefinido {{humMin}}% - {{humMax}}% </kbd></span>
-        <br>
-        <span><kbd> Alerta </kbd>
-        </span>
+            </form>
+        </div>
 
     </div>
-    <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
-    <div class="col-md-3">Activar ventilador, para reducir la Humedad presente en el ambiente. </div>
-    <div class="col-md-1">
-        <form #modelNew="ngForm" (ngSubmit)="prenderventilador(modelNew)" id="formularioventilador">
+    
+    <!--Tercer Control-->
+    <div class="row">
+        <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/humedadAire.jpeg" height="120" width="200">
+        </div>
+        <div class="col-md-2">
+            <span><kbd> H. Aire: </kbd>
+                <span *ngIf="colorVerdeHumedad()"><input readonly type="text"
+                        style="background-color: #00ff00;width : 30px;" value="{{valorHumedad}}"></span>
+                <span *ngIf="colorRojoHumedad()"><input readonly type="text"
+                        style="background-color: #ff0000;width : 30px;" value="{{valorHumedad}}"></span>
+                <span *ngIf="colorNaranjoHumedad()"><input readonly type="text"
+                        style="background-color: #ff8000;width : 30px;" value="{{valorHumedad}}"></span>
 
-            <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHum.estado">
-                <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
-            </select>
-        </form>
+            </span>
+            <br>
+            <span><kbd> Predefinido {{humMin}}% - {{humMax}}% </kbd></span>
+            <br>
+            <span><kbd> Alerta </kbd>
+            </span>
+
+        </div>
+        <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
+        <div class="col-md-3">Activar ventilador, para reducir la Humedad presente en el ambiente. </div>
+        <div class="col-md-1">
+            <form #modelNew="ngForm" (ngSubmit)="prenderventilador(modelNew)" id="formularioventilador">
+
+                <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHum.estado">
+                    <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+                </select>
+            </form>
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="activar" class="btn btn-success" [disabled]="modelNew.invalid"
+                form="formularioventilador">
+            <form #modelNew="ngForm" (ngSubmit)="apagarventilador(modelNew)">
+                <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHum.estado" hidden>
+
+                </select>
+
+                <input type="submit" value="Cancelar" class="btn btn-danger" [disabled]="modelNew.invalid">
+
+
+            </form>
+        </div>
     </div>
-    <div class="col-md-2">
-        <input type="submit" value="activar" class="btn btn-success" [disabled]="modelNew.invalid" form="formularioventilador">
-        <form #modelNew="ngForm" (ngSubmit)="apagarventilador(modelNew)" >
-            <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHum.estado" hidden> 
-               
-            </select>
-             
-            <input type="submit" value="Cancelar" class="btn btn-danger" [disabled]="modelNew.invalid">
+    <br>
+    <!--ultimo control-->
+    <div class="row">
+        <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/co2.jpeg" height="120" width="200"></div>
+        <div class="col-md-2">
+            <span><kbd> Nivel CO<sub>2 </sub>: </kbd> <span *ngIf="colorVerdeCo2()"><input readonly type="text"
+                        style="background-color: #00ff00;width : 30px;" value="{{valorCo2}}"></span>
+                <span *ngIf="colorRojoCo2()"><input readonly type="text" style="background-color: #ff0000;width : 30px;"
+                        value="{{valorCo2}}"></span>
+                <span *ngIf="colorNaranjoCo2()"><input readonly type="text"
+                        style="background-color: #ff8000;width : 30px;" value="{{valorCo2}}"></span>
+
+            </span>
+            <br>
+            <span><kbd> Predefinido {{co2Min}}% - {{co2Max}}% </kbd> </span>
+            <br>
+            <span><kbd>Alerta</kbd> </span>
+
+        </div>
+        <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
+        <div class="col-md-3">Activar ventilador, para reducir la Humedad presente en el ambiente. </div>
+
+        <div class="col-md-1">
+            <form #modelNew="ngForm" (ngSubmit)="prendervent(modelNew)" id="formulariovent">
+
+                <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHum.estado">
+                    <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+                </select>
+            </form>
+        </div>
+
+        <div class="col-md-2">
+            <input type="submit" value="activar" class="btn btn-success" [disabled]="modelNew.invalid"
+                form="formularioventilador">
+            <form #modelNew="ngForm" (ngSubmit)="apagarventilador(modelNew)">
+                <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHum.estado" hidden>
+
+                </select>
+
+                <input type="submit" value="Cancelar" class="btn btn-danger" [disabled]="modelNew.invalid">
 
 
-        </form>
-    </div>
-</div>
-<br>
-<!--ultimo control-->
-<div class="row">
-    <div class="col-md-2 col-md-offset-1"><img src="../../../../assets/co2.jpeg" height="120" width="200"></div>
-    <div class="col-md-2">
-        <span><kbd> Nivel CO<sub>2 </sub>: </kbd> <span *ngIf="colorVerdeCo2()"><input readonly
-                    type="text" style="background-color: #00ff00;width : 30px;" value="{{valorCo2}}"></span>
-            <span *ngIf="colorRojoCo2()"><input readonly type="text" style="background-color: #ff0000;width : 30px;"
-                    value="{{valorCo2}}"></span>
-            <span *ngIf="colorNaranjoCo2()"><input readonly type="text" style="background-color: #ff8000;width : 30px;"
-                    value="{{valorCo2}}"></span>
-
-        </span> 
-        <br>
-        <span><kbd> Predefinido {{co2Min}}% - {{co2Max}}% </kbd> </span>
-        <br>
-        <span><kbd>Alerta</kbd> </span>
-
-    </div>
-    <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
-    <div class="col-md-3"><span>Ventilador 2 <input type="number" style="width : 50px;"> min </span></div>
-    <div class="col-md-1">
+            </form>
+        </div>
         <!-- Material checked -->
-        
+
     </div>
 </div>
 <br>

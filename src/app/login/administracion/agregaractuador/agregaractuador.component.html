@@ -1,0 +1,56 @@
+<div class="col-md-12" align="center">
+    <h1>Agregar actuador</h1>
+    <p *ngIf="status !='success'">Registrar un nuevo actuador</p>
+    <div class="alert alert-success" *ngIf="status == 'success'">
+        El registro se ha completado correctamente
+    </div>
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+        El registro no se ha completado, vuelve a intentarlo más tarde
+
+    </div>
+<div align="center">
+    <form class="col-md-5 " #registerForm="ngForm" (ngSubmit)=onSubmit(registerForm) >
+        <div class="form-group">
+            <label for="estado"> Estado</label>
+            <input type="text" name="estado" class="form-control" #estado="ngModel" [(ngModel)]="actuador.estado"
+                required pattern="[0-9]+">
+            <small *ngIf="!estado.valid && estado.touched" class="invalid-feedback d-block">
+                Ingrese un Tiempo válido solo numeros
+            </small>
+        </div>
+       
+        <div class="form-group">
+            <label for="nombre"> Nombre</label>
+            <input type="text" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="actuador.nombre"
+                required pattern="[a-zA-Z]+">
+            <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
+                no existen datos o son incorrectos
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="caracteristica"> Caracteristicas del Actuador</label>
+            <input type="text" name="caracteristica" class="form-control" #caracteristica="ngModel" [(ngModel)]="actuador.caracteristica"
+                required pattern="[a-zA-Z]+">
+            <small *ngIf="!caracteristica.valid && caracteristica.touched" class="invalid-feedback d-block">
+                caracteriticas vacía o incorrectas
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="invernadero_id_invernadero"> Invernadero a asociar</label>
+            <input type="text" name="invernadero_id_invernadero" class="form-control" #invernadero_id_invernadero="ngModel" [(ngModel)]="actuador.invernadero_id_invernadero"
+                required pattern="[0-9]+">
+            <small *ngIf="!invernadero_id_invernadero.valid && invernadero_id_invernadero.touched" class="invalid-feedback d-block">
+                Ingrese un invernadero valido
+            </small>
+        </div>
+        
+        <input type="submit" value="registro" class="btn btn-success" [disabled]="registerForm.invalid">
+
+
+
+
+    </form>
+
+</div>
+
+</div>

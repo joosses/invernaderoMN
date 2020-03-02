@@ -55,5 +55,12 @@ export class ActuadorServiceService {
 
     return this.http.put(this.url+'actuadorreset/'+actuador.id,params,{headers:headers});
   }
+  register(actuador):Observable<any>{
+    let json =JSON.stringify(actuador);
+    let params = 'json='+json;
+
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    return this.http.post(this.url+'actuador/registrar', params,{headers: headers});
+  }
 
 }
