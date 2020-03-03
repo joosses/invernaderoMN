@@ -11,15 +11,15 @@
           <a [routerLink]="['home']"> <span>Home</span> </a>
         </li>
         <li>
-          <a [routerLink]="['invernadero']"> <img src="../../../../assets/node.png" height="20" width="20"> <span>Crear Invernadero</span> </a>
+          <a [routerLink]="['invernadero']" *ngIf="this.rol==2"> <img src="../../../../assets/node.png" height="20" width="20"> <span>Crear Invernadero</span> </a>
         </li>
 
         <li>
-          <a [routerLink]="['agregarsensor']">  <img src="../../../../assets/sensor.png" height="20" width="20"><span>Agregar Sensor</span> </a>
+          <a [routerLink]="['agregarsensor']" *ngIf="this.rol==2">  <img src="../../../../assets/sensor.png" height="20" width="20"><span>Agregar Sensor</span> </a>
         </li>
         
         <li>
-          <a [routerLink]="['agregaractuador']"> <img src="../../../../assets/actuador.png" height="20" width="20"><span>Agregar Actuador</span> </a>
+          <a [routerLink]="['agregaractuador']" *ngIf="this.rol==1"> <img src="../../../../assets/actuador.png" height="20" width="20"><span>Agregar Actuador</span> </a>
         </li>
         
         <li>

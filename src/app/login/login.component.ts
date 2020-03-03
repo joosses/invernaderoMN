@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private _usuarioServicio: UsuarioServiceService, private _router:Router, private _route: ActivatedRoute) {
     this.page_titulo = 'Iniciar Sesion';
-    this.usuario = new Usuario(null, '','','','', '', '', '');
+    this.usuario = new Usuario(null, '','','','', '', '', '',null);
   }
 
   ngOnInit() {

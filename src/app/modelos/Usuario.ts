@@ -8,6 +8,7 @@ export class Usuario {
         public ciudad: String,
         public correo: String,
         public contrasena: String,
+        public rol_id_rol: number,
     ) { }
 
 }

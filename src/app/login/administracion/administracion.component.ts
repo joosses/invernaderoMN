@@ -20,18 +20,20 @@ export class AdministracionComponent implements OnInit {
   public token;
   public idInv;
   public var;
+  public rol;
   public allDataObj:any;
   public AllDataArr =[];
   public valor:String[];
   constructor(public _usuarioService: UsuarioServiceService, public invernaderoService: InvernaderoServiceService) { 
     this.identity = this._usuarioService.getIdentity();
-    
-    
+    this.rol= this._usuarioService.getRol();
+
   }
 
   ngOnInit() {
     this.union();
     this.prueba();
+    console.log("este es el ROl: "+this.rol)
   }
   ocultarSidebar(){
     if(this.mostrarSidebar==true){
@@ -40,6 +42,7 @@ export class AdministracionComponent implements OnInit {
   this.mostrarSidebar=true;      
     }
   }
+ 
   
   union():String[]{
     
@@ -58,8 +61,6 @@ export class AdministracionComponent implements OnInit {
     return this.valor;
     
   }
-
-
   
   prueba(){
     
