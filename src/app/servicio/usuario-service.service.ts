@@ -12,6 +12,7 @@ export class UsuarioServiceService {
   public identity;
   public token;
   public sub;
+  public rol;
   
   constructor(public _http:HttpClient) {
     this.url = global.url;
@@ -56,6 +57,19 @@ export class UsuarioServiceService {
       this.token=null;
     }
     return this.token;
+  }
+  getRol():number{
+    let identity = JSON.parse(localStorage.getItem('identity'));
+    if(identity && identity != "undefined"){
+      this.rol = identity.rol;
+      return this.rol;
+      
+    }
+    else{
+      this.identity=null;
+    }
+    return this.identity;
+
   }
 
   getSub():number{
