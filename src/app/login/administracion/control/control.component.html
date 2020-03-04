@@ -161,12 +161,12 @@
 
         </div>
         <div class="col-md-2"><img src="../../../../assets/cambiar.jpg" height="100" width="100"></div>
-        <div class="col-md-3">Activar ventilador, para reducir la Humedad presente en el ambiente. </div>
+        <div class="col-md-3">Activar ventilador dos, para modificar la calidad del Aire presente en el ambiente. </div>
 
         <div class="col-md-1">
-            <form #modelNew="ngForm" (ngSubmit)="prendervent(modelNew)" id="formulariovent">
+            <form #modelNew="ngForm" (ngSubmit)="prenderventilador2(modelNew)" id="formularioventilador2">
 
-                <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHum.estado">
+                <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoCo2.estado">
                     <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
                 </select>
             </form>
@@ -174,9 +174,9 @@
 
         <div class="col-md-2">
             <input type="submit" value="activar" class="btn btn-success" [disabled]="modelNew.invalid"
-                form="formularioventilador">
-            <form #modelNew="ngForm" (ngSubmit)="apagarventilador(modelNew)">
-                <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoHum.estado" hidden>
+                form="formularioventilador2">
+            <form #modelNew="ngForm" (ngSubmit)="apagarventilador2(modelNew)">
+                <select class="form-control" name="estado" #estado="ngModel" [(ngModel)]="tiempoCo2.estado" hidden>
 
                 </select>
 

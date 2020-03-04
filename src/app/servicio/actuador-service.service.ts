@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, timer} from 'rxjs';
 import {global} from '../modelos/global';
+import { UsuarioServiceService } from './usuario-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,12 @@ export class ActuadorServiceService {
 
   url;
   headers;
+  id;
 
-  constructor(public http:HttpClient) { 
+  constructor(public http:HttpClient, public usuario:UsuarioServiceService) { 
     this.url=global.url;
     this.headers=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    this.id=this.usuario.getSub();
 
 
   }
@@ -22,14 +25,17 @@ export class ActuadorServiceService {
   }
 
   getLuzActual():Observable<any>{
-    return this.http.get(this.url+'actuadorluz',{headers:this.headers});
+    return this.http.get(this.url+'actuadorluz/'+this.id,{headers:this.headers});
   }
   
   getExtractorActual():Observable<any>{
-    return this.http.get(this.url+'actuadorextractor',{headers:this.headers});
+    return this.http.get(this.url+'actuadorextractor/'+this.id,{headers:this.headers});
+  }
+  getExtractorActual2():Observable<any>{
+    return this.http.get(this.url+'actuadorextractor2/'+this.id,{headers:this.headers});
   }
   getAguaActual():Observable<any>{
-    return this.http.get(this.url+'actuadoragua',{headers:this.headers});
+    return this.http.get(this.url+'actuadoragua/'+this.id,{headers:this.headers});
   }
   
 
