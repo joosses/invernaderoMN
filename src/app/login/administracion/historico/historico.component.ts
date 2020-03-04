@@ -5,6 +5,7 @@ import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import { Medicion } from 'src/app/modelos/Medicion';
 import { MedicionServiceService } from 'src/app/servicio/medicion-service.service';
 import { Injectable } from '@angular/core';
+import { empty } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,19 +16,130 @@ import { Injectable } from '@angular/core';
   templateUrl: './historico.component.html',
   styleUrls: ['./historico.component.css']
 })
-export class HistoricoComponent  {
+export class HistoricoComponent implements OnInit  {
+
+  public var =[];
+  public var1:any[];
+  public cont:number;
+ 
+  public lineChartData:ChartDataSets[] = [
+    { data: [0,0,0,0,0,0,0], label: 'Temperatura' },
+   
+  ];
+  public lineChartDataH:ChartDataSets[] = [
+    { data: [0,0,0,0,0,0,0], label: 'Humedad' },
+   
+  ];
+  public lineChartDataHS:ChartDataSets[] = [
+    { data: [0,0,0,0,0,0,0], label: 'Humedad Suelo' },
+   
+  ];
+  public lineChartDataC:ChartDataSets[] = [
+    { data: [0,0,0,0,0,0,0], label: 'Co2' },
+   
+  ];
+
+
   public temp:Medicion={id:null,valor:null,tiempo:null,chipid:null,nombre:null};
   constructor(public medicionService: MedicionServiceService) { 
     
   }
+  ngOnInit() {
+    this.medicionService.getgrafica().subscribe((resp:any)=>{
+      this.var1=(resp.medicion)
+      console.log("tamaño: "+this.var1.length);
+      this.cont=0;
+      console.log("contador inicial: "+this.cont);
+
+      for (let index = this.var1.length-10; index < this.var1.length; index++) {
+        //console.log("valor dentro for: "+this.var1[index].valor)
+        console.log("valor: "+this.var1[index].valor);
+        this.var[this.cont] = this.var1[index].valor;
+        this.cont=this.cont+1;
+        console.log("contador: "+this.cont);
+        console.log("valor: "+this.var);
+      }
+     console.log("valor final: "+this.var);
+      this.lineChartData= [
+        { data: [this.var[0], this.var[1], this.var[2], this.var[3], this.var[4], 
+          this.var[5], this.var[6],this.var[7], this.var[8],this.var[9], this.var[10]], label: 'Temperatura' },
+       
+      ];
+      
+    })
+    this.medicionService.getgraficaH().subscribe((resp:any)=>{
+      this.var1=(resp.medicion)
+      console.log("tamaño: "+this.var1.length);
+      this.cont=0;
+      console.log("contador inicial: "+this.cont);
+
+      for (let index = this.var1.length-10; index < this.var1.length; index++) {
+        //console.log("valor dentro for: "+this.var1[index].valor)
+        console.log("valor: "+this.var1[index].valor);
+        this.var[this.cont] = this.var1[index].valor;
+        this.cont=this.cont+1;
+        console.log("contador: "+this.cont);
+        console.log("valor: "+this.var);
+      }
+     console.log("valor final: "+this.var);
+      this.lineChartDataH= [
+        { data: [this.var[0], this.var[1], this.var[2], this.var[3], this.var[4], 
+          this.var[5], this.var[6],this.var[7], this.var[8],this.var[9], this.var[10]], label: 'Humedad' },
+       
+      ];
+      
+    })
+    this.medicionService.getgraficaHS().subscribe((resp:any)=>{
+      this.var1=(resp.medicion)
+      console.log("tamaño: "+this.var1.length);
+      this.cont=0;
+      console.log("contador inicial: "+this.cont);
+
+      for (let index = this.var1.length-10; index < this.var1.length; index++) {
+        //console.log("valor dentro for: "+this.var1[index].valor)
+        console.log("valor: "+this.var1[index].valor);
+        this.var[this.cont] = this.var1[index].valor;
+        this.cont=this.cont+1;
+        console.log("contador: "+this.cont);
+        console.log("valor: "+this.var);
+      }
+     console.log("valor final: "+this.var);
+      this.lineChartDataHS= [
+        { data: [this.var[0], this.var[1], this.var[2], this.var[3], this.var[4], 
+          this.var[5], this.var[6],this.var[7], this.var[8],this.var[9], this.var[10]], label: 'Humedad Suelo' },
+       
+      ];
+      
+    })
+    this.medicionService.getgraficaC().subscribe((resp:any)=>{
+      this.var1=(resp.medicion)
+      console.log("tamaño: "+this.var1.length);
+      this.cont=0;
+      console.log("contador inicial: "+this.cont);
+
+      for (let index = this.var1.length-10; index < this.var1.length; index++) {
+        //console.log("valor dentro for: "+this.var1[index].valor)
+        console.log("valor: "+this.var1[index].valor);
+        this.var[this.cont] = this.var1[index].valor;
+        this.cont=this.cont+1;
+        console.log("contador: "+this.cont);
+        console.log("valor: "+this.var);
+      }
+     console.log("valor final: "+this.var);
+      this.lineChartDataC= [
+        { data: [this.var[0], this.var[1], this.var[2], this.var[3], this.var[4], 
+          this.var[5], this.var[6],this.var[7], this.var[8],this.var[9], this.var[10]], label: 'Co2' },
+       
+      ];
+      
+    })
+  }
+  //this.var[0].valor, this.var[1].valor, this.var[2].valor, this.var[3].valor, this.var[4].valor, this.var[5].valor, this.var[6].valor
   
 
-  public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-    { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-1' }
-  ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  
+  public lineChartLabels: Label[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g','h','i','j'];
+  
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
@@ -68,6 +180,7 @@ export class HistoricoComponent  {
       ],
     },
   };
+  
   public lineChartColors: Color[] = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
@@ -97,18 +210,9 @@ export class HistoricoComponent  {
   public lineChartLegend = true;
   public lineChartType = 'line';
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
-  public randomize(): void {
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        this.lineChartData[i].data[j] = this.generateNumber(i);
-      }
-    }
-    this.chart.update();
-  }
+  
 
-  private generateNumber(i: number) {
-    return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
-  }
+  
 
   // events
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
@@ -119,14 +223,7 @@ export class HistoricoComponent  {
     console.log(event, active);
   }
   
-  public pushOne() {
-    this.lineChartData.forEach((x, i) => {
-      const num = this.generateNumber(i);
-      const data: number[] = x.data as number[];
-      data.push(num);
-    });
-    this.lineChartLabels.push(`Label ${this.lineChartLabels.length}`);
-  }
+ 
 
   public changeColor() {
     this.lineChartColors[2].borderColor = 'green';
