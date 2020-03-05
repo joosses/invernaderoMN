@@ -45,10 +45,18 @@ export class HistoricoComponent implements OnInit {
 
   public temp: Medicion = { id: null, valor: null, tiempo: null, chipid: null, nombre: null };
   constructor(public medicionService: MedicionServiceService) {
-    /*this.medicionService.getgrafica().subscribe((resp:any)=>{
-      this.temperatura =resp.status;
+    this.medicionService.getgrafica().subscribe((resp:any)=>{
+      //this.temperatura =resp.medicion[2];
+     for (let index = 0; index < resp.medicion.length; index++) {
+        //console.log("valor dentro for: "+this.var1[index].valor)
+       
+        this.temperatura[index] =resp.medicion[index];
+       
+       
+      }
+      
     })
-    */
+    
 
   }
   ngOnInit() {
@@ -64,6 +72,7 @@ export class HistoricoComponent implements OnInit {
         console.log("valor: " + this.var1[index].valor);
         this.var[this.cont] = this.var1[index].valor;
         this.cont = this.cont + 1;
+        console.log("VALOOOOOR INDEEEEEEX"+index)
         console.log("contador: " + this.cont);
         console.log("valor: " + this.var);
       }
@@ -149,16 +158,17 @@ export class HistoricoComponent implements OnInit {
       ];
 
     })
-    //console.log("En el init valor temperatura"+this.temperatura);
+    console.log("En el init valor temperatura"+this.temperatura);
   }
   //this.var[0].valor, this.var[1].valor, this.var[2].valor, this.var[3].valor, this.var[4].valor, this.var[5].valor, this.var[6].valor
+  
   generarPDF() {
     html2canvas(document.getElementById('contenido'), {
       // Opciones
       allowTaint: true,
       useCORS: false,
       // Calidad del PDF
-      scale: 1
+      scale: 3
     }).then(function (canvas) {
       var img = canvas.toDataURL("image/png");
       var doc = new jsPDF();
@@ -175,6 +185,8 @@ export class HistoricoComponent implements OnInit {
       doc.save('Historico.pdf');
     });
   }
+  
+  
 
   public obtenerNombre() {
     //this.nombre=this.invernaderoServices.getNombre();

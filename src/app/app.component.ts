@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 import * as jsPDF from 'jspdf';
@@ -36,6 +37,7 @@ export class AppComponent {
       err => console.log(err)
     )
   }
+  /*
   generarPDF() {
     html2canvas(document.getElementById('contenido'), {
       // Opciones
@@ -50,4 +52,6 @@ export class AppComponent {
       doc.save('postres.pdf');
     });
   }
+
+*/
 }

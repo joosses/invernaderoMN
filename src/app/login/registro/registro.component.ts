@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../modelos/Usuario';
 import { UsuarioServiceService } from 'src/app/servicio/usuario-service.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -27,12 +28,29 @@ export class RegistroComponent implements OnInit {
   
 
   onSubmit(form){
-    console.log(this.usuario);
+    Swal.fire({
+      title: 'Registrar Usuario?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Registrar!',
+      cancelButtonText:'Cancelar'
+
+    }).then((result) => {
+      if (result.value) {
+        console.log(this.usuario);
     this._usuarioService.register(this.usuario).subscribe(
       response=>{
         if(response.status =="success"){
           this.status=response.status;
           form.reset();
+          Swal.fire(
+            'Agregado!',
+            'Fuiste creado exitosamente!!!!',
+            'success'
+          )
         }
         else{
           this.status='error';
@@ -45,7 +63,12 @@ export class RegistroComponent implements OnInit {
         console.log(<any>error);
       }
     )
+       
+      }
+    })
+    
     
   }
+
 
 }
