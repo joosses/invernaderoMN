@@ -1,72 +1,162 @@
-<div class="row">
-  <div class="col-md-6">
-    <h4 align="center">temperatura</h4>
-    <div class=" col-md-5 container flex">
-      <div class="flex-item">
-        <div style="display: block;">
-          <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels"
-            [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-            [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
+<div class="container" id="contenido">
+
+  <div class="row">
+
+    <div class="col-md-6">
+
+      <div class=" col-md-7 container flex">
+        <div class="flex-item">
+          <div style="display: block;">
+            <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels"
+              [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+              [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+        <div class="flex-item">
+
+
         </div>
       </div>
-      <div class="flex-item">
-        
-        
+    </div>
+
+    <div class="col-md-6">
+
+      <div class=" col-md-7 container flex">
+        <div class="flex-item">
+          <div style="display: block;">
+            <canvas baseChart width="400" height="400" [datasets]="lineChartDataH" [labels]="lineChartLabels"
+              [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+              [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+        <div class="flex-item">
+
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6">
+
+      <div class=" col-md-7 container flex">
+        <div class="flex-item">
+          <div style="display: block;">
+            <canvas baseChart width="400" height="400" [datasets]="lineChartDataHS" [labels]="lineChartLabels"
+              [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+              [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+        <div class="flex-item">
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+
+
+      <div class=" col-md-7 container flex">
+        <div class="flex-item">
+          <div style="display: block;">
+            <canvas baseChart width="400" height="400" [datasets]="lineChartDataC" [labels]="lineChartLabels"
+              [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+              [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+        <div class="flex-item">
+
+
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <h4 align="center">Humedad</h4>
-    <div class=" col-md-5 container flex">
-      <div class="flex-item">
-        <div style="display: block;">
-          <canvas baseChart width="400" height="400" [datasets]="lineChartDataH" [labels]="lineChartLabels"
-            [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-            [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-      <div class="flex-item">
-        
-        
-      </div>
-    </div>
+  
+  <br>
+  <div class="row" class="color">
+    <div class="col-md-4">
+    <h3>Descarga esta página en formato PDF:</h3>
   </div>
+  <div class="col-md-8"></div>
+
+
+  </div>
+  <div class="row" class="color">
+    <div class="col-md-12"></div>
+    <h5>Si quieres tener estos datos capturado por tus sensores de forma física, te recomendamos descargar el documento</h5>
+
+
+
+  </div>
+  <div class="row" class="color">
+    <div class="col-md-12"></div>
+
+<span>en esta sección se debe agregar el listado de las mediciones.</span>
+
+
+  </div>
+  <div class="row">
+    <div class="col-md-12"></div>
+
+
+
+
+  </div>
+  <div class="row">
+    <div class="col-md-12"></div>
+
+
+
+
+  </div>
+  <div class="row">
+    <div class="col-md-12"></div>
+
+
+
+
+  </div>
+  <!--
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Valor</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Nombre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="temperatura in temperatura track by $index">
+          <td>{{temperatura.id}}</td>
+          <td>{{temperatura.valor}}</td>
+          <td>{{temperatura.tiempo}}</td>
+          <td>{{temperatura.nombre}}</td>
+          
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+-->
 </div>
 <div class="row">
-  <div class="col-md-6">
-    <h4 align="center">Humedad del Suelo</h4>
-    <div class=" col-md-5 container flex">
-      <div class="flex-item">
-        <div style="display: block;">
-          <canvas baseChart width="400" height="400" [datasets]="lineChartDataHS" [labels]="lineChartLabels"
-            [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-            [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-      <div class="flex-item">
-        
-        
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <h4 align="center">Co2</h4>
-    <div class=" col-md-5 container flex">
-      <div class="flex-item">
-        <div style="display: block;">
-          <canvas baseChart width="400" height="400" [datasets]="lineChartDataC" [labels]="lineChartLabels"
-            [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-            [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-      <div class="flex-item">
-        
-        
-      </div>
-    </div>
-  </div>
+  <div class="col-md-10"></div>
+  <div class="col-md-2"><button (click)="generarPDF()" class="btn btn-info">Crear PDF</button></div>
 </div>
+<!--
+<button (click)="generarPDF()" class="btn btn-info">Crear PDF</button>
+-->

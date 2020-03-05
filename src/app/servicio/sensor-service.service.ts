@@ -39,6 +39,21 @@ export class SensorServiceService {
   getCo2Min():Observable<any>{
     return this.http.get(this.url+'co2min/'+this.id,{headers:this.headers});
   }
+  /*
+  getLuzActual():Observable<any>{
+    return this.http.get(this.url+'actuadorluz/'+this.id,{headers:this.headers});
+  }
+  
+  getExtractorActual():Observable<any>{
+    return this.http.get(this.url+'actuadorextractor/'+this.id,{headers:this.headers});
+  }
+  getExtractorActual2():Observable<any>{
+    return this.http.get(this.url+'actuadorextractor2/'+this.id,{headers:this.headers});
+  }
+  getAguaActual():Observable<any>{
+    return this.http.get(this.url+'actuadoragua/'+this.id,{headers:this.headers});
+  }
+  */
   /**
    * create crea un nuevo modelo enviandolo al backend
    * @param sensor objeto que contiene los datos de modelo

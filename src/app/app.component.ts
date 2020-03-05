@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import {ActuadorServiceService} from 'src/app/servicio/actuador-service.service';
+
+import * as jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
+
+import { ActuadorServiceService } from 'src/app/servicio/actuador-service.service';
 import { UsuarioServiceService } from 'src/app/servicio/usuario-service.service';
 
 
@@ -15,21 +19,35 @@ export class AppComponent {
   public token;
 
   actuadores;
-  constructor(public actuadorServices: ActuadorServiceService, public _usuarioService: UsuarioServiceService){
+  constructor(public actuadorServices: ActuadorServiceService, public _usuarioService: UsuarioServiceService) {
     this.identity = this._usuarioService.getIdentity();
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getActuador();
   }
-  getActuador(){
-    this.actuadorServices.getActuador().subscribe(response =>{
-      if(response.status =='success'){
-        this.actuadores=response.actuador;
+  getActuador() {
+    this.actuadorServices.getActuador().subscribe(response => {
+      if (response.status == 'success') {
+        this.actuadores = response.actuador;
         console.log(this.actuadores);
       }
     },
-      err=>console.log(err)
+      err => console.log(err)
     )
+  }
+  generarPDF() {
+    html2canvas(document.getElementById('contenido'), {
+      // Opciones
+      allowTaint: true,
+      useCORS: false,
+      // Calidad del PDF
+      scale: 1
+    }).then(function (canvas) {
+      var img = canvas.toDataURL("image/png");
+      var doc = new jsPDF();
+      doc.addImage(img, 'PNG', 2, 2, 195, 105);
+      doc.save('postres.pdf');
+    });
   }
 }

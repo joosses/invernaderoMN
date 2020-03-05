@@ -1,146 +1,154 @@
 <div class="row">
     <div class="col-sm-12"> <b><i>Configurar Sensores</i></b> </div>
-    <div class="col-sm-12"><i>Configurar el rango en el que el sistema debería avisarle, si es que los niveles de las mediciones estan llegando al máximo o mínimo</i></div>
+    <div class="col-sm-12"><i>Configurar el rango en el que el sistema debería avisarle, si es que los niveles de las
+            mediciones estan llegando al máximo o mínimo</i></div>
 </div>
 <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4"><b>Predefinido</b></div>
-       
-        <div class="col-sm-3"><b>Tiempo para cada medición</b></div>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4"><b>Predefinido</b></div>
+
+    <div class="col-sm-3"><b>Tiempo para cada medición</b></div>
 </div>
 <div class="row">
     <div class="col-sm-3"><img src="../../../../assets/temperatura.jpeg" width="200" height="120"></div>
-    <div class="col-sm-2"><b><i><h4><kbd>Temperatura </kbd></h4></i></b></div>
+    <div class="col-sm-2"><b><i>
+                <h4><kbd>Temperatura </kbd></h4>
+            </i></b></div>
     <div class="col-sm-4">
         <div class="row">
             <div class="col-sm-8">
-                <input type="text" name="minTemp" id="minTemp" class="form-control" placeholder="Mínimo: {{tempMin}}° " tabindex="1" readonly>
+                <input type="text" name="minTemp" id="minTemp" class="form-control" placeholder="Mínimo: {{tempMin}}° "
+                    tabindex="1" readonly>
             </div>
             <div class="col-sm-8">
-                <input type="text" name="maxTemp" id="maxTemp" class="form-control" placeholder="Máximo: {{tempMax}}°" tabindex="1" readonly>
-            </div>  
+                <input type="text" name="maxTemp" id="maxTemp" class="form-control" placeholder="Máximo: {{tempMax}}°"
+                    tabindex="1" readonly>
+            </div>
         </div>
-    </div>    
+    </div>
 
-    
+
     <div class="col-sm-3">
-        <div class="form-group">
-            <label for="sel1"></label>
-            <select class="form-control" id="sel1">
-                <option>10 minutos</option>
-                <option>20 minutos</option>
-                <option>30 minutos</option>
-                <option>40 minutos</option>
-                <option>50 minutos</option>
-                <option>60 minutos</option>
-                <option>120 minutos</option>
+        <form #modelNew="ngForm" (ngSubmit)="cambioTemperatura(modelNew)">
+
+            <select class="form-control" name="tiempo" #tiempo="ngModel" [(ngModel)]="tiempoTemp.tiempo">
+                <option *ngFor="let n of minutos" value="{{n}}">{{n}}</option>
             </select>
-            </div>
+            <input type="submit" value="aceptar" class="btn btn-success" [disabled]="modelNew.invalid">
+        </form>
     </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-sm-3"><img src="../../../../assets/humedadaire.jpg" width="200" height="120"></div>
-    <div class="col-sm-2"><b><i><h4><kbd>Humedad Aire</kbd></h4></i></b></div>
-    <div class="col-sm-4">
-        <div class="row">
-            <div class="col-sm-8">
-                <input type="text" name="minHumAire" id="minHumAire" class="form-control" placeholder="Mínimo: {{humMin}}%" tabindex="1" readonly>
+    <br>
+    <div class="row">
+        <div class="col-sm-3"><img src="../../../../assets/humedadaire.jpg" width="200" height="120"></div>
+        <div class="col-sm-2"><b><i>
+                    <h4><kbd>Humedad Aire</kbd></h4>
+                </i></b></div>
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-8">
+                    <input type="text" name="minHumAire" id="minHumAire" class="form-control"
+                        placeholder="Mínimo: {{humMin}}%" tabindex="1" readonly>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" name="maxHumAire" id="maxHumAire" class="form-control"
+                        placeholder="Máximo: {{humMax}}%" tabindex="1" readonly>
+                </div>
             </div>
-            <div class="col-sm-8">
-                <input type="text" name="maxHumAire" id="maxHumAire" class="form-control" placeholder="Máximo: {{humMax}}%" tabindex="1" readonly>
-            </div>  
         </div>
-    </div>    
 
-    
-    <div class="col-sm-3">
-        <div>Esta medición utiliza el tiempo definido para Temperatura</div>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-sm-3"><img src="../../../../assets/humedad.jpeg" width="200" height="120"></div>
-    <div class="col-sm-2"><b><i><h4><kbd>Humedad Suelo</kbd></h4></i></b></div>
-    <div class="col-sm-4">
-        <div class="row">
-            <div class="col-sm-8">
-                <input type="text" name="minHumSuelo" id="minHumSuelo" class="form-control" placeholder="Mínimo: {{humSuelMin}}%" tabindex="1" readonly>
-            </div>
-            <div class="col-sm-8">
-                <input type="text" name="maxHumSuelo" id="maxHumSuelo" class="form-control" placeholder="Máximo: {{humSuelMax}}%" tabindex="1" readonly>
-            </div>  
-        </div>
-    </div>    
 
-    <div class="col-sm-3">
-        <div class="form-group">
-            <label for="sel1"></label>
-            <select class="form-control" id="sel1">
-                <option>10 minutos</option>
-                <option>20 minutos</option>
-                <option>30 minutos</option>
-                <option>40 minutos</option>
-                <option>50 minutos</option>
-                <option>60 minutos</option>
-                <option>120 minutos</option>
-            </select>
-        </div>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-sm-3"><img src="../../../../assets/co2.jpeg" width="200" height="120"></div>
-    <div class="col-sm-2"><b><i><h4><kbd>Nivel Co2</kbd></h4></i></b></div>
-    <div class="col-sm-4">
-        <div class="row">
-            <div class="col-sm-8">
-                <input type="text" name="minCo2" id="minCo2" class="form-control" placeholder="Mínimo: {{co2Min}}%" tabindex="1" readonly>
-            </div>
-            <div class="col-sm-8">
-                <input type="text" name="maxCo2" id="maxCo2" class="form-control" placeholder="Máximo: {{co2Max}}%" tabindex="1" readonly>
-            </div>  
-        </div>
-    </div>    
+        <div class="col-sm-3">
+            <form #modelNew="ngForm" (ngSubmit)="cambioHumedad(modelNew)">
 
-    
-    
-    <div class="col-sm-3">
-        <div class="form-group">
-            <label for="sel1"></label>
-            <select class="form-control" id="sel1">
-                <option>10 minutos</option>
-                <option>20 minutos</option>
-                <option>30 minutos</option>
-                <option>40 minutos</option>
-                <option>50 minutos</option>
-                <option>60 minutos</option>
-                <option>120 minutos</option>
-            </select>
-            </div>
+                <select class="form-control" name="tiempo" #tiempo="ngModel" [(ngModel)]="tiempoHum.tiempo">
+                    <option *ngFor="let n of minutos" value="{{n}}">{{n}}</option>
+                </select>
+                <input type="submit" value="aceptar" class="btn btn-success" [disabled]="modelNew.invalid">
+            </form>
+        </div>
     </div>
-</div>
-<br>
-<div class="row">
+    <br>
+    <div class="row">
+        <div class="col-sm-3"><img src="../../../../assets/humedad.jpeg" width="200" height="120"></div>
+        <div class="col-sm-2"><b><i>
+                    <h4><kbd>Humedad Suelo</kbd></h4>
+                </i></b></div>
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-8">
+                    <input type="text" name="minHumSuelo" id="minHumSuelo" class="form-control"
+                        placeholder="Mínimo: {{humSuelMin}}%" tabindex="1" readonly>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" name="maxHumSuelo" id="maxHumSuelo" class="form-control"
+                        placeholder="Máximo: {{humSuelMax}}%" tabindex="1" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <form #modelNew="ngForm" (ngSubmit)="cambioHumedadSuelo(modelNew)">
+
+                <select class="form-control" name="tiempo" #tiempo="ngModel" [(ngModel)]="tiempoHumSuel.tiempo">
+                    <option *ngFor="let n of minutos" value="{{n}}">{{n}}</option>
+                </select>
+                <input type="submit" value="aceptar" class="btn btn-success" [disabled]="modelNew.invalid">
+            </form>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-3"><img src="../../../../assets/co2.jpeg" width="200" height="120"></div>
+        <div class="col-sm-2"><b><i>
+                    <h4><kbd>Nivel Co2</kbd></h4>
+                </i></b></div>
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-8">
+                    <input type="text" name="minCo2" id="minCo2" class="form-control" placeholder="Mínimo: {{co2Min}}%"
+                        tabindex="1" readonly>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" name="maxCo2" id="maxCo2" class="form-control" placeholder="Máximo: {{co2Max}}%"
+                        tabindex="1" readonly>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-sm-3">
+            <form #modelNew="ngForm" (ngSubmit)="cambioCo2(modelNew)">
+
+                <select class="form-control" name="tiempo" #tiempo="ngModel" [(ngModel)]="tiempoCo2.tiempo">
+                    <option *ngFor="let n of minutos" value="{{n}}">{{n}}</option>
+                </select>
+                <input type="submit" value="aceptar" class="btn btn-success" [disabled]="modelNew.invalid">
+            </form>
+        </div>
+    </div>
+    <br>
+    <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-4">
             <div class="form-check">
                 <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" value=""><h6 style="color:floralwhite">Recibir alerta por correo</h6>
+                    <input type="checkbox" class="form-check-input" value="">
+                    <h6 style="color:floralwhite">Recibir alerta por correo</h6>
                 </label>
             </div>
-            
+
         </div>
-    <div class="col-sm-4">
-        <div class="form-check">
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" value=""><h6 style="color:floralwhite">Recibir alerta en la página</h6>
-            </label>
+        <div class="col-sm-4">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value="">
+                    <h6 style="color:floralwhite">Recibir alerta en la página</h6>
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-success">Aceptar</button>
         </div>
     </div>
-    <div class="col-sm-2">
-        <button type="button" class="btn btn-success">Aceptar</button>
-    </div>
-</div>
-      

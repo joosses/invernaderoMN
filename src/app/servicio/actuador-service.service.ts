@@ -37,6 +37,7 @@ export class ActuadorServiceService {
   getAguaActual():Observable<any>{
     return this.http.get(this.url+'actuadoragua/'+this.id,{headers:this.headers});
   }
+
   
 
   /**

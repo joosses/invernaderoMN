@@ -1,5 +1,7 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
+import * as jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import { Medicion } from 'src/app/modelos/Medicion';
@@ -16,130 +18,187 @@ import { empty } from 'rxjs';
   templateUrl: './historico.component.html',
   styleUrls: ['./historico.component.css']
 })
-export class HistoricoComponent implements OnInit  {
+export class HistoricoComponent implements OnInit {
 
-  public var =[];
-  public var1:any[];
-  public cont:number;
- 
-  public lineChartData:ChartDataSets[] = [
-    { data: [0,0,0,0,0,0,0], label: 'Temperatura' },
-   
+  public var = [];
+  public var1: any[];
+  public cont: number;
+  public temperatura = [];
+
+  public lineChartData: ChartDataSets[] = [
+    { data: [0, 0, 0, 0, 0, 0, 0], label: 'Temperatura' },
+
   ];
-  public lineChartDataH:ChartDataSets[] = [
-    { data: [0,0,0,0,0,0,0], label: 'Humedad' },
-   
+  public lineChartDataH: ChartDataSets[] = [
+    { data: [0, 0, 0, 0, 0, 0, 0], label: 'Humedad' },
+
   ];
-  public lineChartDataHS:ChartDataSets[] = [
-    { data: [0,0,0,0,0,0,0], label: 'Humedad Suelo' },
-   
+  public lineChartDataHS: ChartDataSets[] = [
+    { data: [0, 0, 0, 0, 0, 0, 0], label: 'Humedad Suelo' },
+
   ];
-  public lineChartDataC:ChartDataSets[] = [
-    { data: [0,0,0,0,0,0,0], label: 'Co2' },
-   
+  public lineChartDataC: ChartDataSets[] = [
+    { data: [0, 0, 0, 0, 0, 0, 0], label: 'Co2' },
+
   ];
 
 
-  public temp:Medicion={id:null,valor:null,tiempo:null,chipid:null,nombre:null};
-  constructor(public medicionService: MedicionServiceService) { 
-    
+  public temp: Medicion = { id: null, valor: null, tiempo: null, chipid: null, nombre: null };
+  constructor(public medicionService: MedicionServiceService) {
+    /*this.medicionService.getgrafica().subscribe((resp:any)=>{
+      this.temperatura =resp.status;
+    })
+    */
+
   }
   ngOnInit() {
-    this.medicionService.getgrafica().subscribe((resp:any)=>{
-      this.var1=(resp.medicion)
-      console.log("tamaño: "+this.var1.length);
-      this.cont=0;
-      console.log("contador inicial: "+this.cont);
+    //this.obtenerNombre();
+    this.medicionService.getgrafica().subscribe((resp: any) => {
+      this.var1 = (resp.medicion)
+      console.log("tamaño: " + this.var1.length);
+      this.cont = 0;
+      console.log("contador inicial: " + this.cont);
 
-      for (let index = this.var1.length-10; index < this.var1.length; index++) {
+      for (let index = this.var1.length - 10; index < this.var1.length; index++) {
         //console.log("valor dentro for: "+this.var1[index].valor)
-        console.log("valor: "+this.var1[index].valor);
+        console.log("valor: " + this.var1[index].valor);
         this.var[this.cont] = this.var1[index].valor;
-        this.cont=this.cont+1;
-        console.log("contador: "+this.cont);
-        console.log("valor: "+this.var);
+        this.cont = this.cont + 1;
+        console.log("contador: " + this.cont);
+        console.log("valor: " + this.var);
       }
-     console.log("valor final: "+this.var);
-      this.lineChartData= [
-        { data: [this.var[0], this.var[1], this.var[2], this.var[3], this.var[4], 
-          this.var[5], this.var[6],this.var[7], this.var[8],this.var[9], this.var[10]], label: 'Temperatura' },
-       
-      ];
-      
-    })
-    this.medicionService.getgraficaH().subscribe((resp:any)=>{
-      this.var1=(resp.medicion)
-      console.log("tamaño: "+this.var1.length);
-      this.cont=0;
-      console.log("contador inicial: "+this.cont);
+      console.log("valor final: " + this.var);
+      this.lineChartData = [
+        {
+          data: [this.var[0], this.var[1], this.var[2], this.var[3], this.var[4],
+          this.var[5], this.var[6], this.var[7], this.var[8], this.var[9], this.var[10]], label: 'Temperatura'
+        },
 
-      for (let index = this.var1.length-10; index < this.var1.length; index++) {
-        //console.log("valor dentro for: "+this.var1[index].valor)
-        console.log("valor: "+this.var1[index].valor);
-        this.var[this.cont] = this.var1[index].valor;
-        this.cont=this.cont+1;
-        console.log("contador: "+this.cont);
-        console.log("valor: "+this.var);
-      }
-     console.log("valor final: "+this.var);
-      this.lineChartDataH= [
-        { data: [this.var[0], this.var[1], this.var[2], this.var[3], this.var[4], 
-          this.var[5], this.var[6],this.var[7], this.var[8],this.var[9], this.var[10]], label: 'Humedad' },
-       
       ];
-      
-    })
-    this.medicionService.getgraficaHS().subscribe((resp:any)=>{
-      this.var1=(resp.medicion)
-      console.log("tamaño: "+this.var1.length);
-      this.cont=0;
-      console.log("contador inicial: "+this.cont);
 
-      for (let index = this.var1.length-10; index < this.var1.length; index++) {
-        //console.log("valor dentro for: "+this.var1[index].valor)
-        console.log("valor: "+this.var1[index].valor);
-        this.var[this.cont] = this.var1[index].valor;
-        this.cont=this.cont+1;
-        console.log("contador: "+this.cont);
-        console.log("valor: "+this.var);
-      }
-     console.log("valor final: "+this.var);
-      this.lineChartDataHS= [
-        { data: [this.var[0], this.var[1], this.var[2], this.var[3], this.var[4], 
-          this.var[5], this.var[6],this.var[7], this.var[8],this.var[9], this.var[10]], label: 'Humedad Suelo' },
-       
-      ];
-      
     })
-    this.medicionService.getgraficaC().subscribe((resp:any)=>{
-      this.var1=(resp.medicion)
-      console.log("tamaño: "+this.var1.length);
-      this.cont=0;
-      console.log("contador inicial: "+this.cont);
+    this.medicionService.getgraficaH().subscribe((resp: any) => {
+      this.var1 = (resp.medicion)
+      console.log("tamaño: " + this.var1.length);
+      this.cont = 0;
+      console.log("contador inicial: " + this.cont);
 
-      for (let index = this.var1.length-10; index < this.var1.length; index++) {
+      for (let index = this.var1.length - 10; index < this.var1.length; index++) {
         //console.log("valor dentro for: "+this.var1[index].valor)
-        console.log("valor: "+this.var1[index].valor);
+        console.log("valor: " + this.var1[index].valor);
         this.var[this.cont] = this.var1[index].valor;
-        this.cont=this.cont+1;
-        console.log("contador: "+this.cont);
-        console.log("valor: "+this.var);
+        this.cont = this.cont + 1;
+        console.log("contador: " + this.cont);
+        console.log("valor: " + this.var);
       }
-     console.log("valor final: "+this.var);
-      this.lineChartDataC= [
-        { data: [this.var[0], this.var[1], this.var[2], this.var[3], this.var[4], 
-          this.var[5], this.var[6],this.var[7], this.var[8],this.var[9], this.var[10]], label: 'Co2' },
-       
+      console.log("valor final: " + this.var);
+      this.lineChartDataH = [
+        {
+          data: [this.var[0], this.var[1], this.var[2], this.var[3], this.var[4],
+          this.var[5], this.var[6], this.var[7], this.var[8], this.var[9], this.var[10]], label: 'Humedad'
+        },
+
       ];
-      
+
     })
+    this.medicionService.getgraficaHS().subscribe((resp: any) => {
+      this.var1 = (resp.medicion)
+      console.log("tamaño: " + this.var1.length);
+      this.cont = 0;
+      console.log("contador inicial: " + this.cont);
+
+      for (let index = this.var1.length - 10; index < this.var1.length; index++) {
+        //console.log("valor dentro for: "+this.var1[index].valor)
+        console.log("valor: " + this.var1[index].valor);
+        this.var[this.cont] = this.var1[index].valor;
+        this.cont = this.cont + 1;
+        console.log("contador: " + this.cont);
+        console.log("valor: " + this.var);
+      }
+      console.log("valor final: " + this.var);
+      this.lineChartDataHS = [
+        {
+          data: [this.var[0], this.var[1], this.var[2], this.var[3], this.var[4],
+          this.var[5], this.var[6], this.var[7], this.var[8], this.var[9], this.var[10]], label: 'Humedad Suelo'
+        },
+
+      ];
+
+    })
+    this.medicionService.getgraficaC().subscribe((resp: any) => {
+      this.var1 = (resp.medicion)
+      console.log("tamaño: " + this.var1.length);
+      this.cont = 0;
+      console.log("contador inicial: " + this.cont);
+
+      for (let index = this.var1.length - 10; index < this.var1.length; index++) {
+        //console.log("valor dentro for: "+this.var1[index].valor)
+        console.log("valor: " + this.var1[index].valor);
+        this.var[this.cont] = this.var1[index].valor;
+        this.cont = this.cont + 1;
+        console.log("contador: " + this.cont);
+        console.log("valor: " + this.var);
+      }
+      console.log("valor final: " + this.var);
+      this.lineChartDataC = [
+        {
+          data: [this.var[0], this.var[1], this.var[2], this.var[3], this.var[4],
+          this.var[5], this.var[6], this.var[7], this.var[8], this.var[9], this.var[10]], label: 'Co2'
+        },
+
+      ];
+
+    })
+    //console.log("En el init valor temperatura"+this.temperatura);
   }
   //this.var[0].valor, this.var[1].valor, this.var[2].valor, this.var[3].valor, this.var[4].valor, this.var[5].valor, this.var[6].valor
-  
+  generarPDF() {
+    html2canvas(document.getElementById('contenido'), {
+      // Opciones
+      allowTaint: true,
+      useCORS: false,
+      // Calidad del PDF
+      scale: 1
+    }).then(function (canvas) {
+      var img = canvas.toDataURL("image/png");
+      var doc = new jsPDF();
+      doc.addImage(img, 'PNG', 1, 1, 195, 105);
+      
+      /*const bufferX = 5;
+      const bufferY = 5;
+      const imgProps = (<any>doc).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      */
 
-  
-  public lineChartLabels: Label[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g','h','i','j'];
-  
+      doc.save('Historico.pdf');
+    });
+  }
+
+  public obtenerNombre() {
+    //this.nombre=this.invernaderoServices.getNombre();
+    //console.log("EL NOMBRE ES: "+this.nombre);
+    // return this.nombre;
+    this.medicionService.getgrafica().subscribe((resp: any) => {
+      this.var1 = (resp.medicion);
+      console.log("tamaño: " + this.var1.length);
+      this.cont = 0;
+      console.log("contador inicial: " + this.cont);
+
+      for (let index = this.var1.length - 10; index < this.var1.length; index++) {
+
+        this.temperatura[this.cont] = this.var1[index];
+        this.cont = this.cont + 1;
+
+      }
+      console.log("NAMEEEEE: " + this.temperatura)
+    })
+    
+  }
+
+  public lineChartLabels: Label[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
@@ -157,7 +216,7 @@ export class HistoricoComponent implements OnInit  {
             color: 'rgba(255,0,0,0.3)',
           },
           ticks: {
-            fontColor: 'red',
+            fontColor: 'green',
           }
         }
       ]
@@ -180,7 +239,7 @@ export class HistoricoComponent implements OnInit  {
       ],
     },
   };
-  
+
   public lineChartColors: Color[] = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
@@ -210,9 +269,9 @@ export class HistoricoComponent implements OnInit  {
   public lineChartLegend = true;
   public lineChartType = 'line';
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
-  
 
-  
+
+
 
   // events
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
@@ -222,8 +281,8 @@ export class HistoricoComponent implements OnInit  {
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
   }
-  
- 
+
+
 
   public changeColor() {
     this.lineChartColors[2].borderColor = 'green';
