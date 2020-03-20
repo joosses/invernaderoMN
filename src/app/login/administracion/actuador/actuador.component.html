@@ -1,225 +1,209 @@
 <div class="row">
-  <div class="col-sm-12"> <b><i>Configurar Variables</i></b> </div>
+  <div class="col-sm-3"> <b><i>Configurar Variables</i></b> </div>
+  <div class="col-sm-9">
+    <div class="form-group row">
+      <p>"En esta sección usted podrá configurar las distintas variables presentes en su invernadero"</p>
+    </div>
+  </div>
 </div>
+
 <div class="row">
   <div class="col-sm-2"></div>
-  <div class="col-sm-8">
-    <div class="form-group row">
-      <p>En esta sección usted podrá configurar las distintas variables presentes en su invernadero</p>
-    </div>
-  </div>
-  <div class="col-sm-2">
-
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-4"></div>
-  <div class="col-sm-2">
-    <div class="form-group row">
-      <label for="cultivo" class="col-form-label">{{inve.cultivo}}:</label>
-    </div>
-  </div>
-  <div class="col-sm-2">
-    <input type="text" name="cultivo" id="cultivo" class="form-control" placeholder="Agregue cultivo" tabindex="1">
-  </div>
-  <div class="col-sm-4">
-    <p>*Este nombre es opcional</p>
-  </div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-3"><b>Seleccionar niveles</b></div>
+  <div class="col-sm-3"><b> Asignado</b></div>
+  <div class="col-sm-3"><b>Tiempo para cada medición</b></div>
 </div>
 
-
 <div class="row">
-  <div class="col-sm-4"></div>
-  <div class="col-sm-8">
-    <h2><b>Configuracion de Variables</b></h2>
+  <div class="col-sm-2"><img src="../../../../assets/temperatura.jpeg" width="120" height="90"></div>
+  <div class="col-sm-1"><b>
+        <kbd>Temp. </kbd>
+      </b>
   </div>
-  <div class="col-sm-4"></div>
-</div>
-<div class="row">
-  <div class="col-sm-4">
-    <img src="../../../../assets/temperatura.jpeg" width="300" height="180">
-  </div>
-  <div class="col-sm-4">
-    <img src="../../../../assets/humedad.jpeg" width="300" height="180">
-
-
-  </div>
-  <div class="col-sm-4">
-    <img src="../../../../assets/co2.jpeg" width="300" height="180">
-
-  </div>
-</div>
-<br>
-
-
-<div class="row">
-<div class="col-sm-12"> <!--Se agrego recien -->
   <div class="col-sm-3">
     <form #modelNew="ngForm" (ngSubmit)="onSubmitTemperatura(modelNew)">
 
-      <select class="form-control" name="minimo" #minimo="ngModel" [(ngModel)]="temp.minimo"
-      >
+      <select class="form-control" name="minimo" #minimo="ngModel" [(ngModel)]="temp.minimo">
         <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
       </select>
-      <br>
-      <select class="form-control" name="maximo" #maximo="ngModel" [(ngModel)]="temp.maximo"
-        >
+      <select class="form-control" name="maximo" #maximo="ngModel" [(ngModel)]="temp.maximo">
         <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
       </select>
 
-      <input type="submit" value="enviar" class="btn btn-success" [disabled]="modelNew.invalid"
-        >
+      <input type="submit" value="enviar" class="btn btn-success" [disabled]="modelNew.invalid">
 
     </form>
+  </div>
+  <div class="col-sm-3">
+    <div class="row">
+      <div class="col-sm-8">
+        <input type="text" name="minTemp" id="minTemp" class="form-control" placeholder="Mínimo: {{tempMin}}° "
+          tabindex="1" readonly>
+      </div>
+      <div class="col-sm-8">
+        <input type="text" name="maxTemp" id="maxTemp" class="form-control" placeholder="Máximo: {{tempMax}}°"
+          tabindex="1" readonly>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <form #modelNew="ngForm" (ngSubmit)="cambioTemperatura(modelNew)">
+
+      <select class="form-control" name="tiempo" #tiempo="ngModel" [(ngModel)]="tiempoTemp.tiempo">
+        <option *ngFor="let n of minutos" value="{{n}}">{{n}}</option>
+      </select>
+      <input type="submit" value="aceptar" class="btn btn-success" [disabled]="modelNew.invalid">
+    </form>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-2"><img src="../../../../assets/humedadaire.jpg" width="120" height="90"></div>
+  <div class="col-sm-1"><b>
+        <kbd>Humedad </kbd>
+      </b>
+  </div>
+  <div class="col-sm-3">
+    <form #modelNew="ngForm" (ngSubmit)="onSubmitHumedad(modelNew)">
+      <select class="form-control" name="minimo" #minimo="ngModel" [(ngModel)]="hum.minimo" >
+        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+      </select>
+      <select class="form-control" name="maximo" #maximo="ngModel" [(ngModel)]="hum.maximo">
+        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+      </select>
+
+      <input type="submit" value="enviar" class="btn btn-success" [disabled]="modelNew.invalid">
+    </form>
+  </div>
+  <div class="col-sm-3">
+    <div class="row">
+      <div class="col-sm-8">
+        <input type="text" name="minHumAire" id="minHumAire" class="form-control" placeholder="Mínimo: {{humMin}}%"
+          tabindex="1" readonly>
+      </div>
+      <div class="col-sm-8">
+        <input type="text" name="maxHumAire" id="maxHumAire" class="form-control" placeholder="Máximo: {{humMax}}%"
+          tabindex="1" readonly>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <form #modelNew="ngForm" (ngSubmit)="cambioHumedad(modelNew)">
+
+      <select class="form-control" name="tiempo" #tiempo="ngModel" [(ngModel)]="tiempoHum.tiempo">
+        <option *ngFor="let n of minutos" value="{{n}}">{{n}}</option>
+      </select>
+      <input type="submit" value="aceptar" class="btn btn-success" [disabled]="modelNew.invalid">
+    </form>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-2"><img src="../../../../assets/humedad.jpeg" width="120" height="90"></div>
+  <div class="col-sm-1"><b>
+        <kbd>Humedad Suelo </kbd>
+      </b>
   </div>
   <div class="col-sm-3">
     <form #modelNew="ngForm" (ngSubmit)="onSubmitHumedadSuelo(modelNew)">
 
-      <select class="form-control" name="minimo" #minimo="ngModel" [(ngModel)]="humsuel.minimo"
-        *ngIf="mostrarHumedadSuelo()">
+      <select class="form-control" name="minimo" #minimo="ngModel" [(ngModel)]="humsuel.minimo">
         <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
       </select>
-      <br>
-      <select class="form-control" name="maximo" #maximo="ngModel" [(ngModel)]="humsuel.maximo"
-        *ngIf="mostrarHumedadSuelo()">
+      <select class="form-control" name="maximo" #maximo="ngModel" [(ngModel)]="humsuel.maximo">
         <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
       </select>
 
-      <input type="submit" value="enviar" class="btn btn-success" [disabled]="modelNew.invalid"
-        *ngIf="mostrarHumedadSuelo()">
+      <input type="submit" value="enviar" class="btn btn-success" [disabled]="modelNew.invalid">
 
     </form>
   </div>
   <div class="col-sm-3">
-    <form #modelNew="ngForm" (ngSubmit)="onSubmitHumedad(modelNew)">
-      <select class="form-control" name="minimo" #minimo="ngModel" [(ngModel)]="hum.minimo" *ngIf="mostrarHumedad()">
-        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
-      </select>
-      <br>
-      <select class="form-control" name="maximo" #maximo="ngModel" [(ngModel)]="hum.maximo" *ngIf="mostrarHumedad()">
-        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
-      </select>
-
-      <input type="submit" value="enviar" class="btn btn-success" [disabled]="modelNew.invalid"
-        *ngIf="mostrarHumedad()">
-    </form>
-  </div>
-
-  <div class="col-sm-3">
-    <form #modelNew="ngForm" (ngSubmit)="onSubmitCo2(modelNew)">
-      <select class="form-control" name="minimo" #minimo="ngModel" [(ngModel)]="co2.minimo" *ngIf="mostrarCo2()">
-        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
-       
-      </select>
-      <br>
-      <select class="form-control" name="maximo" #maximo="ngModel" [(ngModel)]="co2.maximo" *ngIf="mostrarCo2()">
-        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
-      
-      </select>
-
-      <input type="submit" value="enviar" class="btn btn-success" [disabled]="modelNew.invalid" *ngIf="mostrarCo2()">
-    </form>
-  </div>
-
-
-
-  <!--
-  <div class="col-sm-2  ">
-    <select class="form-control">
-      <option>Default select</option>
-    </select>
-    <br>
-    <select class="form-control">
-      <option>Default select</option>
-    </select>
-  </div>
-
-  <div class="col-sm-3">
-
-    <select class="form-control">
-      <option>Default select</option>
-    </select>
-    <br>
-    <select class="form-control">
-      <option>Default select</option>
-    </select>
-  </div>
-
-
-  <div class="col-sm-3">
-    <select class="form-control">
-      <option>Default select</option>
-    </select>
-    <br>
-    <select class="form-control">
-      <option>Default select</option>
-    </select>
-  </div>
--->
-</div>
-</div>
-
-<div class="row">
-
-  <div class="col-sm-12">
-    <div class="col-sm-8">
-        <input type="text" name="minTemp" id="minTemp" class="form-control" placeholder="Mínimo: {{tempMin}}° "
-            tabindex="1" readonly>
+    <div class="row">
+      <div class="col-sm-8">
+        <input type="text" name="minHumSuelo" id="minHumSuelo" class="form-control"
+          placeholder="Mínimo: {{humSuelMin}}%" tabindex="1" readonly>
+      </div>
+      <div class="col-sm-8">
+        <input type="text" name="maxHumSuelo" id="maxHumSuelo" class="form-control"
+          placeholder="Máximo: {{humSuelMax}}%" tabindex="1" readonly>
+      </div>
     </div>
-    <div class="col-sm-8">
-        <input type="text" name="maxTemp" id="maxTemp" class="form-control" placeholder="Máximo: {{tempMax}}°"
-            tabindex="1" readonly>
-    </div>
-    
-    
+  </div>
+  <div class="col-sm-3">
+    <form #modelNew="ngForm" (ngSubmit)="cambioHumedadSuelo(modelNew)">
 
-<div class="col-sm-3">
-  <form #modelNew="ngForm" (ngSubmit)="cambioTemperatura(modelNew)">
-
-      <select class="form-control" name="tiempo" #tiempo="ngModel" [(ngModel)]="tiempoTemp.tiempo">
-          <option *ngFor="let n of minutos" value="{{n}}">{{n}}</option>
+      <select class="form-control" name="tiempo" #tiempo="ngModel" [(ngModel)]="tiempoHumSuel.tiempo">
+        <option *ngFor="let n of minutos" value="{{n}}">{{n}}</option>
       </select>
       <input type="submit" value="aceptar" class="btn btn-success" [disabled]="modelNew.invalid">
-  </form>
+    </form>
+  </div>
 </div>
-
-</div>
-</div>
-
-
+<br>
 <div class="row">
-  
- 
+  <div class="col-sm-2"><img src="../../../../assets/co2.jpeg" width="120" height="90"></div>
+  <div class="col-sm-1"><b>
+        <kbd>CO<sub>2</sub></kbd>
+      </b>
+  </div>
+  <div class="col-sm-3">
+    <form #modelNew="ngForm" (ngSubmit)="onSubmitCo2(modelNew)">
+      <select class="form-control" name="minimo" #minimo="ngModel" [(ngModel)]="co2.minimo">
+        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+      </select>
+      <select class="form-control" name="maximo" #maximo="ngModel" [(ngModel)]="co2.maximo">
+        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+
+      </select>
+
+      <input type="submit" value="enviar" class="btn btn-success" [disabled]="modelNew.invalid">
+    </form>
+  </div>
+  <div class="col-sm-3">
+    <div class="row">
+      <div class="col-sm-8">
+        <input type="text" name="minCo2" id="minCo2" class="form-control" placeholder="Mínimo: {{co2Min}}%" tabindex="1"
+          readonly>
+      </div>
+      <div class="col-sm-8">
+        <input type="text" name="maxCo2" id="maxCo2" class="form-control" placeholder="Máximo: {{co2Max}}%" tabindex="1"
+          readonly>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <form #modelNew="ngForm" (ngSubmit)="cambioCo2(modelNew)">
+
+      <select class="form-control" name="tiempo" #tiempo="ngModel" [(ngModel)]="tiempoCo2.tiempo">
+        <option *ngFor="let n of minutos" value="{{n}}">{{n}}</option>
+      </select>
+      <input type="submit" value="aceptar" class="btn btn-success" [disabled]="modelNew.invalid">
+    </form>
+  </div>
 </div>
-
+<br>
 <div class="row">
-  <div class="col-sm-3">
-    <span> <b>Temperatura</b> </span>
-  </div>
-
-
-  <div class="col-sm-3  ">
-    <span> <b>Humedad Suelo </b></span>
-  </div>
-
-  <div class="col-sm-3">
-
-
-    <span> <b>Humedad Relativa </b></span>
-  </div>
-
-
-  <div class="col-sm-3">
-    <span> <b>Nivel CO<sub>2</sub> </b> </span>
-  </div>
-
-</div>
-<div class="row">
-  <div class="col-sm-5"></div>
+  <div class="col-sm-2"></div>
   <div class="col-sm-4">
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" value="">
+        <h6 style="color:floralwhite"><kbd> Recibir alerta por correo</kbd></h6>
+      </label>
+    </div>
 
   </div>
-  <div class="col-sm-5">
-
+  <div class="col-sm-4">
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" value="">
+        <h6 style="color:floralwhite"><kbd>Recibir alerta en la página</kbd></h6>
+      </label>
+    </div>
+  </div>
+  <div class="col-sm-2">
+    <button type="button" class="btn btn-success">Aceptar</button>
   </div>
 </div>

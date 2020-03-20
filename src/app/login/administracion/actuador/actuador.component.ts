@@ -37,9 +37,16 @@ export class ActuadorComponent implements OnInit {
   public nombre;
   public nombreCultivo;
   public var;
+  public humMax;
+  public humSuelMax;
+  public co2Max;
+  
 
   nombres: String[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60', '61', '62', '63', '64', '65', '66', '67', '68', '69', '70'];
   public tiempoTemp: Sensor = { id: null,nombre: "", estado: "", caracteristica: "", invernadero_id_invernadero: null,tiempo:null, minimo:null,maximo:null };
+  public tiempoHum: Sensor = {  id: null,nombre: "", estado: "", caracteristica: "", invernadero_id_invernadero: null,tiempo:null ,minimo:null,maximo:null};
+  public tiempoHumSuel: Sensor = {  id: null,nombre: "", estado: "", caracteristica: "", invernadero_id_invernadero: null,tiempo:null, minimo:null,maximo:null};
+  public tiempoCo2: Sensor = {  id: null,nombre: "", estado: "", caracteristica: "", invernadero_id_invernadero: null,tiempo:null, minimo:null,maximo:null};
 
 
   constructor(public sensorServices: SensorServiceService, public invernaderoServices: InvernaderoServiceService) {
@@ -61,12 +68,21 @@ export class ActuadorComponent implements OnInit {
     this.getMedicionhumedadSueloMin();
     this.getMedicionHumedadMin();
     this.getMedicionCo2Min();
+
     this.getTiempoTemp();
+    this.getTiempoHumedad();
+    this.getTiempoHumedadSuelo();
+    this.getTiempoCo2();
+    
     this.mostrarTemperatura();
     this.mostrarHumedadSuelo();
     this.mostrarHumedad();
     this.mostrarCo2();
+
     this.getMedicionTemperaturaMax();
+    this.getMedicionHumedadMax();
+    this.getMedicionhumedadSueloMax();
+    this.getMedicionCo2Max();
   }
   
   getMedicionTemperaturaMax() {
@@ -76,6 +92,41 @@ export class ActuadorComponent implements OnInit {
         this.tempMax=response.tiempo.maximo;
 
         console.log("Temperatura Max "+this.tempMax);
+      }
+    },
+      err=>console.log(err)
+    )
+  }
+  getMedicionHumedadMax() {
+    this.sensorServices.getHumedadMin().subscribe(response =>{
+      if(response.status =='success'){
+        this.humMax=response.tiempo.maximo;
+        
+        console.log("Humedad Max"+this.humMax);
+      }
+    },
+      err=>console.log(err)
+    )
+  }
+  getMedicionhumedadSueloMax() {
+    this.sensorServices.getHumedadSueloMin().subscribe(response =>{
+      if(response.status =='success'){
+        
+        this.humSuelMax=response.tiempo.maximo;
+
+        console.log("HumedadSuelo Max"+this.humSuelMax);
+      }
+    },
+      err=>console.log(err)
+    )
+  }
+  getMedicionCo2Max() {
+    this.sensorServices.getCo2Min().subscribe(response =>{
+      if(response.status =='success'){
+        
+        this.co2Max=response.tiempo.maximo;
+
+        console.log("Co2 Max"+this.co2Max);
       }
     },
       err=>console.log(err)
@@ -115,6 +166,139 @@ export class ActuadorComponent implements OnInit {
           this.getTiempoTemp();
           //location.reload();
 
+
+        }
+      },
+      error => {
+        console.log(error);
+        this.status = "error";
+      }
+    )
+  }
+  getTiempoHumedadSuelo() {
+    this.sensorServices.getHumedadSueloMin().subscribe(response => {
+      if (response.status == 'success') {
+
+        this.tiempoHumSuel = response.tiempo;
+
+        console.log("tiempo sensor Humedad Suelo: " + this.tiempoHumSuel.tiempo);
+      }
+    },
+      err => console.log(err)
+    )
+  }
+  cambioHumedadSuelo(form) {
+    /* 
+    
+      */
+    //actualiza la ficha
+    this.sensorServices.update(this.tiempoHumSuel).subscribe(
+      response => {
+        if (response.status == "success") {
+          this.tiempoHumSuel = response.sensor;
+          this.status = "success";
+          this.tiempoHumSuel.id = null;
+          this.tiempoHumSuel.nombre = "";
+          this.tiempoHumSuel.estado = "";
+          this.tiempoHumSuel.caracteristica = "";
+          this.tiempoHumSuel.invernadero_id_invernadero = null;
+          this.tiempoHumSuel.tiempo = null;
+          this.tiempoHumSuel.minimo = null;
+          this.tiempoHumSuel.maximo = null;
+
+          this.getTiempoHumedadSuelo();
+          //location.reload();
+
+
+        }
+      },
+      error => {
+        console.log(error);
+        this.status = "error";
+      }
+    )
+  }
+
+  
+
+
+  getTiempoHumedad() {
+    this.sensorServices.getHumedadMin().subscribe(response => {
+      if (response.status == 'success') {
+
+        this.tiempoHum = response.tiempo;
+
+        console.log("tiempo sensor Humedad: " + this.tiempoHum.tiempo);
+      }
+    },
+      err => console.log(err)
+    )
+  }
+  cambioHumedad(form) {
+    /* 
+    
+      */
+    //actualiza la ficha
+    this.sensorServices.update(this.tiempoHum).subscribe(
+      response => {
+        if (response.status == "success") {
+          this.tiempoHum = response.sensor;
+          this.status = "success";
+          this.tiempoHum.id = null;
+          this.tiempoHum.nombre = "";
+          this.tiempoHum.estado = "";
+          this.tiempoHum.caracteristica = "";
+          this.tiempoHum.invernadero_id_invernadero = null;
+          this.tiempoHum.tiempo = null;
+          this.tiempoHum.minimo = null;
+          this.tiempoHum.maximo = null;
+
+          this.getTiempoHumedad();
+          //location.reload();
+
+
+        }
+      },
+      error => {
+        console.log(error);
+        this.status = "error";
+      }
+    )
+  }
+  
+  getTiempoCo2() {
+    this.sensorServices.getCo2Min().subscribe(response => {
+      if (response.status == 'success') {
+
+        this.tiempoCo2 = response.tiempo;
+
+        console.log("tiempo sensor Co2: " + this.tiempoCo2.tiempo);
+      }
+    },
+      err => console.log(err)
+    )
+  }
+  cambioCo2(form) {
+    /* 
+    
+      */
+    //actualiza la ficha
+    this.sensorServices.update(this.tiempoCo2).subscribe(
+      response => {
+        if (response.status == "success") {
+          this.tiempoCo2 = response.sensor;
+          this.status = "success";
+          this.tiempoCo2.id = null;
+          this.tiempoCo2.nombre = "";
+          this.tiempoCo2.estado = "";
+          this.tiempoCo2.caracteristica = "";
+          this.tiempoCo2.invernadero_id_invernadero = null;
+          this.tiempoCo2.tiempo = null;
+          this.tiempoCo2.minimo = null;
+          this.tiempoCo2.maximo = null;
+
+          this.getTiempoCo2();
+          //location.reload();
 
         }
       },
