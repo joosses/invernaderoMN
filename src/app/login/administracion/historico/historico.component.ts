@@ -51,8 +51,6 @@ export class HistoricoComponent implements OnInit {
         //console.log("valor dentro for: "+this.var1[index].valor)
        
         this.temperatura[index] =resp.medicion[index];
-       
-       
       }
       
     })
@@ -72,7 +70,7 @@ export class HistoricoComponent implements OnInit {
         console.log("valor: " + this.var1[index].valor);
         this.var[this.cont] = this.var1[index].valor;
         this.cont = this.cont + 1;
-        console.log("VALOOOOOR INDEEEEEEX"+index)
+        
         console.log("contador: " + this.cont);
         console.log("valor: " + this.var);
       }
@@ -162,7 +160,7 @@ export class HistoricoComponent implements OnInit {
   }
   //this.var[0].valor, this.var[1].valor, this.var[2].valor, this.var[3].valor, this.var[4].valor, this.var[5].valor, this.var[6].valor
   
-  generarPDF() {
+  /*generarPDF() {
     html2canvas(document.getElementById('contenido'), {
       // Opciones
       allowTaint: true,
@@ -180,11 +178,12 @@ export class HistoricoComponent implements OnInit {
       const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
       doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
-      */
+      
 
       doc.save('Historico.pdf');
     });
   }
+  */
   
   
 

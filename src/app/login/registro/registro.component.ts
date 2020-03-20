@@ -41,6 +41,7 @@ export class RegistroComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         console.log(this.usuario);
+        console.log("ROL; "+this.usuario.rol);
     this._usuarioService.register(this.usuario).subscribe(
       response=>{
         if(response.status =="success"){
@@ -69,6 +70,7 @@ export class RegistroComponent implements OnInit {
     
     
   }
+  
 
 
 }

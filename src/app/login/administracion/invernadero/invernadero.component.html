@@ -1,13 +1,6 @@
 <div class="col-md-12" align="center">
     <h1>Registro Invernadero</h1>
-    <p *ngIf="status !='success'">Registrar un nuevo invernadero</p>
-    <div class="alert alert-success" *ngIf="status == 'success'">
-        El registro se ha completado correctamente
-    </div>
-    <div class="alert alert-danger" *ngIf="status == 'error'">
-        El registro no se ha completado, vuelve a intentarlo más tarde
-
-    </div>
+    
 <div align="center">
     <form class="col-md-5 " #registerForm="ngForm" (ngSubmit)=onSubmit(registerForm) >
         <div class="form-group">
@@ -18,6 +11,7 @@
                 El campo está vacío
             </small>
         </div>
+
         <div class="form-group">
             <label for="caracteristicas"> Caracteristicas del invernadero</label>
             <input type="text" name="caracteristicas" class="form-control" #caracteristicas="ngModel" [(ngModel)]="invernadero.caracteristicas"
@@ -34,18 +28,29 @@
                 no existen datos o son incorrectos
             </small>
         </div>
+      
+
         <div class="form-group">
             <label for="usuario_id_usuario"> Usuario</label>
-            <input type="text" name="usuario_id_usuario" class="form-control" #usuario_id_usuario="ngModel" [(ngModel)]="invernadero.usuario_id_usuario"
-                required pattern="[0-9]+">
+            <select name="usuario_id_usuario" class="form-control" #usuario_id_usuario="ngModel" [(ngModel)]="invernadero.usuario_id_usuario">
+
+                <option *ngFor="let item of usuario;let indice=index" [value]="item.id">
+                    {{item.nombre}}
+                  </option>
+            </select>
             <small *ngIf="!usuario_id_usuario.valid && usuario_id_usuario.touched" class="invalid-feedback d-block">
                 Ingrese un usuario valido
             </small>
         </div>
+        
+
         <div class="form-group">
             <label for="chipid"> Chipid</label>
-            <input type="text" name="chipid" class="form-control" #chipid="ngModel" [(ngModel)]="invernadero.chipid"
-                required pattern="[0-9]+">
+            <select name="chipid" class="form-control" #chipid="ngModel" [(ngModel)]="invernadero.chipid">
+
+                <option value="13188695">13188695</option>
+                
+            </select>
             <small *ngIf="!chipid.valid && chipid.touched" class="invalid-feedback d-block">
                 Ingrese solo números
             </small>

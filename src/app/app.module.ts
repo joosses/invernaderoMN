@@ -4,7 +4,7 @@ import {ChartsModule} from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+//import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
@@ -85,7 +85,7 @@ const routes: Routes = [
     FormsModule,
     ChartsModule,
     HttpClientModule,
-    SweetAlert2Module.forRoot()
+    //SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

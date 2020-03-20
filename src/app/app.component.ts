@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+//import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 import * as jsPDF from 'jspdf';
-import * as html2canvas from 'html2canvas';
+//import * as html2canvas from 'html2canvas';
 
 import { ActuadorServiceService } from 'src/app/servicio/actuador-service.service';
 import { UsuarioServiceService } from 'src/app/servicio/usuario-service.service';

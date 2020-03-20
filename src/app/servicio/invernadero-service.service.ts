@@ -34,6 +34,9 @@ export class InvernaderoServiceService {
   getInvernaderos():Observable<any>{
     return this._http.get(this.url+'invernadero',{headers:this.headers});
   }
+  getInvernaderoLista():any{
+    return this._http.get(this.url+'invernaderoBuscar',{headers:this.headers});
+  }
   /*
   public myServiceMethod() {
     return this.http.get(this.url+'invernadero',{headers:this.headers}).map(

@@ -18,6 +18,7 @@ import { Invernadero } from 'src/app/modelos/Invernadero';
   styleUrls: ['./actuador.component.css']
 })
 export class ActuadorComponent implements OnInit {
+  minutos: String[] = ['10', '20', '30', '40', '50', '60', '70', '80', '90', '100', '110', '120'];
 
   public temp: Sensor = { id: null, nombre: "", estado: "", caracteristica: "", invernadero_id_invernadero: null, tiempo: null, minimo: null, maximo: null };
   public hum: Sensor = { id: null, nombre: "", estado: "", caracteristica: "", invernadero_id_invernadero: null, tiempo: null, minimo: null, maximo: null };
@@ -31,13 +32,14 @@ export class ActuadorComponent implements OnInit {
   public humMin;
   public humSuelMin;
   public co2Min;
-
+  public tempMax;
   public contadores;
   public nombre;
   public nombreCultivo;
   public var;
 
   nombres: String[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60', '61', '62', '63', '64', '65', '66', '67', '68', '69', '70'];
+  public tiempoTemp: Sensor = { id: null,nombre: "", estado: "", caracteristica: "", invernadero_id_invernadero: null,tiempo:null, minimo:null,maximo:null };
 
 
   constructor(public sensorServices: SensorServiceService, public invernaderoServices: InvernaderoServiceService) {
@@ -54,17 +56,76 @@ export class ActuadorComponent implements OnInit {
 
     this.obtenerNombre();
     this.resultado();
-
+    
     this.getMedicionTemperaturaMin();
     this.getMedicionhumedadSueloMin();
     this.getMedicionHumedadMin();
     this.getMedicionCo2Min();
-
+    this.getTiempoTemp();
     this.mostrarTemperatura();
     this.mostrarHumedadSuelo();
     this.mostrarHumedad();
     this.mostrarCo2();
+    this.getMedicionTemperaturaMax();
   }
+  
+  getMedicionTemperaturaMax() {
+    this.sensorServices.getTemperaturaMin().subscribe(response =>{
+      if(response.status =='success'){
+        
+        this.tempMax=response.tiempo.maximo;
+
+        console.log("Temperatura Max "+this.tempMax);
+      }
+    },
+      err=>console.log(err)
+    )
+  }
+  getTiempoTemp() {
+    this.sensorServices.getTemperaturaMin().subscribe(response => {
+      if (response.status == 'success') {
+
+        this.tiempoTemp = response.tiempo;
+
+        console.log("tiempo sensor Temperatura: " + this.tiempoTemp.tiempo);
+      }
+    },
+      err => console.log(err)
+    )
+  }
+  cambioTemperatura(form) {
+    /* 
+    
+      */
+    //actualiza la ficha
+    this.sensorServices.update(this.tiempoTemp).subscribe(
+      response => {
+        if (response.status == "success") {
+          this.tiempoTemp = response.sensor;
+          this.status = "success";
+          this.tiempoTemp.id = null;
+          this.tiempoTemp.nombre = "";
+          this.tiempoTemp.estado = "";
+          this.tiempoTemp.caracteristica = "";
+          this.tiempoTemp.invernadero_id_invernadero = null;
+          this.tiempoTemp.tiempo = null;
+          this.tiempoTemp.minimo = null;
+          this.tiempoTemp.maximo = null;
+
+          this.getTiempoTemp();
+          //location.reload();
+
+
+        }
+      },
+      error => {
+        console.log(error);
+        this.status = "error";
+      }
+    )
+  }
+
+  
 
   //la variable no devuelve indefinido ;) este metodo usar para traer cosas :D
   obtenerNombre() {

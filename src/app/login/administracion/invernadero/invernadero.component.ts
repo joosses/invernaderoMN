@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { InvernaderoServiceService } from 'src/app/servicio/invernadero-service.service';
 import { Invernadero } from 'src/app/modelos/Invernadero';
 import { UsuarioServiceService } from 'src/app/servicio/usuario-service.service';
+import { empty } from 'rxjs';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -16,8 +18,9 @@ export class InvernaderoComponent implements OnInit {
   public status: String;
   public identity;
   public token;
-
-
+public usuario;
+public usuarioNombre;
+public usuarioId;
   public datos;
  
 
@@ -35,7 +38,8 @@ export class InvernaderoComponent implements OnInit {
   */
 
   ngOnInit() {
-    //this.getTodosInvernaderos();
+    //this.getTodosInvernaderos()
+    this.getUsuarioSelect();
     console.log(this.datos);
   }
 
@@ -45,11 +49,23 @@ export class InvernaderoComponent implements OnInit {
       response => {
         if (response.status == "success") {
           this.status = response.status;
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Invernadero agregado correctamente',
+            showConfirmButton: false,
+            timer: 1500
+          })
           form.reset();
         }
         else {
           this.status = 'error';
-
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops Hay problemas con los datos',
+            text: 'Revisa por favor!',
+           
+          })
         }
 
         form.reset();
@@ -60,6 +76,27 @@ export class InvernaderoComponent implements OnInit {
     )
 
   }
+
+  getUsuarioSelect() {
+    this._usuarioService.getUsuario().subscribe( response => {
+      if (response.status == 'success') {
+
+
+    }
+   
+        this.usuario = response.usuario;
+        this.usuarioNombre= response.usuario.nombre;
+        this.usuarioId= response.usuario[0].id;
+
+          console.log("Los usuarios : " + this.usuario);
+        
+        
+      
+    },
+      err => console.log(err)
+    )
+  }
+
   /*
   getTodosInvernaderos():String{
     
@@ -86,4 +123,5 @@ export class InvernaderoComponent implements OnInit {
 		jsonObject => this.jsonObject = jsonObject
 	);
 }*/
+
 }

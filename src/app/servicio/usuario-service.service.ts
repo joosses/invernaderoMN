@@ -13,7 +13,7 @@ export class UsuarioServiceService {
   public token;
   public sub;
   public rol;
-  
+  public headers;
   constructor(public _http:HttpClient) {
     this.url = global.url;
    }
@@ -57,6 +57,9 @@ export class UsuarioServiceService {
       this.token=null;
     }
     return this.token;
+  }
+  getUsuario():any{
+    return this._http.get(this.url+'usuarioBuscar',{headers:this.headers});
   }
   getRol():number{
     let identity = JSON.parse(localStorage.getItem('identity'));
