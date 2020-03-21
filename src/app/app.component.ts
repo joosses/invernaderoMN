@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
-
+import * as FileSaver from 'file-saver';
 import * as jsPDF from 'jspdf';
 //import * as html2canvas from 'html2canvas';
 

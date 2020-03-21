@@ -1,6 +1,6 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
-import * as jsPDF from 'jspdf';
+import * as jspdf from 'jspdf';
 import * as html2canvas from 'html2canvas';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
@@ -8,6 +8,9 @@ import { Medicion } from 'src/app/modelos/Medicion';
 import { MedicionServiceService } from 'src/app/servicio/medicion-service.service';
 import { Injectable } from '@angular/core';
 import { empty } from 'rxjs';
+
+import {DatePickerComponent} from 'ng2-date-picker'; 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,12 +21,23 @@ import { empty } from 'rxjs';
   templateUrl: './historico.component.html',
   styleUrls: ['./historico.component.css']
 })
+
 export class HistoricoComponent implements OnInit {
 
   public var = [];
   public var1: any[];
   public cont: number;
   public temperatura = [];
+  public activarbotones:string='block';
+  public myDate:any =[];
+  public fecha;
+  public  dd;
+  public mm;
+  public yyyy;
+  public  ddf;
+  public mmf;
+  public yyyyf;
+  
 
   public lineChartData: ChartDataSets[] = [
     { data: [0, 0, 0, 0, 0, 0, 0], label: 'Temperatura' },
@@ -44,7 +58,7 @@ export class HistoricoComponent implements OnInit {
 
 
   public temp: Medicion = { id: null, valor: null, tiempo: null, chipid: null, nombre: null };
-  constructor(public medicionService: MedicionServiceService) {
+  constructor(public medicionService: MedicionServiceService ) {
     this.medicionService.getgrafica().subscribe((resp:any)=>{
       //this.temperatura =resp.medicion[2];
      for (let index = 0; index < resp.medicion.length; index++) {
@@ -158,6 +172,57 @@ export class HistoricoComponent implements OnInit {
     })
     console.log("En el init valor temperatura"+this.temperatura);
   }
+
+  getDateInicial(){
+    this.dd = this.myDate["selection"]._d.getDate();
+  this.mm = this.myDate["selection"]._d.getMonth() + 1; //because January is 0!
+    this.yyyy = this.myDate["selection"]._d.getFullYear();
+    this.fecha=this.myDate["selection"]._d;
+    console.log(this.dd);
+    console.log(this.mm);
+    console.log(this.yyyy);
+  }
+  /*getDateFinal(){
+    this.ddf = this.myDate["selection"]._d.getDate();
+  this.mmf = this.myDate["selection"]._d.getMonth() + 1; //because January is 0!
+    this.yyyyf = this.myDate["selection"]._d.getFullYear();
+    this.fecha=this.myDate["selection"]._d;
+    console.log(this.ddf);
+    console.log(this.mmf);
+    console.log(this.yyyyf);
+  }
+*/
+  exportAsXLSX():void{
+    this.medicionService.exportToExcel(this.temperatura, 'my_export');
+  }
+
+  public exportar(){
+    this.activarbotones='none';
+    setTimeout(this.captureScreen,1000);
+  }
+  //motrar y ocultar botones
+  activar(){
+    this.activarbotones='block';
+  }
+  //exportar tabla con datos
+  public captureScreen()  
+  {  
+    var data = document.getElementById('contenido');  
+    html2canvas(data).then(canvas => {  
+      // Few necessary setting options  
+      var imgWidth = 208;   
+      var pageHeight = 295;    
+      var imgHeight = canvas.height * imgWidth / canvas.width;  
+      var heightLeft = imgHeight;  
+  
+      const contentDataURL = canvas.toDataURL('image/png')  
+      let pdf = new jspdf('p', 'mm', 'letter'); // A4 size page of PDF  
+      var position = 0;  
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+      pdf.save('Historicos.pdf'); // Generated PDF   
+    });  
+   
+  } 
   //this.var[0].valor, this.var[1].valor, this.var[2].valor, this.var[3].valor, this.var[4].valor, this.var[5].valor, this.var[6].valor
   
   /*generarPDF() {

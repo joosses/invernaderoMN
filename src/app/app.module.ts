@@ -19,6 +19,7 @@ import { InvernaderoComponent } from './login/administracion/invernadero/inverna
 import { AgregarsensorComponent } from './login/administracion/agregarsensor/agregarsensor.component';
 import { AgregaractuadorComponent } from './login/administracion/agregaractuador/agregaractuador.component';
 import { HomeComponent } from './login/administracion/home/home.component';
+import {DpDatePickerModule} from 'ng2-date-picker';
 
 
 const routes: Routes = [
@@ -85,6 +86,7 @@ const routes: Routes = [
     FormsModule,
     ChartsModule,
     HttpClientModule,
+    DpDatePickerModule,
     //SweetAlert2Module.forRoot()
   ],
   providers: [],

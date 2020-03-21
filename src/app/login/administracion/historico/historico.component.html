@@ -1,4 +1,5 @@
 <div class="container" id="contenido">
+ <!--
   <div class="panel panel-default">
     <div class="panel-body">
       <table class="table">
@@ -11,14 +12,15 @@
           </tr>
         </thead>
         <tbody>
-          <!--<tr ng-repeat="temperatura in temperatura track by $index">
+          <!-<tr ng-repeat="temperatura in temperatura track by $index">
             <td>{{temperatura.id}}</td>
             <td>{{temperatura.valor}}</td>
             <td>{{temperatura.tiempo}}</td>
             <td>{{temperatura.nombre}}</td>
           
           </tr>
-        -->
+
+        ->
         <tr *ngFor="let valor of temperatura ">
           <td>{{valor.id}}</td>
           <td>{{valor.valor}}</td>
@@ -32,7 +34,7 @@
     </div>
   
   </div>
-
+-->
   <div class="row">
 
     <div class="col-md-6">
@@ -114,56 +116,20 @@
   </div>
   
   <br>
-  <div class="row" class="color">
-    <div class="col-md-4">
-    <h3>Descarga esta página en formato PDF:</h3>
-  </div>
-  <div class="col-md-8"></div>
-
-
-  </div>
-  <div class="row" class="color">
-    <div class="col-md-12"></div>
-    <h5>Si quieres tener estos datos capturado por tus sensores de forma física, te recomendamos descargar el documento</h5>
-
-
-
-  </div>
-  <div class="row" class="color">
-    <div class="col-md-12"></div>
-
-<span>en esta sección se debe agregar el listado de las mediciones.</span>
-
-
-  </div>
-  <div class="row">
-    <div class="col-md-12"></div>
-
-
-
-
-  </div>
-  <div class="row">
-    <div class="col-md-12"></div>
-
-
-
-
-  </div>
-  <div class="row">
-    <div class="col-md-12"></div>
-
-
-
-
-  </div>
   
-
-
-</div>
 <div class="row">
-  <div class="col-md-10"></div>
-  <div class="col-md-2"><button (click)="generarPDF()" class="btn btn-info">Crear PDF</button></div>
+  <div class="col-md-8">
+    <dp-date-picker [(ngModel)]="myDate.selection" (click)="getDateInicial()"></dp-date-picker> 
+  </div>
+  <div class="col-md-8">
+    <dp-date-picker [(ngModel)]="myDate.selection" (click)="getDateFinal()"></dp-date-picker> 
+  </div>
+ <!-- <ng-datepicker [(ngModel)]="myDate.selection" (click)="getgDate()"></ng-datepicker>-->
+  
+  <div class="col-md-2"><button (click)='exportAsXLSX()' class="btn btn-info">Excel</button> </div>
+  
+  <div class="col-md-2"><button class="btn btn-success" (click)="exportar()"><i class="far fa-file-pdf"></i> PDF</button></div>
+</div>
 </div>
 <!--
 <button (click)="generarPDF()" class="btn btn-info">Crear PDF</button>

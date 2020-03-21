@@ -5,6 +5,7 @@ import { SensorServiceService } from 'src/app/servicio/sensor-service.service';
 import { Injectable } from '@angular/core';
 import { InvernaderoServiceService } from 'src/app/servicio/invernadero-service.service';
 import { Invernadero } from 'src/app/modelos/Invernadero';
+import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root'
 })
@@ -60,6 +61,8 @@ export class ActuadorComponent implements OnInit {
     this.getHumSuel();
     this.getHum();
     this.getCo2();
+
+    
 
     this.obtenerNombre();
     this.resultado();
@@ -144,10 +147,10 @@ export class ActuadorComponent implements OnInit {
       err => console.log(err)
     )
   }
+
+  /*
   cambioTemperatura(form) {
-    /* 
-    
-      */
+   
     //actualiza la ficha
     this.sensorServices.update(this.tiempoTemp).subscribe(
       response => {
@@ -175,6 +178,68 @@ export class ActuadorComponent implements OnInit {
       }
     )
   }
+*/
+  cambioTemperatura(form){
+    Swal.fire({
+      title: '¿Estás seguro de este tiempo?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Registrar!',
+      cancelButtonText:'Cancelar'
+
+    }).then((result) => {
+      if (result.value) {   
+        console.log("Vamos Bien");
+        this.sensorServices.update(this.tiempoTemp).subscribe(
+          response => {
+            if (response.status == "success") {
+              this.tiempoTemp = response.sensor;
+              this.status = "success";
+              this.tiempoTemp.id = null;
+              this.tiempoTemp.nombre = "";
+              this.tiempoTemp.estado = "";
+              this.tiempoTemp.caracteristica = "";
+              this.tiempoTemp.invernadero_id_invernadero = null;
+              this.tiempoTemp.tiempo = null;
+              this.tiempoTemp.minimo = null;
+              this.tiempoTemp.maximo = null;
+    
+              this.getTiempoTemp();
+              this.getMedicionTemperaturaMin()
+              this.getMedicionTemperaturaMax();
+          Swal.fire(
+            'Agregado!',
+            'Tiempo agregado exitosamente',
+            'success'
+          )
+        }
+        else{
+          this.status='error';
+          
+        }
+        
+      
+      },
+      error =>{
+        console.log(<any>error);
+      }
+    )
+       
+      }
+    })
+    
+    
+  }
+
+
+
+
+
+
+
   getTiempoHumedadSuelo() {
     this.sensorServices.getHumedadSueloMin().subscribe(response => {
       if (response.status == 'success') {
@@ -187,10 +252,9 @@ export class ActuadorComponent implements OnInit {
       err => console.log(err)
     )
   }
+  /*
   cambioHumedadSuelo(form) {
-    /* 
-    
-      */
+   
     //actualiza la ficha
     this.sensorServices.update(this.tiempoHumSuel).subscribe(
       response => {
@@ -218,6 +282,61 @@ export class ActuadorComponent implements OnInit {
       }
     )
   }
+  */
+  cambioHumedadSuelo(form){
+    Swal.fire({
+      title: '¿Estás seguro de este tiempo?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Registrar!',
+      cancelButtonText:'Cancelar'
+
+    }).then((result) => {
+      if (result.value) {   
+        console.log("Vamos Bien");
+        this.sensorServices.update(this.tiempoHumSuel).subscribe(
+          response => {
+            if (response.status == "success") {
+              this.tiempoHumSuel = response.sensor;
+              this.status = "success";
+              this.tiempoHumSuel.id = null;
+              this.tiempoHumSuel.nombre = "";
+              this.tiempoHumSuel.estado = "";
+              this.tiempoHumSuel.caracteristica = "";
+              this.tiempoHumSuel.invernadero_id_invernadero = null;
+              this.tiempoHumSuel.tiempo = null;
+              this.tiempoHumSuel.minimo = null;
+              this.tiempoHumSuel.maximo = null;
+    
+              this.getTiempoHumedadSuelo();
+              this.getMedicionhumedadSueloMin();
+              this.getMedicionhumedadSueloMax();
+          Swal.fire(
+            'Agregado!',
+            'Tiempo agregado exitosamente',
+            'success'
+          )
+        }
+        else{
+          this.status='error';
+          
+        }
+        
+      
+      },
+      error =>{
+        console.log(<any>error);
+      }
+    )
+       
+      }
+    })
+    
+    
+  }
 
   
 
@@ -234,10 +353,11 @@ export class ActuadorComponent implements OnInit {
       err => console.log(err)
     )
   }
-  cambioHumedad(form) {
-    /* 
+   /* 
     
-      */
+    
+  cambioHumedad(form) {
+   
     //actualiza la ficha
     this.sensorServices.update(this.tiempoHum).subscribe(
       response => {
@@ -265,6 +385,61 @@ export class ActuadorComponent implements OnInit {
       }
     )
   }
+  */
+  cambioHumedad(form){
+    Swal.fire({
+      title: '¿Estás seguro de este tiempo?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Registrar!',
+      cancelButtonText:'Cancelar'
+
+    }).then((result) => {
+      if (result.value) {   
+        console.log("Vamos Bien");
+        this.sensorServices.update(this.tiempoHum).subscribe(
+          response => {
+            if (response.status == "success") {
+              this.tiempoHum = response.sensor;
+              this.status = "success";
+              this.tiempoHum.id = null;
+              this.tiempoHum.nombre = "";
+              this.tiempoHum.estado = "";
+              this.tiempoHum.caracteristica = "";
+              this.tiempoHum.invernadero_id_invernadero = null;
+              this.tiempoHum.tiempo = null;
+              this.tiempoHum.minimo = null;
+              this.tiempoHum.maximo = null;
+    
+              this.getTiempoHumedad();
+              this.getMedicionHumedadMin();
+              this.getMedicionHumedadMax();
+          Swal.fire(
+            'Agregado!',
+            'Tiempo agregado exitosamente',
+            'success'
+          )
+        }
+        else{
+          this.status='error';
+          
+        }
+        
+      
+      },
+      error =>{
+        console.log(<any>error);
+      }
+    )
+       
+      }
+    })
+    
+    
+  }
   
   getTiempoCo2() {
     this.sensorServices.getCo2Min().subscribe(response => {
@@ -278,10 +453,9 @@ export class ActuadorComponent implements OnInit {
       err => console.log(err)
     )
   }
+  /*
   cambioCo2(form) {
-    /* 
-    
-      */
+  
     //actualiza la ficha
     this.sensorServices.update(this.tiempoCo2).subscribe(
       response => {
@@ -308,7 +482,61 @@ export class ActuadorComponent implements OnInit {
       }
     )
   }
+*/
+  cambioCo2(form){
+    Swal.fire({
+      title: '¿Estás seguro de este tiempo?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Registrar!',
+      cancelButtonText:'Cancelar'
 
+    }).then((result) => {
+      if (result.value) {   
+        console.log("Vamos Bien");
+        this.sensorServices.update(this.tiempoCo2).subscribe(
+          response => {
+            if (response.status == "success") {
+              this.tiempoCo2 = response.sensor;
+              this.status = "success";
+              this.tiempoCo2.id = null;
+              this.tiempoCo2.nombre = "";
+              this.tiempoCo2.estado = "";
+              this.tiempoCo2.caracteristica = "";
+              this.tiempoCo2.invernadero_id_invernadero = null;
+              this.tiempoCo2.tiempo = null;
+              this.tiempoCo2.minimo = null;
+              this.tiempoCo2.maximo = null;
+    
+              this.getTiempoCo2();
+              this.getMedicionCo2Min();
+              this.getMedicionCo2Max();
+          Swal.fire(
+            'Agregado!',
+            'Tiempo agregado exitosamente',
+            'success'
+          )
+        }
+        else{
+          this.status='error';
+          
+        }
+        
+      
+      },
+      error =>{
+        console.log(<any>error);
+      }
+    )
+       
+      }
+    })
+    
+    
+  }
   
 
   //la variable no devuelve indefinido ;) este metodo usar para traer cosas :D
@@ -442,6 +670,66 @@ export class ActuadorComponent implements OnInit {
     )
   }
 
+  onSubmitTemperatura(form){
+    Swal.fire({
+      title: '¿Esta seguro de registar estos limites?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Registrar!',
+      cancelButtonText:'Cancelar'
+
+    }).then((result) => {
+      if (result.value) {   
+        console.log("Vamos Bien");
+        this.sensorServices.update(this.temp).subscribe(
+          response => {
+            if (response.status == "success") {
+              this.temp = response.sensor;
+              // console.log("Que es esto: "+ response.sensor);
+              this.status = "success";
+              this.temp.id = null;
+              this.temp.nombre = "";
+              this.temp.estado = "";
+              this.temp.caracteristica = "";
+              this.temp.invernadero_id_invernadero = null;
+              this.temp.tiempo = null;
+              this.temp.minimo = null;
+              this.temp.maximo = null;
+              this.getTemp();
+    
+             
+    
+    
+          Swal.fire(
+            'Agregado!',
+            'Limites establecidos',
+            'success'
+          )
+        }
+        else{
+          this.status='error';
+          
+        }
+        
+      
+      },
+      error =>{
+        console.log(<any>error);
+      }
+    )
+       
+      }
+    })
+    
+    
+  }
+
+
+
+/*
   onSubmitTemperatura(form) {
   
     //actualiza la ficha
@@ -472,7 +760,7 @@ export class ActuadorComponent implements OnInit {
       }
     )
   }
-
+*/
   getHumSuel() {
     this.sensorServices.getHumedadSueloMin().subscribe(response => {
       if (response.status == 'success') {
@@ -485,7 +773,7 @@ export class ActuadorComponent implements OnInit {
       err => console.log(err)
     )
   }
-
+/*
   onSubmitHumedadSuelo(form) {
     
     //actualiza la ficha
@@ -514,8 +802,61 @@ export class ActuadorComponent implements OnInit {
       }
     )
   }
+*/
+  onSubmitHumedadSuelo(form){
+    Swal.fire({
+      title: '¿Esta seguro de registar estos limites?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Registrar!',
+      cancelButtonText:'Cancelar'
 
-
+    }).then((result) => {
+      if (result.value) {   
+        console.log("Vamos Bien");
+        this.sensorServices.update(this.humsuel).subscribe(
+          response => {
+            if (response.status == "success") {
+              this.humsuel = response.sensor;
+              this.status = "success";
+              this.humsuel.id = null;
+              this.humsuel.nombre = "";
+              this.humsuel.estado = "";
+              this.humsuel.caracteristica = "";
+              this.humsuel.invernadero_id_invernadero = null;
+              this.humsuel.tiempo = null;
+              this.humsuel.minimo = null;
+              this.humsuel.maximo = null;
+              this.getHumSuel();
+            
+    
+    
+          Swal.fire(
+            'Agregado!',
+            'Limites establecidos',
+            'success'
+          )
+        }
+        else{
+          this.status='error';
+          
+        }
+        
+      
+      },
+      error =>{
+        console.log(<any>error);
+      }
+    )
+       
+      }
+    })
+    
+    
+  }
 
   getHum() {
     this.sensorServices.getHumedadMin().subscribe(response => {
@@ -529,7 +870,7 @@ export class ActuadorComponent implements OnInit {
       err => console.log(err)
     )
   }
-
+/*
   onSubmitHumedad(form) {
     
     //actualiza la ficha
@@ -558,6 +899,64 @@ export class ActuadorComponent implements OnInit {
       }
     )
   }
+*/
+  onSubmitHumedad(form){
+    Swal.fire({
+      title: '¿Esta seguro de registar estos limites?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Registrar!',
+      cancelButtonText:'Cancelar'
+
+    }).then((result) => {
+      if (result.value) {   
+        console.log("Vamos Bien");
+        this.sensorServices.update(this.hum).subscribe(
+          response => {
+            if (response.status == "success") {
+              this.hum = response.sensor;
+              this.status = "success";
+              this.hum.id = null;
+              this.hum.nombre = "";
+              this.hum.estado = "";
+              this.hum.caracteristica = "";
+              this.hum.invernadero_id_invernadero = null;
+              this.hum.tiempo = null;
+              this.hum.minimo = null;
+              this.hum.maximo = null;
+              this.getHum();
+            
+    
+    
+          Swal.fire(
+            'Agregado!',
+            'Limites establecidos',
+            'success'
+          )
+        }
+        else{
+          this.status='error';
+          
+        }
+        
+      
+      },
+      error =>{
+        console.log(<any>error);
+      }
+    )
+       
+      }
+    })
+    
+    
+  }
+
+
+
 
   getCo2() {
     this.sensorServices.getCo2Min().subscribe(response => {
@@ -569,11 +968,9 @@ export class ActuadorComponent implements OnInit {
       err => console.log(err)
     )
   }
-
+/*
   onSubmitCo2(form) {
-    /* 
-    -----
-      */
+    
     //actualiza la ficha
     this.sensorServices.update(this.co2).subscribe(
       response => {
@@ -599,7 +996,62 @@ export class ActuadorComponent implements OnInit {
       }
     )
   }
+*/
+
+  onSubmitCo2(form){
+    Swal.fire({
+      title: '¿Esta seguro de registar estos limites?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Registrar!',
+      cancelButtonText:'Cancelar'
+
+    }).then((result) => {
+      if (result.value) {   
+        console.log("Vamos Bien");
+        this.sensorServices.update(this.co2).subscribe(
+          response => {
+            if (response.status == "success") {
+              this.co2 = response.sensor;
+              this.status = "success";
+              this.co2.id = null;
+              this.co2.nombre = "";
+              this.co2.estado = "";
+              this.co2.caracteristica = "";
+              this.co2.invernadero_id_invernadero = null;
+              this.co2.tiempo = null;
+              this.co2.minimo = null;
+              this.co2.maximo = null;
+              this.getCo2();
+              
+    
+    
+          Swal.fire(
+            'Agregado!',
+            'Limites establecidos',
+            'success'
+          )
+        }
+        else{
+          this.status='error';
+          
+        }
+        
+      
+      },
+      error =>{
+        console.log(<any>error);
+      }
+    )
+       
+      }
+    })
+    
+    
+  }
+
 
 }
-
-
