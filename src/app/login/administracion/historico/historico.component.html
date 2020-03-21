@@ -1,5 +1,5 @@
 <div class="container" id="contenido">
- <!--
+  <!--
   <div class="panel panel-default">
     <div class="panel-body">
       <table class="table">
@@ -114,22 +114,48 @@
       </div>
     </div>
   </div>
-  
+
   <br>
-  
-<div class="row">
-  <div class="col-md-8">
+
+  <div class="row">
+    <!--<div class="col-md-3">
     <dp-date-picker [(ngModel)]="myDate.selection" (click)="getDateInicial()"></dp-date-picker> 
   </div>
-  <div class="col-md-8">
+  <div class="col-md-3">
     <dp-date-picker [(ngModel)]="myDate.selection" (click)="getDateFinal()"></dp-date-picker> 
+  </div>-->
+    <!-- <ng-datepicker [(ngModel)]="myDate.selection" (click)="getgDate()"></ng-datepicker>-->
+    <div class="col-md-2">
+      <label for="nombre"> <kbd> Nombre Medición </kbd> </label>
+    </div>
+    <div class="col-md-4">
+      <form class="col-md-12" #registerForm="ngForm" (ngSubmit)=exportAsXLSX(registerForm) id="formularionom">
+        <div class="form-group">
+          <select name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="ttemp.nombre">
+            <option value="Temperatura">Temperatura</option>
+            <option value="Humedad">Humedad</option>
+            <option value="HumedadSuelo">Humedad del Suelo</option>
+            <option value="Co2">CO<sub>2</sub></option>
+          </select>
+          <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
+            El campo está vacío
+          </small>
+        </div>
+        </form>
+      </div>
+      <div class="col-md-2">
+        <input type="submit" value="Excel" class="btn btn-success" [disabled]="registerForm.invalid" form="formularionom">
+      </div>
+       
+        <!-- <input type="submit" value="Excel" class="btn btn-success" (click)='exportAsXLSX()' [disabled]="registerForm.invalid"> -->
+
+   
+    
+    <!--<div class="col-md-2"><button (click)='exportAsXLSX()' class="btn btn-info">Excel</button> </div>-->
+    <div class="col-md-2"></div>
+    <div class="col-md-2"><button class="btn btn-success" (click)="exportar()"><i class="far fa-file-pdf"></i>
+        PDF</button></div>
   </div>
- <!-- <ng-datepicker [(ngModel)]="myDate.selection" (click)="getgDate()"></ng-datepicker>-->
-  
-  <div class="col-md-2"><button (click)='exportAsXLSX()' class="btn btn-info">Excel</button> </div>
-  
-  <div class="col-md-2"><button class="btn btn-success" (click)="exportar()"><i class="far fa-file-pdf"></i> PDF</button></div>
-</div>
 </div>
 <!--
 <button (click)="generarPDF()" class="btn btn-info">Crear PDF</button>

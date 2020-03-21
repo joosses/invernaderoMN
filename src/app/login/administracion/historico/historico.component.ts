@@ -1,15 +1,18 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as jspdf from 'jspdf';
-import * as html2canvas from 'html2canvas';
+//import * as html2canvas from 'html2canvas';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import { Medicion } from 'src/app/modelos/Medicion';
+
 import { MedicionServiceService } from 'src/app/servicio/medicion-service.service';
+import { SensorServiceService} from 'src/app/servicio/sensor-service.service';
 import { Injectable } from '@angular/core';
 import { empty } from 'rxjs';
 
 import {DatePickerComponent} from 'ng2-date-picker'; 
+import { Sensor } from 'src/app/modelos/Sensor';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +31,10 @@ export class HistoricoComponent implements OnInit {
   public var1: any[];
   public cont: number;
   public temperatura = [];
+  public humedad = [];
+  public humedadsuelo = [];
+  public co2 = [];
+
   public activarbotones:string='block';
   public myDate:any =[];
   public fecha;
@@ -37,6 +44,7 @@ export class HistoricoComponent implements OnInit {
   public  ddf;
   public mmf;
   public yyyyf;
+  public sensor;
   
 
   public lineChartData: ChartDataSets[] = [
@@ -58,7 +66,10 @@ export class HistoricoComponent implements OnInit {
 
 
   public temp: Medicion = { id: null, valor: null, tiempo: null, chipid: null, nombre: null };
-  constructor(public medicionService: MedicionServiceService ) {
+  public ttemp: Sensor = { id: null, nombre: "", estado: "", caracteristica: "", invernadero_id_invernadero: null, tiempo: null, minimo: null, maximo: null };
+  
+  
+  constructor(public medicionService: MedicionServiceService, public sensorService:SensorServiceService) {
     this.medicionService.getgrafica().subscribe((resp:any)=>{
       //this.temperatura =resp.medicion[2];
      for (let index = 0; index < resp.medicion.length; index++) {
@@ -68,6 +79,34 @@ export class HistoricoComponent implements OnInit {
       }
       
     })
+    this.medicionService.getgraficaH().subscribe((resp:any)=>{
+      //this.temperatura =resp.medicion[2];
+     for (let index = 0; index < resp.medicion.length; index++) {
+        //console.log("valor dentro for: "+this.var1[index].valor)
+       
+        this.humedad[index] =resp.medicion[index];
+      }
+      
+    })
+    this.medicionService.getgraficaHS().subscribe((resp:any)=>{
+      //this.temperatura =resp.medicion[2];
+     for (let index = 0; index < resp.medicion.length; index++) {
+        //console.log("valor dentro for: "+this.var1[index].valor)
+       
+        this.humedadsuelo[index] =resp.medicion[index];
+      }
+      
+    })
+    this.medicionService.getgraficaC().subscribe((resp:any)=>{
+      //this.temperatura =resp.medicion[2];
+     for (let index = 0; index < resp.medicion.length; index++) {
+        //console.log("valor dentro for: "+this.var1[index].valor)
+       
+        this.co2[index] =resp.medicion[index];
+      }
+      
+    })
+
     
 
   }
@@ -172,12 +211,24 @@ export class HistoricoComponent implements OnInit {
     })
     console.log("En el init valor temperatura"+this.temperatura);
   }
+/*
+  getMedicionSelect() {
+    
+    this.sensorService.getSensorLista().subscribe( response => {
+      if (response.status == 'success') {
+    }
+        this.sensor = response.sensor;
+          console.log("Los sensores : " + this.sensor);
+    },
+      err => console.log(err)
+    )
+  }*/
 
   getDateInicial(){
     this.dd = this.myDate["selection"]._d.getDate();
   this.mm = this.myDate["selection"]._d.getMonth() + 1; //because January is 0!
     this.yyyy = this.myDate["selection"]._d.getFullYear();
-    this.fecha=this.myDate["selection"]._d;
+    this.fecha=this.myDate["selection"];
     console.log(this.dd);
     console.log(this.mm);
     console.log(this.yyyy);
@@ -192,10 +243,27 @@ export class HistoricoComponent implements OnInit {
     console.log(this.yyyyf);
   }
 */
-  exportAsXLSX():void{
-    this.medicionService.exportToExcel(this.temperatura, 'my_export');
-  }
+  exportAsXLSX(form):void{
+    if (this.ttemp.nombre == 'Temperatura') {
+      console.log("Pasó el form");
+      this.medicionService.exportToExcel(this.temperatura, 'Temperatura');
+    } else {
+      if(this.ttemp.nombre == 'Humedad') {
+        this.medicionService.exportToExcel(this.humedad, 'Humedad');
+      }else{
+        if(this.ttemp.nombre == 'HumedadSuelo'){
+          this.medicionService.exportToExcel(this.humedadsuelo, 'Humedad_Suelo');
+        }else{
+          if(this.ttemp.nombre == 'Co2'){
+            this.medicionService.exportToExcel(this.co2, 'CO2');
+          }
+        }
+      }
 
+    } 
+    
+  }
+/*
   public exportar(){
     this.activarbotones='none';
     setTimeout(this.captureScreen,1000);
@@ -205,6 +273,7 @@ export class HistoricoComponent implements OnInit {
     this.activarbotones='block';
   }
   //exportar tabla con datos
+  
   public captureScreen()  
   {  
     var data = document.getElementById('contenido');  
@@ -223,6 +292,7 @@ export class HistoricoComponent implements OnInit {
     });  
    
   } 
+  */
   //this.var[0].valor, this.var[1].valor, this.var[2].valor, this.var[3].valor, this.var[4].valor, this.var[5].valor, this.var[6].valor
   
   /*generarPDF() {
@@ -269,6 +339,66 @@ export class HistoricoComponent implements OnInit {
 
       }
       console.log("NAMEEEEE: " + this.temperatura)
+    })
+    
+  }
+  public obtenerNombreH() {
+    //this.nombre=this.invernaderoServices.getNombre();
+    //console.log("EL NOMBRE ES: "+this.nombre);
+    // return this.nombre;
+    this.medicionService.getgraficaH().subscribe((resp: any) => {
+      this.var1 = (resp.medicion);
+      console.log("tamaño: " + this.var1.length);
+      this.cont = 0;
+      console.log("contador inicial: " + this.cont);
+
+      for (let index = this.var1.length - 10; index < this.var1.length; index++) {
+
+        this.humedad[this.cont] = this.var1[index];
+        this.cont = this.cont + 1;
+
+      }
+      console.log("NAMEEEEE: " + this.humedad)
+    })
+    
+  }
+  public obtenerNombreHS() {
+    //this.nombre=this.invernaderoServices.getNombre();
+    //console.log("EL NOMBRE ES: "+this.nombre);
+    // return this.nombre;
+    this.medicionService.getgraficaHS().subscribe((resp: any) => {
+      this.var1 = (resp.medicion);
+      console.log("tamaño: " + this.var1.length);
+      this.cont = 0;
+      console.log("contador inicial: " + this.cont);
+
+      for (let index = this.var1.length - 10; index < this.var1.length; index++) {
+
+        this.humedadsuelo[this.cont] = this.var1[index];
+        this.cont = this.cont + 1;
+
+      }
+      console.log("NAMEEEEE: " + this.humedadsuelo)
+    })
+    
+  }
+  public obtenerNombreC() {
+    //this.nombre=this.invernaderoServices.getNombre();
+    //console.log("EL NOMBRE ES: "+this.nombre);
+    // return this.nombre;
+    this.medicionService.getgraficaC().subscribe((resp: any) => {
+      this.var1 = (resp.medicion);
+      console.log("tamaño: " + this.var1.length);
+      this.cont = 0;
+      console.log("contador inicial: " + this.cont);
+
+      for (let index = this.var1.length - 10; index < this.var1.length; index++) {
+
+        this.co2[this.cont] = this.var1[index];
+        this.cont = this.cont + 1;
+
+      }
+      console.log("NAMEEEEE: " + this.co2)
     })
     
   }

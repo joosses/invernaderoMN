@@ -39,6 +39,9 @@ export class SensorServiceService {
   getCo2Min():Observable<any>{
     return this.http.get(this.url+'co2min/'+this.id,{headers:this.headers});
   }
+  getSensorLista():any{
+    return this.http.get(this.url+'sensorBuscar/'+this.id,{headers:this.headers});
+  }
   /*
   getLuzActual():Observable<any>{
     return this.http.get(this.url+'actuadorluz/'+this.id,{headers:this.headers});

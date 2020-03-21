@@ -68,5 +68,6 @@ export class MedicionServiceService {
   getMedicionCo2():Observable<any>{
     return this.http.get(this.url+'medicionco2/'+this.id,{headers:this.headers});
   }
+  
 
 }
