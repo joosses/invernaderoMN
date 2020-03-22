@@ -318,7 +318,7 @@ export class ControlComponent implements OnInit {
       err => console.log(err)
     )
   }
-  prenderluz(form){
+  prenderluz(form) {
     Swal.fire({
       title: '¿Desea activar la luz?',
       text: "",
@@ -327,10 +327,10 @@ export class ControlComponent implements OnInit {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Aceptar',
-      cancelButtonText:'Cancelar'
+      cancelButtonText: 'Cancelar'
 
     }).then((result) => {
-      if (result.value) {   
+      if (result.value) {
         console.log("Vamos Bien");
         this.actuadorServices.update(this.tiempoTemp).subscribe(
           response => {
@@ -338,35 +338,35 @@ export class ControlComponent implements OnInit {
               this.tiempoTemp = response.actuador;
               this.status = "success";
               this.tiempoTemp.id = null;
-    
+
               this.tiempoTemp.estado = null;
               this.tiempoTemp.nombre = "";
               this.tiempoTemp.caracteristica = "";
               this.tiempoTemp.invernadero_id_invernadero = null;
-    
+
               this.getTiempoTemp();
-          Swal.fire(
-            'Activado',
-            'La luz está prendida',
-            'success'
-          )
-        }
-        else{
-          this.status='error';
-          
-        }
-        
-      
-      },
-      error =>{
-        console.log(<any>error);
-      }
-    )
-       
+              Swal.fire(
+                'Activado',
+                'La luz está prendida',
+                'success'
+              )
+            }
+            else {
+              this.status = 'error';
+
+            }
+
+
+          },
+          error => {
+            console.log(<any>error);
+          }
+        )
+
       }
     })
-    
-    
+
+
   }
 
   apagarluz(form) {
@@ -450,7 +450,7 @@ export class ControlComponent implements OnInit {
   }
 */
 
-  prenderagua(form){
+  prenderagua(form) {
     Swal.fire({
       title: '¿Desea activar el sistema de regadio?',
       text: "",
@@ -459,10 +459,10 @@ export class ControlComponent implements OnInit {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Aceptar',
-      cancelButtonText:'Cancelar'
+      cancelButtonText: 'Cancelar'
 
     }).then((result) => {
-      if (result.value) {   
+      if (result.value) {
         console.log("Vamos Bien");
         this.actuadorServices.update(this.tiempoHumSuel).subscribe(
           response => {
@@ -470,35 +470,35 @@ export class ControlComponent implements OnInit {
               this.tiempoHumSuel = response.actuador;
               this.status = "success";
               this.tiempoHumSuel.id = null;
-    
+
               this.tiempoHumSuel.estado = null;
               this.tiempoHumSuel.nombre = "";
               this.tiempoHumSuel.caracteristica = "";
               this.tiempoHumSuel.invernadero_id_invernadero = null;
-    
+
               this.getTiempoAgua();
-          Swal.fire(
-            'Activado',
-            'El sistema de regadio esta prendido',
-            'success'
-          )
-        }
-        else{
-          this.status='error';
-          
-        }
-        
-      
-      },
-      error =>{
-        console.log(<any>error);
-      }
-    )
-       
+              Swal.fire(
+                'Activado',
+                'El sistema de regadio esta prendido',
+                'success'
+              )
+            }
+            else {
+              this.status = 'error';
+
+            }
+
+
+          },
+          error => {
+            console.log(<any>error);
+          }
+        )
+
       }
     })
-    
-    
+
+
   }
 
 
@@ -586,7 +586,7 @@ export class ControlComponent implements OnInit {
     )
   }
 */
-  prenderventilador(form){
+  prenderventilador(form) {
     Swal.fire({
       title: '¿Desea activar el ventilador?',
       text: "",
@@ -595,10 +595,10 @@ export class ControlComponent implements OnInit {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Aceptar',
-      cancelButtonText:'Cancelar'
+      cancelButtonText: 'Cancelar'
 
     }).then((result) => {
-      if (result.value) {   
+      if (result.value) {
         console.log("Vamos Bien");
         this.actuadorServices.update(this.tiempoHum).subscribe(
           response => {
@@ -606,35 +606,35 @@ export class ControlComponent implements OnInit {
               this.tiempoHum = response.actuador;
               this.status = "success";
               this.tiempoHum.id = null;
-    
+
               this.tiempoHum.estado = null;
               this.tiempoHum.nombre = "";
               this.tiempoHum.caracteristica = "";
               this.tiempoHum.invernadero_id_invernadero = null;
-    
+
               this.getTiempoVentilador();
-          Swal.fire(
-            'Activado',
-            'El ventilador está prendido',
-            'success'
-          )
-        }
-        else{
-          this.status='error';
-          
-        }
-        
-      
-      },
-      error =>{
-        console.log(<any>error);
-      }
-    )
-       
+              Swal.fire(
+                'Activado',
+                'El ventilador está prendido',
+                'success'
+              )
+            }
+            else {
+              this.status = 'error';
+
+            }
+
+
+          },
+          error => {
+            console.log(<any>error);
+          }
+        )
+
       }
     })
-    
-    
+
+
   }
 
 
@@ -724,56 +724,50 @@ export class ControlComponent implements OnInit {
 */
 
 
-prenderventilador2(form){
-  Swal.fire({
-    title: '¿Desea activar el segundo ventilador?',
-    text: "",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Aceptar',
-    cancelButtonText:'Cancelar'
+  prenderventilador2(form) {
+    Swal.fire({
+      title: '¿Desea activar el segundo ventilador?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar'
 
-  }).then((result) => {
-    if (result.value) {   
-      console.log("Vamos Bien");
-      this.actuadorServices.update(this.tiempoCo2).subscribe(
-        response => {
-          if (response.status == "success") {
-            this.tiempoCo2 = response.actuador;
-            this.status = "success";
-            this.tiempoCo2.id = null;
-  
-            this.tiempoCo2.estado = null;
-            this.tiempoCo2.nombre = "";
-            this.tiempoCo2.caracteristica = "";
-            this.tiempoCo2.invernadero_id_invernadero = null;
-  
-            this.getTiempoVentilador2();
-        Swal.fire(
-          'Activado',
-          'El segundo ventilador está prendido',
-          'success'
+    }).then((result) => {
+      if (result.value) {
+        console.log("Vamos Bien");
+        this.actuadorServices.update(this.tiempoCo2).subscribe(
+          response => {
+            if (response.status == "success") {
+              this.tiempoCo2 = response.actuador;
+              this.status = "success";
+              this.tiempoCo2.id = null;
+
+              this.tiempoCo2.estado = null;
+              this.tiempoCo2.nombre = "";
+              this.tiempoCo2.caracteristica = "";
+              this.tiempoCo2.invernadero_id_invernadero = null;
+
+              this.getTiempoVentilador2();
+              Swal.fire(
+                'Activado',
+                'El segundo ventilador está prendido',
+                'success'
+              )
+            }
+            else {
+              this.status = 'error';
+            }
+          },
+          error => {
+            console.log(<any>error);
+          }
         )
       }
-      else{
-        this.status='error';
-        
-      }
-      
-    
-    },
-    error =>{
-      console.log(<any>error);
-    }
-  )
-     
-    }
-  })
-  
-  
-}
+    })
+  }
 
 
 

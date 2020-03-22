@@ -25,7 +25,7 @@ public usuarioId;
  
 
   constructor(public invernaderoService: InvernaderoServiceService, public _usuarioService: UsuarioServiceService) {
-    this.invernadero = new Invernadero(null, '', '', '', null, null);
+    this.invernadero = new Invernadero(null, '', '', '', null, null,null);
     this.identity = this._usuarioService.getIdentity();
   }
   /*

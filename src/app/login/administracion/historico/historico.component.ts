@@ -7,12 +7,13 @@ import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import { Medicion } from 'src/app/modelos/Medicion';
 
 import { MedicionServiceService } from 'src/app/servicio/medicion-service.service';
-import { SensorServiceService} from 'src/app/servicio/sensor-service.service';
+import { SensorServiceService } from 'src/app/servicio/sensor-service.service';
 import { Injectable } from '@angular/core';
 import { empty } from 'rxjs';
 
-import {DatePickerComponent} from 'ng2-date-picker'; 
+import { DatePickerComponent } from 'ng2-date-picker';
 import { Sensor } from 'src/app/modelos/Sensor';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -35,17 +36,17 @@ export class HistoricoComponent implements OnInit {
   public humedadsuelo = [];
   public co2 = [];
 
-  public activarbotones:string='block';
-  public myDate:any =[];
+  public activarbotones: string = 'block';
+  public myDate: any = [];
   public fecha;
-  public  dd;
+  public dd;
   public mm;
   public yyyy;
-  public  ddf;
+  public ddf;
   public mmf;
   public yyyyf;
   public sensor;
-  
+
 
   public lineChartData: ChartDataSets[] = [
     { data: [0, 0, 0, 0, 0, 0, 0], label: 'Temperatura' },
@@ -67,47 +68,47 @@ export class HistoricoComponent implements OnInit {
 
   public temp: Medicion = { id: null, valor: null, tiempo: null, chipid: null, nombre: null };
   public ttemp: Sensor = { id: null, nombre: "", estado: "", caracteristica: "", invernadero_id_invernadero: null, tiempo: null, minimo: null, maximo: null };
-  
-  
-  constructor(public medicionService: MedicionServiceService, public sensorService:SensorServiceService) {
-    this.medicionService.getgrafica().subscribe((resp:any)=>{
+
+
+  constructor(public medicionService: MedicionServiceService, public sensorService: SensorServiceService) {
+    this.medicionService.getgrafica().subscribe((resp: any) => {
       //this.temperatura =resp.medicion[2];
-     for (let index = 0; index < resp.medicion.length; index++) {
+      for (let index = 0; index < resp.medicion.length; index++) {
         //console.log("valor dentro for: "+this.var1[index].valor)
-       
-        this.temperatura[index] =resp.medicion[index];
+
+        this.temperatura[index] = resp.medicion[index];
       }
-      
+
     })
-    this.medicionService.getgraficaH().subscribe((resp:any)=>{
+    this.medicionService.getgraficaH().subscribe((resp: any) => {
       //this.temperatura =resp.medicion[2];
-     for (let index = 0; index < resp.medicion.length; index++) {
+      for (let index = 0; index < resp.medicion.length; index++) {
         //console.log("valor dentro for: "+this.var1[index].valor)
-       
-        this.humedad[index] =resp.medicion[index];
+
+        this.humedad[index] = resp.medicion[index];
       }
-      
+
     })
-    this.medicionService.getgraficaHS().subscribe((resp:any)=>{
+    this.medicionService.getgraficaHS().subscribe((resp: any) => {
       //this.temperatura =resp.medicion[2];
-     for (let index = 0; index < resp.medicion.length; index++) {
+      for (let index = 0; index < resp.medicion.length; index++) {
         //console.log("valor dentro for: "+this.var1[index].valor)
-       
-        this.humedadsuelo[index] =resp.medicion[index];
+
+        this.humedadsuelo[index] = resp.medicion[index];
       }
-      
+
     })
-    this.medicionService.getgraficaC().subscribe((resp:any)=>{
+    this.medicionService.getgraficaC().subscribe((resp: any) => {
       //this.temperatura =resp.medicion[2];
-     for (let index = 0; index < resp.medicion.length; index++) {
+      for (let index = 0; index < resp.medicion.length; index++) {
         //console.log("valor dentro for: "+this.var1[index].valor)
-       
-        this.co2[index] =resp.medicion[index];
+
+        this.co2[index] = resp.medicion[index];
       }
-      
+
     })
 
-    
+
 
   }
   ngOnInit() {
@@ -123,7 +124,7 @@ export class HistoricoComponent implements OnInit {
         console.log("valor: " + this.var1[index].valor);
         this.var[this.cont] = this.var1[index].valor;
         this.cont = this.cont + 1;
-        
+
         console.log("contador: " + this.cont);
         console.log("valor: " + this.var);
       }
@@ -209,26 +210,26 @@ export class HistoricoComponent implements OnInit {
       ];
 
     })
-    console.log("En el init valor temperatura"+this.temperatura);
+    console.log("En el init valor temperatura" + this.temperatura);
   }
-/*
-  getMedicionSelect() {
-    
-    this.sensorService.getSensorLista().subscribe( response => {
-      if (response.status == 'success') {
-    }
-        this.sensor = response.sensor;
-          console.log("Los sensores : " + this.sensor);
-    },
-      err => console.log(err)
-    )
-  }*/
+  /*
+    getMedicionSelect() {
+      
+      this.sensorService.getSensorLista().subscribe( response => {
+        if (response.status == 'success') {
+      }
+          this.sensor = response.sensor;
+            console.log("Los sensores : " + this.sensor);
+      },
+        err => console.log(err)
+      )
+    }*/
 
-  getDateInicial(){
+  getDateInicial() {
     this.dd = this.myDate["selection"]._d.getDate();
-  this.mm = this.myDate["selection"]._d.getMonth() + 1; //because January is 0!
+    this.mm = this.myDate["selection"]._d.getMonth() + 1; //because January is 0!
     this.yyyy = this.myDate["selection"]._d.getFullYear();
-    this.fecha=this.myDate["selection"];
+    this.fecha = this.myDate["selection"];
     console.log(this.dd);
     console.log(this.mm);
     console.log(this.yyyy);
@@ -243,58 +244,65 @@ export class HistoricoComponent implements OnInit {
     console.log(this.yyyyf);
   }
 */
-  exportAsXLSX(form):void{
-    if (this.ttemp.nombre == 'Temperatura') {
-      console.log("Pasó el form");
-      this.medicionService.exportToExcel(this.temperatura, 'Temperatura');
-    } else {
-      if(this.ttemp.nombre == 'Humedad') {
-        this.medicionService.exportToExcel(this.humedad, 'Humedad');
-      }else{
-        if(this.ttemp.nombre == 'HumedadSuelo'){
-          this.medicionService.exportToExcel(this.humedadsuelo, 'Humedad_Suelo');
-        }else{
-          if(this.ttemp.nombre == 'Co2'){
-            this.medicionService.exportToExcel(this.co2, 'CO2');
+  exportAsXLSX(form): void {
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Medición descargada con éxito',
+      showConfirmButton: false,
+      timer: 1500
+    }).then((nombre) => {
+      
+        if (this.ttemp.nombre == 'Temperatura') {
+          console.log("Pasó el form");
+          this.medicionService.exportToExcel(this.temperatura, 'Temperatura');
+        } else {
+          if (this.ttemp.nombre == 'Humedad') {
+            this.medicionService.exportToExcel(this.humedad, 'Humedad');
+          } else {
+            if (this.ttemp.nombre == 'HumedadSuelo') {
+              this.medicionService.exportToExcel(this.humedadsuelo, 'Humedad_Suelo');
+            } else {
+              if (this.ttemp.nombre == 'Co2') {
+                this.medicionService.exportToExcel(this.co2, 'CO2');
+              }
+            }
           }
-        }
-      }
-
-    } 
+        }  
+    })
+  }
+  /*
+    public exportar(){
+      this.activarbotones='none';
+      setTimeout(this.captureScreen,1000);
+    }
+    //motrar y ocultar botones
+    activar(){
+      this.activarbotones='block';
+    }
+    //exportar tabla con datos
     
-  }
-/*
-  public exportar(){
-    this.activarbotones='none';
-    setTimeout(this.captureScreen,1000);
-  }
-  //motrar y ocultar botones
-  activar(){
-    this.activarbotones='block';
-  }
-  //exportar tabla con datos
-  
-  public captureScreen()  
-  {  
-    var data = document.getElementById('contenido');  
-    html2canvas(data).then(canvas => {  
-      // Few necessary setting options  
-      var imgWidth = 208;   
-      var pageHeight = 295;    
-      var imgHeight = canvas.height * imgWidth / canvas.width;  
-      var heightLeft = imgHeight;  
-  
-      const contentDataURL = canvas.toDataURL('image/png')  
-      let pdf = new jspdf('p', 'mm', 'letter'); // A4 size page of PDF  
-      var position = 0;  
-      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
-      pdf.save('Historicos.pdf'); // Generated PDF   
-    });  
-   
-  } 
-  */
+    public captureScreen()  
+    {  
+      var data = document.getElementById('contenido');  
+      html2canvas(data).then(canvas => {  
+        // Few necessary setting options  
+        var imgWidth = 208;   
+        var pageHeight = 295;    
+        var imgHeight = canvas.height * imgWidth / canvas.width;  
+        var heightLeft = imgHeight;  
+    
+        const contentDataURL = canvas.toDataURL('image/png')  
+        let pdf = new jspdf('p', 'mm', 'letter'); // A4 size page of PDF  
+        var position = 0;  
+        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+        pdf.save('Historicos.pdf'); // Generated PDF   
+      });  
+     
+    } 
+    */
   //this.var[0].valor, this.var[1].valor, this.var[2].valor, this.var[3].valor, this.var[4].valor, this.var[5].valor, this.var[6].valor
-  
+
   /*generarPDF() {
     html2canvas(document.getElementById('contenido'), {
       // Opciones
@@ -319,8 +327,8 @@ export class HistoricoComponent implements OnInit {
     });
   }
   */
-  
-  
+
+
 
   public obtenerNombre() {
     //this.nombre=this.invernaderoServices.getNombre();
@@ -340,7 +348,7 @@ export class HistoricoComponent implements OnInit {
       }
       console.log("NAMEEEEE: " + this.temperatura)
     })
-    
+
   }
   public obtenerNombreH() {
     //this.nombre=this.invernaderoServices.getNombre();
@@ -360,7 +368,7 @@ export class HistoricoComponent implements OnInit {
       }
       console.log("NAMEEEEE: " + this.humedad)
     })
-    
+
   }
   public obtenerNombreHS() {
     //this.nombre=this.invernaderoServices.getNombre();
@@ -380,7 +388,7 @@ export class HistoricoComponent implements OnInit {
       }
       console.log("NAMEEEEE: " + this.humedadsuelo)
     })
-    
+
   }
   public obtenerNombreC() {
     //this.nombre=this.invernaderoServices.getNombre();
@@ -400,7 +408,7 @@ export class HistoricoComponent implements OnInit {
       }
       console.log("NAMEEEEE: " + this.co2)
     })
-    
+
   }
 
   public lineChartLabels: Label[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];

@@ -44,7 +44,7 @@
           <div style="display: block;">
             <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels"
               [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-              [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
+              [chartType]="lineChartType"  (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)"></canvas>
           </div>
         </div>
@@ -62,7 +62,7 @@
           <div style="display: block;">
             <canvas baseChart width="400" height="400" [datasets]="lineChartDataH" [labels]="lineChartLabels"
               [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-              [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
+              [chartType]="lineChartType" (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)"></canvas>
           </div>
         </div>
@@ -85,7 +85,7 @@
           <div style="display: block;">
             <canvas baseChart width="400" height="400" [datasets]="lineChartDataHS" [labels]="lineChartLabels"
               [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-              [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
+              [chartType]="lineChartType"  (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)"></canvas>
           </div>
         </div>
@@ -103,7 +103,7 @@
           <div style="display: block;">
             <canvas baseChart width="400" height="400" [datasets]="lineChartDataC" [labels]="lineChartLabels"
               [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-              [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
+              [chartType]="lineChartType"  (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)"></canvas>
           </div>
         </div>
@@ -153,9 +153,10 @@
     
     <!--<div class="col-md-2"><button (click)='exportAsXLSX()' class="btn btn-info">Excel</button> </div>-->
     <div class="col-md-2"></div>
-    <div class="col-md-2"><button class="btn btn-success" (click)="exportar()"><i class="far fa-file-pdf"></i>
+   <!-- <div class="col-md-2"><button class="btn btn-success" (click)="exportar()"><i class="far fa-file-pdf"></i>
         PDF</button></div>
   </div>
+-->
 </div>
 <!--
 <button (click)="generarPDF()" class="btn btn-info">Crear PDF</button>

@@ -20,6 +20,7 @@ import { AgregarsensorComponent } from './login/administracion/agregarsensor/agr
 import { AgregaractuadorComponent } from './login/administracion/agregaractuador/agregaractuador.component';
 import { HomeComponent } from './login/administracion/home/home.component';
 import {DpDatePickerModule} from 'ng2-date-picker';
+import {ListaInvernaderoComponent} from './login/lista-invernadero/lista-invernadero.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,10 @@ const routes: Routes = [
       {
         path:'invernadero',
         component:InvernaderoComponent
+      },
+      {
+      path:'listainvernadero',
+      component:ListaInvernaderoComponent
       },
       {
         path:'actuador',
@@ -77,12 +82,13 @@ const routes: Routes = [
     InvernaderoComponent,
     AgregarsensorComponent,
     AgregaractuadorComponent,
+    ListaInvernaderoComponent,
     HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes,{useHash:true}),
     FormsModule,
     ChartsModule,
     HttpClientModule,

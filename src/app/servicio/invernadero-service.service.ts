@@ -37,6 +37,16 @@ export class InvernaderoServiceService {
   getInvernaderoLista():any{
     return this._http.get(this.url+'invernaderoBuscar',{headers:this.headers});
   }
+  getInvernaderoTabla():any{
+    return this._http.get(this.url+'tabla',{headers:this.headers});
+  }
+  update(invernadero):Observable<any>{
+    let json=JSON.stringify(invernadero);
+    let params="json="+json;
+    let headers=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+
+    return this._http.put(this.url+'sensoru/'+invernadero.id,params,{headers:headers});
+  }
   /*
   public myServiceMethod() {
     return this.http.get(this.url+'invernadero',{headers:this.headers}).map(

@@ -25,7 +25,7 @@ export class ActuadorComponent implements OnInit {
   public hum: Sensor = { id: null, nombre: "", estado: "", caracteristica: "", invernadero_id_invernadero: null, tiempo: null, minimo: null, maximo: null };
   public humsuel: Sensor = { id: null, nombre: "", estado: "", caracteristica: "", invernadero_id_invernadero: null, tiempo: null, minimo: null, maximo: null };
   public co2: Sensor = { id: null, nombre: "", estado: "", caracteristica: "", invernadero_id_invernadero: null, tiempo: null, minimo: null, maximo: null };
-  public inve: Invernadero = { id: null, cultivo: "", caracteristicas: "", placa: "", usuario_id_usuario: null, chipid: null };
+  public inve: Invernadero = { id: null, cultivo: "", caracteristicas: "", placa: "", usuario_id_usuario: null, chipid: null, estado: null };
   public status;
   public pruebasa = 5;
   public sensorServ;

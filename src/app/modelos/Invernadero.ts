@@ -6,5 +6,6 @@ export class Invernadero{
     public placa: String,
     public usuario_id_usuario:number,
     public chipid:number,
+    public estado:number,
     ){}
 }
