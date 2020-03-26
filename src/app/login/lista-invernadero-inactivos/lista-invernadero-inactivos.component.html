@@ -1,0 +1,110 @@
+<div class="container-fluid">
+    <!--migas de pan-->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/admin']">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+      </ol>
+    </nav>
+    <!--fin migas de pan-->
+  
+    <div class="card">
+      <div class="card-body">
+        <!--ya no debemos hacer property binding, dado que utilizará los arreglos del servicio-->
+        <!--<app-product-list [datos]="filterProducts"></app-product-list>-->
+        <div class="card border-primary mb-3 text-center">
+          <div class="card-header"><b>Listado de Invernaderos inactivos</b></div>
+          <div class="card-body text-primary">
+            <div class="table-responsive">
+              <!--llamamos a los nuuevos arreglos declarados en productService, y condicionamos-->
+              <table class="table table-striped">
+                <thead>
+                  <!-- esto indica el cabecero de la tabla-->
+                  <tr>
+                    <th>#</th>
+                    <th>Cultivo</th>
+                    <th>Placa</th>
+                    <th>Usuario</th>
+                    <th>Correo</th>
+                    <th>Chipid</th>
+                  <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!--aqui ocupamos a los arreglos del servicio -->
+                  <tr *ngFor="let i of invernadero ;let indice=index">
+                    <td *ngIf="i.estado=='0'">{{indice+1}}</td>
+                    <td *ngIf="i.estado=='0'">{{i.cultivo}}</td>
+                    <td *ngIf="i.estado=='0'">{{i.nombre }}</td>
+                    <td *ngIf="i.estado=='0'">{{i.placa }}</td>
+                    <td *ngIf="i.estado=='0'">{{i.correo }}</td>
+                    <td *ngIf="i.estado=='0'">{{i.chipid }}</td>
+
+              
+                 <td>
+                        <button *ngIf="i.estado=='0'" class="btn btn-primary btn-sm" title="Actualizar"
+                        (click)="mostrarModal(i.id,i.cultivo,i.estado,i.placa,i.usuario_id_usuario,i.caracteristica,i.chipid)">
+                        <i class="fas fa-pencil-alt"></i> Editar
+                      </button>
+                      &nbsp;
+                      <button *ngIf="i.estado=='0'" class="btn btn-danger btn-sm" (click)="eliminarInvernadero(i.id,i.cultivo)"
+                        title="Eliminar">
+                        <i class="fas fa-ban"></i> Eliminar
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+
+                
+                  </tr>
+                </tbody>
+                <!--FIN DE BODY-->
+              </table>
+  
+            </div>
+            <!--FIN DE SECCION TABLA TABLA-->
+          </div>
+          <!--FIN HEADER CARD-->
+        </div>
+        <!--FIN BORDER CARD-->
+      </div>
+      <div class="modal" id="exampleModal" [ngStyle]="{'display':activarModal}" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content" style="background: #dddddd">
+            <div class="modal-header">
+              <h5 class="modal-title">Registro de invernadero</h5>
+              <button (click)="ocultarModal()" type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <div class="modal-body">
+              <!--formulario para crear/actualizar apoderado-->
+              <form class="col-md-12 ml-0 pl-0" #modelNew="ngForm" (ngSubmit)="onSubmit(modelNew)">
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="name">Nombre </label>
+                    <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="inver.cultivo" class="form-control"
+                   required>
+                    <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
+                      Debe ingresar el nombre
+                    </small>
+                  </div>
+                  <div class="form-group">
+                    <label for="estado"> Estado</label>
+                    <input type="text" name="estado" class="form-control" #estado="ngModel" [(ngModel)]="inver.estado"
+                        required >
+                    <small *ngIf="!estado.valid && estado.touched" class="invalid-feedback d-block">
+                        Ingrese un Tiempo válido solo numeros
+                    </small>
+                </div>
+                </div>
+                <input type="submit" class="btn btn-success" value="Guardar" [disabled]="modelNew.invalid">
+              </form>
+              <!--fin formulario para crear/actualizar apoderado-->
+            </div>
+            <div class="modal-footer">
+              <button type="button" (click)="ocultarModal()" class="btn btn-danger">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>

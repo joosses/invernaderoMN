@@ -3,7 +3,7 @@
    
     <div align="center">
         <form class="col-md-5 " #registerForm="ngForm" (ngSubmit)=onSubmit(registerForm)>
-            <div class="form-group">
+            <!--            <div class="form-group">
                 <label for="estado"> Estado</label>
                 <input type="text" name="estado" class="form-control" #estado="ngModel" [(ngModel)]="actuador.estado"
                     required >
@@ -11,6 +11,7 @@
                     Ingrese un Tiempo válido solo numeros
                 </small>
             </div>
+-->
 
             <div class="form-group">
                 <label for="nombre"> Nombre</label>
@@ -29,13 +30,21 @@
 
 
 
+       
+
             <div class="form-group">
-                <label for="caracteristica"> Caracteristicas del Actuador</label>
-                <input type="text" name="caracteristica" class="form-control" #caracteristica="ngModel"
-                    [(ngModel)]="actuador.caracteristica" required pattern="[a-zA-Z]+">
-                <small *ngIf="!caracteristica.valid && caracteristica.touched" class="invalid-feedback d-block">
-                    caracteriticas vacía o incorrectas
-                </small>
+                <label for="caracteristica"> Carácteristicas del Actuador</label>
+                <select name="caracteristica" class="form-control" #estado="ngModel" required [(ngModel)]="actuador.caracteristica">
+                    <option  value="Sistema regadio">Sistema regadío</option>
+                    <option value="Sistema iluminacion">Sistema de iluminación </option>
+                    <option value="Sistema de extraccion de aire">Sistema de extracción de aire</option>
+                    <option value="Medir Humedad del suelo">Sistema de extracción de ventilacion</option>
+    
+    
+    
+                </select>
+                    
+               
             </div>
 
             <div class="form-group">

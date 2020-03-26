@@ -69,5 +69,11 @@ export class ActuadorServiceService {
     let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
     return this.http.post(this.url+'actuador/registrar', params,{headers: headers});
   }
+  deleteActuador(id):Observable<any>{
+    return this.http.delete(this.url+"actuadorDelete/"+id,{headers:this.headers});
+  }
+  getIActuadorTabla():any{
+    return this.http.get(this.url+'tablaActuador',{headers:this.headers});
+  }
 
 }

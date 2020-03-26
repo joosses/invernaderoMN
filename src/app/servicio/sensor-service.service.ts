@@ -75,6 +75,12 @@ export class SensorServiceService {
     let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
     return this.http.post(this.url+'sensor/registrar', params,{headers: headers});
   }
+  deleteSensor(id):Observable<any>{
+    return this.http.delete(this.url+"sensorDelete/"+id,{headers:this.headers});
+  }
+  getSensorTabla():any{
+    return this.http.get(this.url+'sensorTabla',{headers:this.headers});
+  }
   
 
 }

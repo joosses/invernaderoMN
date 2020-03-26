@@ -46,11 +46,7 @@
 
         <div class="form-group">
             <label for="chipid"> Chipid</label>
-            <select name="chipid" class="form-control" #chipid="ngModel" [(ngModel)]="invernadero.chipid">
-
-                <option value="13188695">13188695</option>
-                
-            </select>
+            <input type="text" name="chipid" class="form-control" #chipid="ngModel" [(ngModel)]="invernadero.chipid">  
             <small *ngIf="!chipid.valid && chipid.touched" class="invalid-feedback d-block">
                 Ingrese solo números
             </small>

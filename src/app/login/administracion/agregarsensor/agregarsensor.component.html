@@ -7,9 +7,9 @@
 
         <div class="form-group">
             <label for="nombre"> Nombre</label>
-            <select name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="sensor.nombre">
-                <option value="Temperatura">Temperatura</option>
-                <option value="Humedad">Humedad</option>
+            <select id="nam" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="sensor.nombre">
+                <option id="temp" value="Temperatura">Temperatura</option>
+                <option id="hum" value="Humedad">Humedad</option>
                 <option value="HumedadSuelo">Humedad del Suelo</option>
                 <option value="Co2">CO<sub>2</sub></option>
             </select>
@@ -22,16 +22,28 @@
 
 
         <div class="form-group">
-            <label for="estad"> Estado</label>
-            <input type="text" name="estado" class="form-control" #estado="ngModel" [(ngModel)]="sensor.estado"
-                required pattern="[a-zA-Z]+">
+            <label for="estado"> Estado</label>
+            <select name="estado" class="form-control" #estado="ngModel" required [(ngModel)]="sensor.estado">
+                <option value="Funcionando">Funcionando</option>
+                <option value="Bueno">Bueno</option>
+
+            </select>
+                
            
         </div>
         <div class="form-group">
-            <label for="caracteristica"> Caracteristicas del sensor</label>
-            <input type="text" name="caracteristica" class="form-control" #caracteristica="ngModel" [(ngModel)]="sensor.caracteristica"
-                required pattern="[a-zA-Z]+">
-            
+            <label for="caracteristica"> Carácteristicas del sensor</label>
+            <select name="caracteristica" class="form-control" #estado="ngModel" required [(ngModel)]="sensor.caracteristica">
+                <option  value="Medir de Temperatura">Medir de Temperatura</option>
+                <option value="Medir Calidad del aire">Medir Calidad del aire</option>
+                <option value="Medir Humedad del ambiente">Medir Humedad del ambiente</option>
+                <option value="Medir Humedad del suelo">Medir Humedad del suelo</option>
+
+
+
+            </select>
+                
+           
         </div>
        
         <div class="form-group">
@@ -48,7 +60,7 @@
             </small>
         </div>
 
-
+<!--
         <div class="form-group">
             <label for="tiempo"> Tiempo</label>
             <input type="text" name="tiempo" class="form-control" #tiempo="ngModel" [(ngModel)]="sensor.tiempo"
@@ -73,7 +85,7 @@
                 Ingrese un Máximo valido
             </small>
         </div>
-        
+        -->
         <input type="submit" value="registro" class="btn btn-success" [disabled]="registerForm.invalid">
 
 

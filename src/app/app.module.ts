@@ -21,6 +21,9 @@ import { AgregaractuadorComponent } from './login/administracion/agregaractuador
 import { HomeComponent } from './login/administracion/home/home.component';
 import {DpDatePickerModule} from 'ng2-date-picker';
 import {ListaInvernaderoComponent} from './login/lista-invernadero/lista-invernadero.component';
+import {ListaInvernaderoInactivosComponent} from './login/lista-invernadero-inactivos/lista-invernadero-inactivos.component';
+import {ListarActuadorComponent} from './login/listar-actuador/listar-actuador.component';
+import {ListaSensorComponent} from './login/lista-sensor/lista-sensor.component';
 
 
 const routes: Routes = [
@@ -46,10 +49,6 @@ const routes: Routes = [
         component:InvernaderoComponent
       },
       {
-      path:'listainvernadero',
-      component:ListaInvernaderoComponent
-      },
-      {
         path:'actuador',
         component:ActuadorComponent
       },
@@ -65,6 +64,22 @@ const routes: Routes = [
         path:'historico',
         component:HistoricoComponent
       }, 
+      {
+        path:'lista-invernadero',
+        component:ListaInvernaderoComponent
+      }, 
+      {
+        path:'lista-invernadero-inactivos',
+        component:ListaInvernaderoInactivosComponent
+      },
+      {
+        path:'lista-sensor',
+        component:ListaSensorComponent
+      },
+      {
+        path:'listar-actuador',
+        component:ListarActuadorComponent
+      },
     ]
   },
   
@@ -83,6 +98,9 @@ const routes: Routes = [
     AgregarsensorComponent,
     AgregaractuadorComponent,
     ListaInvernaderoComponent,
+    ListaInvernaderoInactivosComponent,
+    ListarActuadorComponent,
+    ListaSensorComponent,
     HomeComponent
   ],
   imports: [

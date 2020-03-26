@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { InvernaderoServiceService } from 'src/app/servicio/invernadero-service.service';
+import { Invernadero } from 'src/app/modelos/Invernadero';
 import { UsuarioServiceService } from 'src/app/servicio/usuario-service.service';
 import Swal from 'sweetalert2';
-import { Invernadero } from 'src/app/modelos/Invernadero';
+
 @Component({
-  selector: 'app-lista-invernadero',
-  templateUrl: './lista-invernadero.component.html',
-  styleUrls: ['./lista-invernadero.component.css']
+  selector: 'app-lista-invernadero-inactivos',
+  templateUrl: './lista-invernadero-inactivos.component.html',
+  styleUrls: ['./lista-invernadero-inactivos.component.css']
 })
-export class ListaInvernaderoComponent implements OnInit {
+export class ListaInvernaderoInactivosComponent implements OnInit {
   public invernadero;
   public activarModal:string='';
   usuario: any;
@@ -16,13 +17,12 @@ export class ListaInvernaderoComponent implements OnInit {
   usuarioId: any;
   public inver: Invernadero = { id: null, cultivo: "", caracteristicas: "", placa: "", usuario_id_usuario: null, chipid:null,estado:null};
   status: string;
-
-  constructor( public invernaderoService: InvernaderoServiceService, public _usuarioService:UsuarioServiceService) { }
-
+  constructor(public invernaderoService:InvernaderoServiceService, public _usuarioService: UsuarioServiceService) { }
+ 
   ngOnInit() {
     this.getinvernadero();
+    console.log("Estamos en los inactivos");
   }
-
   getinvernadero() {
     
     this.invernaderoService.getInvernaderoTabla().subscribe( response => {
@@ -34,36 +34,13 @@ export class ListaInvernaderoComponent implements OnInit {
         this.invernadero = response.invernadero;
        
 
-          console.log("Los invernaderos!!! : " + this.invernadero);
+          console.log("Los invernaderos!!! : " + this.invernadero.estado);
         
         
       
     },
       err => console.log(err)
     )
-  }
-  getUsuarioSelect() {
-    this._usuarioService.getUsuario().subscribe( response => {
-      if (response.status == 'success') {
-        
-
-
-    }
-   
-        this.usuario = response.usuario;
-        this.usuarioNombre= response.usuario.nombre;
-        this.usuarioId= response.usuario[0].id;
-
-          console.log("Los usuarios : " + this.usuario);
-        
-        
-      
-    },
-      err => console.log(err)
-    )
-  }
-  mix(){
-    this
   }
   mostrarModal(id?,cultivo?,estado?,placa?,usuario_id_usuario?, chipid?,caracteristicas? ){
     this.activarModal='block';
@@ -139,7 +116,7 @@ export class ListaInvernaderoComponent implements OnInit {
             Swal.fire({
               position: 'top-end',
               icon: 'success',
-              title: 'Cambios realizados correctamente',
+              title: 'Invernadero agregado correctamente',
               showConfirmButton: false,
               timer: 1500
             })
@@ -204,6 +181,5 @@ export class ListaInvernaderoComponent implements OnInit {
       }
     });
   }
-
 
 }

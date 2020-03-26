@@ -1,0 +1,116 @@
+<div class="container-fluid">
+    <!--migas de pan-->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/admin']">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+      </ol>
+    </nav>
+    <!--fin migas de pan-->
+  
+    <div class="card">
+      <div class="card-body">
+        <!--ya no debemos hacer property binding, dado que utilizará los arreglos del servicio-->
+        <!--<app-product-list [datos]="filterProducts"></app-product-list>-->
+        <div class="card border-primary mb-3 text-center">
+          <div class="card-header"><b>Listado de Actuadores </b></div>
+          <div class="card-body text-primary">
+            <div class="table-responsive">
+              <!--llamamos a los nuuevos arreglos declarados en productService, y condicionamos-->
+              <table class="table table-striped">
+                <thead>
+                  <!-- esto indica el cabecero de la tabla-->
+                  <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Caracteristica</th>
+                  <!--  <th>Usuario</th>-->
+                  <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!--aqui ocupamos a los arreglos del servicio -->
+                  <tr *ngFor="let i of actuador ;let indice=index">
+                    <td >{{indice+1}}</td>
+                    <td >{{i.nombre}}</td>
+                    <td >{{i.estado }}</td>
+                    <td >{{i.caracteristica }}</td>
+                  <!--  <td >{{i.usuario }}</td> -->
+
+              
+                 <td>
+                        <button  class="btn btn-primary btn-sm" title="Actualizar"
+                        (click)="mostrarModal(i.id,i.estado,i.nombre,i.caracteristica,i.invernadero_id_invernadero)">
+                        <i class="fas fa-pencil-alt"></i> Editar
+                      </button>
+                      &nbsp;
+                      <button  class="btn btn-danger btn-sm" (click)="eliminarActuador(i.id,i.nombre)"
+                        title="Eliminar">
+                        <i class="fas fa-ban"></i> Eliminar
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+
+                
+                  </tr>
+                </tbody>
+                <!--FIN DE BODY-->
+              </table>
+  
+            </div>
+            <!--FIN DE SECCION TABLA TABLA-->
+          </div>
+          <!--FIN HEADER CARD-->
+        </div>
+        <!--FIN BORDER CARD-->
+      </div>
+      <div class="modal" id="exampleModal" [ngStyle]="{'display':activarModal}" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content" style="background: #dddddd">
+            <div class="modal-header">
+              <h5 class="modal-title">Registro de actuadores</h5>
+              <button (click)="ocultarModal()" type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <div class="modal-body">
+              <!--formulario para crear/actualizar apoderado-->
+              <form class="col-md-12 ml-0 pl-0" #modelNew="ngForm" (ngSubmit)="onSubmit(modelNew)">
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="estado">Estado </label>
+                    <input type="text" name="estado" #estado="ngModel" [(ngModel)]="actu.estado" class="form-control"
+                   required>
+                    <small *ngIf="!estado.valid && estado.touched" class="invalid-feedback d-block">
+                      Debe ingresar el nombre
+                    </small>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="nombre"> Nombre</label>
+                    <input type="text" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="actu.nombre"
+                        required >
+                    <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
+                        Ingrese un nombre
+                    </small>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="caracteristica"> Caracteristica</label>
+                    <input type="text" name="caracteristica" class="form-control" #caracteristica="ngModel" [(ngModel)]="actu.caracteristica"
+                        required >
+                    <small *ngIf="!caracteristica.valid && caracteristica.touched" class="invalid-feedback d-block">
+                        Ingrese una caracteristica
+                    </small>
+                </div>
+                </div>
+                <input type="submit" class="btn btn-success" value="Guardar" [disabled]="modelNew.invalid">
+              </form>
+              <!--fin formulario para crear/actualizar apoderado-->
+            </div>
+            <div class="modal-footer">
+              <button type="button" (click)="ocultarModal()" class="btn btn-danger">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>

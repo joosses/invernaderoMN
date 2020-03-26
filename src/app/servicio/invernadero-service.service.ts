@@ -45,8 +45,13 @@ export class InvernaderoServiceService {
     let params="json="+json;
     let headers=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
 
-    return this._http.put(this.url+'sensoru/'+invernadero.id,params,{headers:headers});
+    return this._http.put(this.url+'invernaderoUpdate/'+invernadero.id,params,{headers:headers});
   }
+  deleteInvernadero(id):Observable<any>{
+    return this._http.delete(this.url+"invernadero/"+id,{headers:this.headers});
+  }
+  
+
   /*
   public myServiceMethod() {
     return this.http.get(this.url+'invernadero',{headers:this.headers}).map(
@@ -54,3 +59,7 @@ export class InvernaderoServiceService {
     );
   }*/
 }
+
+
+
+
