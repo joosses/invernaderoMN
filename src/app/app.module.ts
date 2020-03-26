@@ -24,6 +24,7 @@ import {ListaInvernaderoComponent} from './login/lista-invernadero/lista-inverna
 import {ListaInvernaderoInactivosComponent} from './login/lista-invernadero-inactivos/lista-invernadero-inactivos.component';
 import {ListarActuadorComponent} from './login/listar-actuador/listar-actuador.component';
 import {ListaSensorComponent} from './login/lista-sensor/lista-sensor.component';
+import { ListaUsuarioComponent } from './login/administracion/lista-usuario/lista-usuario.component';
 
 
 const routes: Routes = [
@@ -80,6 +81,10 @@ const routes: Routes = [
         path:'listar-actuador',
         component:ListarActuadorComponent
       },
+      {
+        path:'lista-usuario',
+        component:ListaUsuarioComponent
+      },
     ]
   },
   
@@ -101,7 +106,8 @@ const routes: Routes = [
     ListaInvernaderoInactivosComponent,
     ListarActuadorComponent,
     ListaSensorComponent,
-    HomeComponent
+    HomeComponent,
+    ListaUsuarioComponent
   ],
   imports: [
     BrowserModule,

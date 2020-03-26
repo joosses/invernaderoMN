@@ -28,6 +28,13 @@ export class UsuarioServiceService {
     let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
     return this._http.post(this.url+'usuario/crear', params,{headers: headers});
   }
+  update(usuario):Observable<any>{
+    let json=JSON.stringify(usuario);
+    let params="json="+json;
+    let headers=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+
+    return this._http.put(this.url+'usuariou/'+usuario.id,params,{headers:headers});
+  }
   signup(usuario, gettoken = null):Observable<any>{
     if(gettoken!=null){
       usuario.gettoken='true';
@@ -86,5 +93,8 @@ export class UsuarioServiceService {
       this.identity=null;
     }
     return this.identity;
+  }
+  deleteUsuario(id):Observable<any>{
+    return this._http.delete(this.url+"usuario/"+id,{headers:this.headers});
   }
 }
