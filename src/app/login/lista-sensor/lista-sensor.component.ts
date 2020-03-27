@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class ListaSensorComponent implements OnInit {
 public sensor;
+public senp;
 public sen:Sensor = {id: null, nombre: "", estado: "", caracteristica: "", invernadero_id_invernadero: null, tiempo: null, minimo:null,maximo:null};
 public activarModal:String ="";
   status: string;  
@@ -23,14 +24,13 @@ constructor(public sensorService:SensorServiceService , public _usuarioService:U
     
     this.sensorService.getSensorTabla().subscribe( response => {
       if (response.status == 'success') {
-
+        
 
     }
    
         this.sensor = response.sensor;
-       
-
-          console.log("Los actuadores!!! : " +  this.sensor);
+  
+          console.log("Los Sensores!!! : " +  this.sensor);
         
         
       

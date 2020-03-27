@@ -347,7 +347,7 @@ export class ControlComponent implements OnInit {
               this.getTiempoTemp();
               Swal.fire(
                 'Activado',
-                'La luz está prendida',
+                'La luz está encendida',
                 'success'
               )
             }
@@ -479,7 +479,7 @@ export class ControlComponent implements OnInit {
               this.getTiempoAgua();
               Swal.fire(
                 'Activado',
-                'El sistema de regadio esta prendido',
+                'El sistema de regadio esta encendido',
                 'success'
               )
             }
@@ -615,7 +615,7 @@ export class ControlComponent implements OnInit {
               this.getTiempoVentilador();
               Swal.fire(
                 'Activado',
-                'El ventilador está prendido',
+                'El ventilador está encendido',
                 'success'
               )
             }
@@ -753,7 +753,7 @@ export class ControlComponent implements OnInit {
               this.getTiempoVentilador2();
               Swal.fire(
                 'Activado',
-                'El segundo ventilador está prendido',
+                'El segundo ventilador está encendido',
                 'success'
               )
             }

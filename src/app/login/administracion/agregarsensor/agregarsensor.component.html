@@ -7,7 +7,7 @@
 
         <div class="form-group">
             <label for="nombre"> Nombre</label>
-            <select id="nam" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="sensor.nombre">
+            <select id="nam" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="sensor.nombre" >
                 <option id="temp" value="Temperatura">Temperatura</option>
                 <option id="hum" value="Humedad">Humedad</option>
                 <option value="HumedadSuelo">Humedad del Suelo</option>
@@ -34,7 +34,7 @@
         <div class="form-group">
             <label for="caracteristica"> Carácteristicas del sensor</label>
             <select name="caracteristica" class="form-control" #estado="ngModel" required [(ngModel)]="sensor.caracteristica">
-                <option  value="Medir de Temperatura">Medir de Temperatura</option>
+                <option value="Medir de Temperatura">Medidor de Temperatura</option>
                 <option value="Medir Calidad del aire">Medir Calidad del aire</option>
                 <option value="Medir Humedad del ambiente">Medir Humedad del ambiente</option>
                 <option value="Medir Humedad del suelo">Medir Humedad del suelo</option>

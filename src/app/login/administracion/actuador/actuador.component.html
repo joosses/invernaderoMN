@@ -18,17 +18,17 @@
 <div class="row">
   <div class="col-sm-2"><img src="assets/temperatura.jpeg" width="120" height="90"></div>
   <div class="col-sm-1"><b>
-        <kbd>Temp. </kbd>
+        <kbd>Temperatura </kbd>
       </b>
   </div>
   <div class="col-sm-3">
     <form #modelNew="ngForm" (ngSubmit)="onSubmitTemperatura(modelNew)">
 
       <select class="form-control" name="minimo" #minimo="ngModel" [(ngModel)]="temp.minimo">
-        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+        <option *ngFor="let n of nombres" value="{{n}}">{{n}}° Celsius</option>
       </select>
       <select class="form-control" name="maximo" #maximo="ngModel" [(ngModel)]="temp.maximo">
-        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+        <option *ngFor="let n of nombres" value="{{n}}">{{n}}° Celsius</option>
       </select>
 
       <input type="submit" value="enviar" class="btn btn-success" [disabled]="modelNew.invalid">
@@ -38,7 +38,7 @@
   <div class="col-sm-3">
     <div class="row">
       <div class="col-sm-8">
-        <input type="text" name="minTemp" id="minTemp" class="form-control" placeholder="Mínimo: {{tempMin}}° "
+        <input type="text" name="minTemp" id="minTemp" class="form-control" placeholder="Mínimo: {{tempMin}}°"
           tabindex="1" readonly>
       </div>
       <div class="col-sm-8">
@@ -51,7 +51,7 @@
     <form #modelNew="ngForm" (ngSubmit)="cambioTemperatura(modelNew)">
 
       <select class="form-control" name="tiempo" #tiempo="ngModel" [(ngModel)]="tiempoTemp.tiempo">
-        <option *ngFor="let n of minutos" value="{{n}}">{{n}}</option>
+        <option *ngFor="let n of minutos" value="{{n}}">{{n}} minutos</option>
       </select>
       <input type="submit" value="aceptar" class="btn btn-success" [disabled]="modelNew.invalid">
     </form>
@@ -67,10 +67,10 @@
   <div class="col-sm-3">
     <form #modelNew="ngForm" (ngSubmit)="onSubmitHumedad(modelNew)">
       <select class="form-control" name="minimo" #minimo="ngModel" [(ngModel)]="hum.minimo" >
-        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+        <option *ngFor="let n of nombres" value="{{n}}">{{n}}%</option>
       </select>
       <select class="form-control" name="maximo" #maximo="ngModel" [(ngModel)]="hum.maximo">
-        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+        <option *ngFor="let n of nombres" value="{{n}}">{{n}}%</option>
       </select>
 
       <input type="submit" value="enviar" class="btn btn-success" [disabled]="modelNew.invalid">
@@ -92,7 +92,7 @@
     <form #modelNew="ngForm" (ngSubmit)="cambioHumedad(modelNew)">
 
       <select class="form-control" name="tiempo" #tiempo="ngModel" [(ngModel)]="tiempoHum.tiempo">
-        <option *ngFor="let n of minutos" value="{{n}}">{{n}}</option>
+        <option *ngFor="let n of minutos" value="{{n}}">{{n}} minutos</option>
       </select>
       <input type="submit" value="aceptar" class="btn btn-success" [disabled]="modelNew.invalid">
     </form>
@@ -109,10 +109,10 @@
     <form #modelNew="ngForm" (ngSubmit)="onSubmitHumedadSuelo(modelNew)">
 
       <select class="form-control" name="minimo" #minimo="ngModel" [(ngModel)]="humsuel.minimo">
-        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+        <option *ngFor="let n of nombres" value="{{n}}">{{n}}% </option>
       </select>
       <select class="form-control" name="maximo" #maximo="ngModel" [(ngModel)]="humsuel.maximo">
-        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+        <option *ngFor="let n of nombres" value="{{n}}">{{n}}%</option>
       </select>
 
       <input type="submit" value="enviar" class="btn btn-success" [disabled]="modelNew.invalid">
@@ -135,7 +135,7 @@
     <form #modelNew="ngForm" (ngSubmit)="cambioHumedadSuelo(modelNew)">
 
       <select class="form-control" name="tiempo" #tiempo="ngModel" [(ngModel)]="tiempoHumSuel.tiempo">
-        <option *ngFor="let n of minutos" value="{{n}}">{{n}}</option>
+        <option *ngFor="let n of minutos" value="{{n}}">{{n}} minutos</option>
       </select>
       <input type="submit" value="aceptar" class="btn btn-success" [disabled]="modelNew.invalid">
     </form>
@@ -151,10 +151,10 @@
   <div class="col-sm-3">
     <form #modelNew="ngForm" (ngSubmit)="onSubmitCo2(modelNew)">
       <select class="form-control" name="minimo" #minimo="ngModel" [(ngModel)]="co2.minimo">
-        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+        <option *ngFor="let n of nombres" value="{{n}}">{{n}}%</option>
       </select>
       <select class="form-control" name="maximo" #maximo="ngModel" [(ngModel)]="co2.maximo">
-        <option *ngFor="let n of nombres" value="{{n}}">{{n}}</option>
+        <option *ngFor="let n of nombres" value="{{n}}">{{n}}%</option>
 
       </select>
 
@@ -177,7 +177,7 @@
     <form #modelNew="ngForm" (ngSubmit)="cambioCo2(modelNew)">
 
       <select class="form-control" name="tiempo" #tiempo="ngModel" [(ngModel)]="tiempoCo2.tiempo">
-        <option *ngFor="let n of minutos" value="{{n}}">{{n}}</option>
+        <option *ngFor="let n of minutos" value="{{n}}">{{n}} minutos</option>
       </select>
       <input type="submit" value="aceptar" class="btn btn-success" [disabled]="modelNew.invalid">
     </form>

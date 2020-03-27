@@ -1,6 +1,6 @@
 <div class="col-md-12" class="fondo" align="center">
-    <h1>Titulo</h1>
-    <p *ngIf="status !='success'">Registro de usuarios</p>
+    <h1>Registro de Usuario</h1>
+    <p *ngIf="status !='success'">Registrate en nuestro sistema</p>
     <div class="alert alert-success" *ngIf="status == 'success'">
        <a [routerLink]="['']">logueate aquí</a>
     </div>
@@ -13,7 +13,7 @@
         <div class="form-group">
             <label for="nombre"> Nombre</label>
             <input type="text" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="usuario.nombre"
-                required pattern="[a-zA-Z]+">
+                required pattern="[a-zA-Z]+" title="El Nombre solo debe contener letras ej: Juan">
             <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
                 el Nombre no es válido
             </small>
@@ -21,7 +21,7 @@
         <div class="form-group">
             <label for="apellido"> Apellido</label>
             <input type="text" name="apellido" class="form-control" #apellido="ngModel" [(ngModel)]="usuario.apellido"
-                required pattern="[a-zA-Z]+">
+                required pattern="[a-zA-Z]+" title="El Apellido solo debe contener letras ej: Pérez">
             <small *ngIf="!apellido.valid && apellido.touched" class="invalid-feedback d-block">
                 el Apellido no es válido
             </small>
@@ -29,7 +29,7 @@
         <div class="form-group">
             <label for="telefono"> Telefono</label>
             <input type="text" name="telefono" class="form-control" #telefono="ngModel" [(ngModel)]="usuario.telefono"
-                required pattern="[0-9]+">
+                required pattern="[0-9]{8,9}"title="Ingrese su número telefónico de celular ej: 87654321 o anteponiendo el 9">
             <small *ngIf="!telefono.valid && telefono.touched" class="invalid-feedback d-block">
                 Número telefónico no valido
             </small>
@@ -37,9 +37,9 @@
         <div class="form-group">
             <label for="direccion"> Dirección</label>
             <input type="text" name="direccion" class="form-control" #direccion="ngModel"
-                [(ngModel)]="usuario.direccion" required pattern="[a-zA-Z0-9]+">
+                [(ngModel)]="usuario.direccion" required pattern="[a-zA-Z]+">
             <small *ngIf="!direccion.valid && direccion.touched" class="invalid-feedback d-block">
-                Ingrese una dirección válida con letras y números
+                Ingrese una dirección válida 
             </small>
         </div>
         <div class="form-group">
@@ -63,21 +63,18 @@
         <div class="form-group">
             <label for="contrasena"> Contraseña</label>
             <input type="password" name="contrasena" class="form-control" #contrasena="ngModel"
-                [(ngModel)]="usuario.contrasena" required>
+                [(ngModel)]="usuario.contrasena" required pattern="[A-Za-z0-9!?-]{4,8}">
             <small *ngIf="!contrasena.valid && contrasena.touched" class="invalid-feedback d-block">
-                la Contraseña no es válida o el campo está vacío
+                la Contraseña debe tener entre 4 y 8 caracteres, además números y letras 
             </small>
         </div>
         <div class="form-group">
-            <label for="rol"> Rol</label>
-            <select name="rol" class="form-control form-control-sm" #rol="ngModel" [(ngModel)]="usuario.rol">
-
+            <label for="rol" readonly> Rol</label>
+            <select name="rol" class="form-control form-control-sm" #rol="ngModel" [(ngModel)]="usuario.rol" >
                 <option value="2">Usuario</option>
-                <option value="1">Administrador</option>
+  
             </select>
-            <small *ngIf="!rol.valid && rol.touched" class="invalid-feedback d-block">
-                Rol no valido
-            </small>
+            
         </div>
         <input type="submit" value="registro" class="btn btn-success" [disabled]="registerForm.invalid">
 
